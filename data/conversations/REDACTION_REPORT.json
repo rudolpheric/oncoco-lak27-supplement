@@ -1,0 +1,38 @@
+{
+ "tool": "openai/privacy-filter via the opf package (typed output, Viterbi decoding), see README",
+ "per_condition": {
+  "HH_roleplay_chat": {
+   "conversations": 68,
+   "messages": 2723,
+   "messages_with_masking": 80,
+   "placeholders": {
+    "private_person": 89,
+    "private_address": 1
+   }
+  },
+  "H_LLM_roleplay_chat": {
+   "conversations": 414,
+   "messages": 15165,
+   "messages_with_masking": 755,
+   "placeholders": {
+    "private_person": 831,
+    "private_url": 5,
+    "private_date": 6,
+    "private_phone": 1,
+    "private_address": 6,
+    "private_email": 3
+   }
+  }
+ },
+ "rule_statistics": {
+  "source_both": 769,
+  "source_conv": 5,
+  "stoplisted_account_number": 4,
+  "tokens_kept_readable": 782,
+  "source_msg": 29,
+  "spans_fully_allowlisted": 443,
+  "source_consistency": 139,
+  "stoplisted_private_date": 2,
+  "stoplisted_private_address": 3
+ }
+}

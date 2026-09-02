@@ -1,0 +1,636 @@
+[
+ {
+  "template_id": "T001",
+  "variant": "first_message_chat_template",
+  "persona": "Annika",
+  "used_by_models": {
+   "Llama 3.3 70B": 3
+  },
+  "n_messages_generated": 3
+ },
+ {
+  "template_id": "T002",
+  "variant": "later_turn_chat_template",
+  "persona": "Annika",
+  "used_by_models": {
+   "Llama 3.3 70B": 54
+  },
+  "n_messages_generated": 54
+ },
+ {
+  "template_id": "T003",
+  "variant": "first_message",
+  "persona": "Boris",
+  "used_by_models": {
+   "GPT-OSS-120B": 5
+  },
+  "n_messages_generated": 5
+ },
+ {
+  "template_id": "T004",
+  "variant": "later_turn",
+  "persona": "Boris",
+  "used_by_models": {
+   "GPT-OSS-120B": 58
+  },
+  "n_messages_generated": 58
+ },
+ {
+  "template_id": "T005",
+  "variant": "first_message_chat_template",
+  "persona": "Charlie",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T006",
+  "variant": "later_turn_chat_template",
+  "persona": "Charlie",
+  "used_by_models": {
+   "Llama 3.3 70B": 29
+  },
+  "n_messages_generated": 29
+ },
+ {
+  "template_id": "T007",
+  "variant": "first_message",
+  "persona": "Eddie",
+  "used_by_models": {
+   "GPT-OSS-120B": 3
+  },
+  "n_messages_generated": 3
+ },
+ {
+  "template_id": "T008",
+  "variant": "first_message",
+  "persona": "Eddie",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T009",
+  "variant": "first_message_chat_template",
+  "persona": "Eddie",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T010",
+  "variant": "later_turn",
+  "persona": "Eddie",
+  "used_by_models": {
+   "GPT-OSS-120B": 55
+  },
+  "n_messages_generated": 55
+ },
+ {
+  "template_id": "T011",
+  "variant": "later_turn",
+  "persona": "Eddie",
+  "used_by_models": {
+   "Llama 3.3 70B": 14
+  },
+  "n_messages_generated": 14
+ },
+ {
+  "template_id": "T012",
+  "variant": "later_turn_chat_template",
+  "persona": "Eddie",
+  "used_by_models": {
+   "Llama 3.3 70B": 20
+  },
+  "n_messages_generated": 20
+ },
+ {
+  "template_id": "T013",
+  "variant": "first_message_chat_template",
+  "persona": "Elias",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T014",
+  "variant": "later_turn_chat_template",
+  "persona": "Elias",
+  "used_by_models": {
+   "Llama 3.3 70B": 27
+  },
+  "n_messages_generated": 27
+ },
+ {
+  "template_id": "T015",
+  "variant": "first_message",
+  "persona": "Elke",
+  "used_by_models": {
+   "GPT-OSS-120B": 7
+  },
+  "n_messages_generated": 7
+ },
+ {
+  "template_id": "T016",
+  "variant": "first_message_chat_template",
+  "persona": "Elke",
+  "used_by_models": {
+   "Llama 3.3 70B": 4
+  },
+  "n_messages_generated": 4
+ },
+ {
+  "template_id": "T017",
+  "variant": "later_turn",
+  "persona": "Elke",
+  "used_by_models": {
+   "GPT-OSS-120B": 114
+  },
+  "n_messages_generated": 114
+ },
+ {
+  "template_id": "T018",
+  "variant": "later_turn_chat_template",
+  "persona": "Elke",
+  "used_by_models": {
+   "Llama 3.3 70B": 83
+  },
+  "n_messages_generated": 83
+ },
+ {
+  "template_id": "T019",
+  "variant": "first_message",
+  "persona": "Frau Schuster",
+  "used_by_models": {
+   "Llama 3.3 70B": 1,
+   "GPT-OSS-120B": 2
+  },
+  "n_messages_generated": 3
+ },
+ {
+  "template_id": "T020",
+  "variant": "first_message_chat_template",
+  "persona": "Frau Schuster",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T021",
+  "variant": "later_turn",
+  "persona": "Frau Schuster",
+  "used_by_models": {
+   "Llama 3.3 70B": 14,
+   "GPT-OSS-120B": 26
+  },
+  "n_messages_generated": 40
+ },
+ {
+  "template_id": "T022",
+  "variant": "later_turn_chat_template",
+  "persona": "Frau Schuster",
+  "used_by_models": {
+   "Llama 3.3 70B": 37
+  },
+  "n_messages_generated": 37
+ },
+ {
+  "template_id": "T023",
+  "variant": "first_message",
+  "persona": "Frau Wolke",
+  "used_by_models": {
+   "GPT-OSS-120B": 11
+  },
+  "n_messages_generated": 11
+ },
+ {
+  "template_id": "T024",
+  "variant": "first_message_chat_template",
+  "persona": "Frau Wolke",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T025",
+  "variant": "later_turn",
+  "persona": "Frau Wolke",
+  "used_by_models": {
+   "GPT-OSS-120B": 149
+  },
+  "n_messages_generated": 149
+ },
+ {
+  "template_id": "T026",
+  "variant": "later_turn_chat_template",
+  "persona": "Frau Wolke",
+  "used_by_models": {
+   "Llama 3.3 70B": 26
+  },
+  "n_messages_generated": 26
+ },
+ {
+  "template_id": "T027",
+  "variant": "first_message",
+  "persona": "Jessica Bergmann",
+  "used_by_models": {
+   "GPT-OSS-120B": 10
+  },
+  "n_messages_generated": 10
+ },
+ {
+  "template_id": "T028",
+  "variant": "first_message_chat_template",
+  "persona": "Jessica Bergmann",
+  "used_by_models": {
+   "Llama 3.3 70B": 23
+  },
+  "n_messages_generated": 23
+ },
+ {
+  "template_id": "T029",
+  "variant": "later_turn",
+  "persona": "Jessica Bergmann",
+  "used_by_models": {
+   "GPT-OSS-120B": 150
+  },
+  "n_messages_generated": 150
+ },
+ {
+  "template_id": "T030",
+  "variant": "later_turn_chat_template",
+  "persona": "Jessica Bergmann",
+  "used_by_models": {
+   "Llama 3.3 70B": 526
+  },
+  "n_messages_generated": 526
+ },
+ {
+  "template_id": "T031",
+  "variant": "first_message_chat_template",
+  "persona": "Jonas",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T032",
+  "variant": "later_turn_chat_template",
+  "persona": "Jonas",
+  "used_by_models": {
+   "Llama 3.3 70B": 15
+  },
+  "n_messages_generated": 15
+ },
+ {
+  "template_id": "T033",
+  "variant": "first_message_chat_template",
+  "persona": "Lara",
+  "used_by_models": {
+   "Llama 3.3 70B": 4
+  },
+  "n_messages_generated": 4
+ },
+ {
+  "template_id": "T034",
+  "variant": "later_turn_chat_template",
+  "persona": "Lara",
+  "used_by_models": {
+   "Llama 3.3 70B": 71
+  },
+  "n_messages_generated": 71
+ },
+ {
+  "template_id": "T035",
+  "variant": "first_message",
+  "persona": "Lars",
+  "used_by_models": {
+   "GPT-OSS-120B": 2
+  },
+  "n_messages_generated": 2
+ },
+ {
+  "template_id": "T036",
+  "variant": "first_message",
+  "persona": "Lars",
+  "used_by_models": {
+   "GPT-OSS-120B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T037",
+  "variant": "later_turn",
+  "persona": "Lars",
+  "used_by_models": {
+   "GPT-OSS-120B": 31
+  },
+  "n_messages_generated": 31
+ },
+ {
+  "template_id": "T038",
+  "variant": "later_turn",
+  "persona": "Lars",
+  "used_by_models": {
+   "GPT-OSS-120B": 29
+  },
+  "n_messages_generated": 29
+ },
+ {
+  "template_id": "T039",
+  "variant": "first_message_chat_template",
+  "persona": "Leyla",
+  "used_by_models": {
+   "Llama 3.3 70B": 3
+  },
+  "n_messages_generated": 3
+ },
+ {
+  "template_id": "T040",
+  "variant": "later_turn_chat_template",
+  "persona": "Leyla",
+  "used_by_models": {
+   "Llama 3.3 70B": 62
+  },
+  "n_messages_generated": 62
+ },
+ {
+  "template_id": "T041",
+  "variant": "first_message",
+  "persona": "Lina",
+  "used_by_models": {
+   "GPT-OSS-120B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T042",
+  "variant": "later_turn",
+  "persona": "Lina",
+  "used_by_models": {
+   "GPT-OSS-120B": 16
+  },
+  "n_messages_generated": 16
+ },
+ {
+  "template_id": "T043",
+  "variant": "first_message",
+  "persona": "Luisa",
+  "used_by_models": {
+   "Llama 3.3 70B": 1,
+   "GPT-OSS-120B": 38
+  },
+  "n_messages_generated": 39
+ },
+ {
+  "template_id": "T044",
+  "variant": "first_message_chat_template",
+  "persona": "Luisa",
+  "used_by_models": {
+   "Llama 3.3 70B": 32
+  },
+  "n_messages_generated": 32
+ },
+ {
+  "template_id": "T045",
+  "variant": "later_turn",
+  "persona": "Luisa",
+  "used_by_models": {
+   "Llama 3.3 70B": 19,
+   "GPT-OSS-120B": 620
+  },
+  "n_messages_generated": 639
+ },
+ {
+  "template_id": "T046",
+  "variant": "later_turn_chat_template",
+  "persona": "Luisa",
+  "used_by_models": {
+   "Llama 3.3 70B": 820
+  },
+  "n_messages_generated": 820
+ },
+ {
+  "template_id": "T047",
+  "variant": "first_message_chat_template",
+  "persona": "Marco",
+  "used_by_models": {
+   "Llama 3.3 70B": 28
+  },
+  "n_messages_generated": 28
+ },
+ {
+  "template_id": "T048",
+  "variant": "later_turn_chat_template",
+  "persona": "Marco",
+  "used_by_models": {
+   "Llama 3.3 70B": 761
+  },
+  "n_messages_generated": 761
+ },
+ {
+  "template_id": "T049",
+  "variant": "first_message_chat_template",
+  "persona": "Marie",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T050",
+  "variant": "later_turn_chat_template",
+  "persona": "Marie",
+  "used_by_models": {
+   "Llama 3.3 70B": 37
+  },
+  "n_messages_generated": 37
+ },
+ {
+  "template_id": "T051",
+  "variant": "first_message",
+  "persona": "Marlene Grafe",
+  "used_by_models": {
+   "Llama 3.3 70B": 42
+  },
+  "n_messages_generated": 42
+ },
+ {
+  "template_id": "T052",
+  "variant": "first_message_chat_template",
+  "persona": "Marlene Grafe",
+  "used_by_models": {
+   "Llama 3.3 70B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T053",
+  "variant": "later_turn",
+  "persona": "Marlene Grafe",
+  "used_by_models": {
+   "Llama 3.3 70B": 633
+  },
+  "n_messages_generated": 633
+ },
+ {
+  "template_id": "T054",
+  "variant": "later_turn_chat_template",
+  "persona": "Marlene Grafe",
+  "used_by_models": {
+   "Llama 3.3 70B": 30
+  },
+  "n_messages_generated": 30
+ },
+ {
+  "template_id": "T055",
+  "variant": "first_message_chat_template",
+  "persona": "Michael Müller",
+  "used_by_models": {
+   "Llama 3.3 70B": 2
+  },
+  "n_messages_generated": 2
+ },
+ {
+  "template_id": "T056",
+  "variant": "later_turn_chat_template",
+  "persona": "Michael Müller",
+  "used_by_models": {
+   "Llama 3.3 70B": 26
+  },
+  "n_messages_generated": 26
+ },
+ {
+  "template_id": "T057",
+  "variant": "first_message",
+  "persona": "Michael Schlosser",
+  "used_by_models": {
+   "Llama 3.3 70B": 70
+  },
+  "n_messages_generated": 70
+ },
+ {
+  "template_id": "T058",
+  "variant": "later_turn",
+  "persona": "Michael Schlosser",
+  "used_by_models": {
+   "Llama 3.3 70B": 1017
+  },
+  "n_messages_generated": 1017
+ },
+ {
+  "template_id": "T059",
+  "variant": "first_message",
+  "persona": "Michaela",
+  "used_by_models": {
+   "GPT-OSS-120B": 9
+  },
+  "n_messages_generated": 9
+ },
+ {
+  "template_id": "T060",
+  "variant": "later_turn",
+  "persona": "Michaela",
+  "used_by_models": {
+   "GPT-OSS-120B": 140
+  },
+  "n_messages_generated": 140
+ },
+ {
+  "template_id": "T061",
+  "variant": "first_message_chat_template",
+  "persona": "Mira",
+  "used_by_models": {
+   "Llama 3.3 70B": 4
+  },
+  "n_messages_generated": 4
+ },
+ {
+  "template_id": "T062",
+  "variant": "later_turn_chat_template",
+  "persona": "Mira",
+  "used_by_models": {
+   "Llama 3.3 70B": 63
+  },
+  "n_messages_generated": 63
+ },
+ {
+  "template_id": "T063",
+  "variant": "first_message_chat_template",
+  "persona": "Regina",
+  "used_by_models": {
+   "Llama 3.3 70B": 6
+  },
+  "n_messages_generated": 6
+ },
+ {
+  "template_id": "T064",
+  "variant": "later_turn_chat_template",
+  "persona": "Regina",
+  "used_by_models": {
+   "Llama 3.3 70B": 123
+  },
+  "n_messages_generated": 123
+ },
+ {
+  "template_id": "T065",
+  "variant": "first_message",
+  "persona": "Robert 12",
+  "used_by_models": {
+   "Llama 3.3 70B": 2
+  },
+  "n_messages_generated": 2
+ },
+ {
+  "template_id": "T066",
+  "variant": "later_turn",
+  "persona": "Robert 12",
+  "used_by_models": {
+   "Llama 3.3 70B": 26
+  },
+  "n_messages_generated": 26
+ },
+ {
+  "template_id": "T067",
+  "variant": "first_message",
+  "persona": "Tobias Meier",
+  "used_by_models": {
+   "GPT-OSS-120B": 1
+  },
+  "n_messages_generated": 1
+ },
+ {
+  "template_id": "T068",
+  "variant": "later_turn",
+  "persona": "Tobias Meier",
+  "used_by_models": {
+   "GPT-OSS-120B": 11
+  },
+  "n_messages_generated": 11
+ },
+ {
+  "template_id": "T069",
+  "variant": "first_message_chat_template",
+  "persona": "Ute Meier",
+  "used_by_models": {
+   "Llama 3.3 70B": 2
+  },
+  "n_messages_generated": 2
+ },
+ {
+  "template_id": "T070",
+  "variant": "later_turn_chat_template",
+  "persona": "Ute Meier",
+  "used_by_models": {
+   "Llama 3.3 70B": 32
+  },
+  "n_messages_generated": 32
+ }
+]

@@ -12,6 +12,7 @@ __pycache__/
 *.fdb_latexmk
 *.fls
 *.synctex.gz
-# raw and processed corpora are never committed
+# raw exports and the processed working corpus are never committed;
+# the released, masked corpus lives in data/conversations/
 data/raw/
 data/processed/

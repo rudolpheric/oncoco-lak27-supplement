@@ -1,9 +1,9 @@
-# Supplementary repository: Measuring Counseling Interaction Patterns Across Human–Human and Human–LLM Dialogues
+# Companion repository: Measuring Counseling Interaction Patterns Across Human–Human and Human–LLM Dialogues
 
 Anonymized companion repository for a LAK 2027 Research Track submission (Journal of Learning Analytics format).
-It contains the Supplementary Material referenced from the main text, the analysis code that produced every table and figure in the paper, and the aggregated, non-textual result tables the code writes.
+It contains the Supplementary Material referenced from the main text, the two roleplay corpora with personal data masked and OnCoCo labels attached, the prompt templates of the simulated client, the analysis code that produced every table and figure in the paper, and the aggregated result tables the code writes.
 
-It does **not** contain conversation transcripts, persona prompts, survey responses, or model weights. See [Data availability](#data-availability).
+It does **not** contain the real-counseling conversations (HH real), survey responses, or classifier weights. See [Data availability](#data-availability).
 
 ## Contents
 
@@ -11,21 +11,78 @@ It does **not** contain conversation transcripts, persona prompts, survey respon
 |---|---|
 | `supplementary_material.pdf` | Supplementary Material (Tables S1–S16, Figures S1–S10) as cited in the main text |
 | `oncoco_supplementary.tex`, `JLA_article.cls`, `header.png` | LaTeX source of the supplement; compiles from the repository root (see [Building the supplement](#building-the-supplement)) |
+| `data/conversations/hh_roleplay_chat.jsonl` | 68 human–human roleplay chats (trainee counselor, trainee playing a persona), masked, labelled |
+| `data/conversations/h_llm_roleplay_chat.jsonl` | 414 human–LLM roleplay chats (trainee counselor, LLM-simulated client), masked, labelled |
+| `prompts/templates/` | 70 prompt templates of the simulated client (one per persona × variant), conversation history replaced by a placeholder; `index.json` lists them |
 | `results/tables/*.tex` | Every table `\input` by the main paper or the supplement |
-| `results/tables/*.csv` | Aggregated numeric outputs of the analysis scripts (label distributions, distances, bootstrap intervals, HMM parameters, transition statistics, confidence diagnostics, survey aggregates) |
-| `results/figures/oncoco/*.pdf` | Every figure included by the main paper or the supplement |
-| `results/figures/oncoco/tikz/` | TikZ sources of the four composite figures (pipeline, main-result, HMM phase, noise band) and the generator notes |
-| `analysis/` | Analysis code (Python) |
-| `scripts/analysis/` | Corpus normalization and inventory |
+| `results/tables/*.csv` | Aggregated numeric outputs of the analysis scripts |
+| `results/figures/oncoco/` | Every figure included by the main paper or the supplement, plus the TikZ sources of the composite figures |
+| `analysis/models/segmentation/` | LoRA adapter for the SaT-6l segmenter used to build the spans, and the script that trained it |
+| `analysis/`, `scripts/analysis/` | Analysis code, corpus normalization, quality filter |
+| `scripts/release/` | The two scripts that produced `data/conversations/` from the platform exports (extraction, then PII masking) |
+
+## The released conversations
+
+One JSON object per line, one line per conversation:
+
+```json
+{
+  "conversation_id": "E10-7",
+  "condition": "H_LLM_roleplay_chat",
+  "model": "GPT-OSS-120B",
+  "course_id": "C11",
+  "created_at": "2025-12-09T14:18:00.000000Z",
+  "persona": {"name": "Jessica Bergmann", "profile": {"Steckbrief": {"Alter": 17, "...": "..."}, "Hauptanliegen": "...", "Nebenanliegen": ["..."], "Sprachliche Merkmale": ["..."]}},
+  "messages": [
+    {
+      "message_number": 1,
+      "role": "Client",
+      "speaker_origin": "llm",
+      "created_at": "2025-12-09T14:18:09.000000Z",
+      "content": "Guten Tag... Ich bin mir nicht sicher, ob ich hier richtig bin.",
+      "llm_model_id": "openai/gpt-oss-120b",
+      "prompt_template_id": "T031",
+      "oncoco_message_label": "CL-FB-*-*-*-*",
+      "oncoco_spans": [{"start": 0, "end": 12, "label": "CL-FB-*-*-*-*"}, {"start": 13, "end": 63, "label": "CL-IF-ACP-*-DPD-*"}],
+      "pii_placeholders": {"private_person": 1}
+    }
+  ]
+}
+```
+
+* `conversation_id` is `<export>-<platform id>`; exports and courses are coded (`E01`…, `C01`…) because their names identify institutions and semesters. The course codes are the unit of the RQ3 analysis.
+* `role` is `Client` or `Counselor`; `speaker_origin` is `human` or `llm`. In H-LLM the client is the LLM and the counselor the trainee.
+* `oncoco_spans` are the spans of the analysed corpus (SaT-6l + LoRA segmentation, XLM-RoBERTa-large OnCoCo classifier) with character offsets **into the released, masked `content`**. `oncoco_message_label` is the message-level label. All 17,888 messages of the analysed corpus are present and labelled. `analysis/semantic/oncoco/label_text_map.json` maps label codes to readable names.
+* `prompt_template_id` (LLM turns only) points to `prompts/templates/<id>.md`, the exact instruction the platform sent for that turn minus the conversation history. Mixtral 8x7B turns carry no template because the platform did not log prompts in that deployment.
+* `pii_placeholders` appears on messages in which something was masked.
+
+Quality filter and counts are those of the paper: 11 of 425 H-LLM conversations were dropped by the manual quality review (`analysis/quality_review/`), 414 remain; HH roleplay has 68.
+
+### How personal data was masked
+
+`scripts/release/redact_corpus.py` runs the open-weights token classifier **openai/privacy-filter** (Apache 2.0, https://huggingface.co/openai/privacy-filter) over every conversation and replaces detected spans by typed placeholders: `<PRIVATE_PERSON>`, `<PRIVATE_DATE>`, `<PRIVATE_ADDRESS>`, `<PRIVATE_EMAIL>`, `<PRIVATE_PHONE>`, `<PRIVATE_URL>`, `<ACCOUNT_NUMBER>`, `<SECRET>`. The OnCoCo span offsets are shifted through every replacement, so labels still align.
+
+Detection runs twice and the spans are unioned: once over the whole conversation, so the model sees who introduced a name, and once over overlapping blocks of eight messages, a second look with local context that catches mentions the long-context pass misses. The model is trained mainly on English and over-detects German common nouns as names, so four rules are applied on top of its output:
+
+* **Allowlist.** Tokens of the conversation's persona name, persona profile and prompt templates are never masked. The personas are fictional and published in Supplementary Table S1 and in `prompts/`, and the fictional relatives named in a persona story (“Max”, “Jan”) stay readable. Everything else the model labels as a person is masked, which includes trainees who introduce themselves by name.
+* **Stoplist.** `scripts/release/redaction_stoplist.json` lists the strings that a manual review of every masked string of the first run found to be no personal data at all: role nouns, greetings, common nouns, welfare organisations.
+* **Token level.** A person span is masked token by token, so “LG Jenny” becomes “LG <PRIVATE_PERSON>”. Spans found only by the block pass must look like a name (one to three capitalized tokens).
+* **Consistency.** A string masked as a person, e-mail, phone, address, URL, account number or secret anywhere in a conversation is masked wherever else it occurs verbatim in that conversation.
+
+Masking counts are in `data/conversations/REDACTION_REPORT.json`. Residual risk remains for names the model did not recognize, and readers who spot one are asked to report it. Place names and institutions are not among the model's categories and were left in the text.
+
+Prompts and persona profiles are fictional and were not masked.
 
 ## Pipeline overview
 
 The main paper's Figure 2 describes the pipeline. The code follows the same steps.
 
 1. **Corpus normalization.** `scripts/analysis/02_chat_to_common.py` reads the platform exports and writes one common chat table. It applies the manual quality filter whose decisions are documented in `analysis/quality_review/` (`apply_quality_filter.py` holds the single source of truth for the dropped conversations; the two `*drop_decisions.csv` files record the review rationale).
-2. **Segmentation.** Messages are split into spans with SaT-6l (wtpsplit) and a LoRA adapter. The adapter and the segmentation run belong to a separate segmentation project and are not part of this repository. The segmented, classified corpus is the starting point of all scripts below.
-3. **Classification.** `analysis/semantic/edm/classification_all.py` labels each span with an XLM-RoBERTa-large classifier fine-tuned on the OnCoCo scheme (66 fine-grained categories). The classifier weights are not included. `analysis/quality_review/repair_hh_real_roles.py` then repairs the speaker roles of the archived real-counseling exports at platform join events.
+2. **Segmentation.** Messages are split into spans with SaT-6l (`segment-any-text/sat-6l`, wtpsplit) and the LoRA adapter in `analysis/models/segmentation/adapter/` (r=128, α=256 on the attention q/v matrices, `adapters` library). `analysis/models/segmentation/train_oncoco_aware.py` is the self-supervised training script that produced the adapter. The segmentation call lives in `classification_all.py` (`--segmentation sat6l`).
+3. **Classification.** `analysis/semantic/edm/classification_all.py` labels each span with the XLM-RoBERTa-large classifier fine-tuned on the OnCoCo scheme (66 fine-grained categories). The weights are the public release of the OnCoCo authors (`xlm-roberta-large-online-counseling-oncoco` on Hugging Face). `analysis/quality_review/repair_hh_real_roles.py` then repairs the speaker roles of the archived real-counseling exports at platform join events.
 4. **Analyses.** Everything under `analysis/semantic/oncoco/` and `analysis/technology_acceptance/` reads the classified corpus (or the CSVs derived from it) and writes to `results/tables/` and `results/figures/oncoco/`.
+
+The released JSONL is the classified corpus for the two roleplay conditions, restricted to the fields the analyses use; `data/README.md` shows how to rebuild the scripts' input format from it.
 
 ### Script to output map
 
@@ -54,26 +111,9 @@ Several CSVs also carry rows for e-mail counseling conditions (`*_mail`) that an
 
 ## Data availability
 
-The raw material consists of counseling conversations from training courses and from an archived real online-counseling service, together with anonymous course-level acceptance surveys. The conversations contain personal narratives and cannot be released, even in anonymized form, under the consent obtained. The persona prompts are withheld for the same reason and can be provided on request after review.
+The two roleplay corpora are released here in masked form (see above). The third condition, HH real, consists of archived conversations of a real online-counseling service with real help-seekers and cannot be released under the consent obtained, even in masked form. The acceptance surveys are anonymous course-level aggregates and are released only as the per-course numbers in `results/tables/oncoco_tam_*.csv`.
 
-What the scripts expect as input is one JSON list (`data/processed/combined/normalized/oncoco_classification_all.json`) with one record per message:
-
-```json
-{
-  "id": "<conversation id>",
-  "source": "HH_roleplay_chat | HH_real_chat | H_LLM_roleplay_chat",
-  "modality": "chat",
-  "model": "<LLM name for H-LLM, empty otherwise>",
-  "speaker_type": "Client | Counsellor",
-  "msg_message_number": "<position in conversation>",
-  "msg_content": "<message text>",
-  "sentence_classification": [
-    {"sentence_index": 0, "start_offset": 0, "end_offset": 6, "text": "<span>", "predicted_label": "CL-FB-*-*-*-*"}
-  ]
-}
-```
-
-Everything in `results/tables/*.csv` is an aggregate over that file with the text removed. The label codes follow the OnCoCo scheme; `analysis/semantic/oncoco/label_text_map.json` maps them to readable names.
+Analyses that use HH real as reference (every between-condition distance, the noise band, the HMM for HH real) therefore cannot be re-run from this repository alone; the aggregated CSVs carry their outputs. Analyses within or between the two roleplay conditions can.
 
 ## Environment
 
@@ -83,7 +123,7 @@ Python 3.11. The pinned versions used for the reported numbers are in `requireme
 python analysis/semantic/oncoco/oncoco_noise_band_analysis.py
 ```
 
-Classification (`classification_all.py`) and the confidence sidecar additionally need the OnCoCo classifier weights and a GPU or Apple MPS device; the sidecar reproduces the exact batch composition of the original run so that probabilities are bit-identical.
+Segmentation and classification (`classification_all.py`) additionally need `wtpsplit`, `adapters`, the OnCoCo classifier weights and a GPU or Apple MPS device. The PII masking script needs the `opf` package from https://github.com/openai/privacy-filter and downloads the checkpoint on first use.
 
 ## Building the supplement
 

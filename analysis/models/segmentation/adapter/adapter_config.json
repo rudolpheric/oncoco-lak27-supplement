@@ -1,0 +1,29 @@
+{
+  "config": {
+    "alpha": 256,
+    "architecture": "lora",
+    "attn_matrices": [
+      "q",
+      "v"
+    ],
+    "composition_mode": "add",
+    "dropout": 0.1,
+    "dtype": null,
+    "init_weights": "lora",
+    "init_weights_seed": null,
+    "intermediate_lora": false,
+    "leave_out": [],
+    "output_lora": false,
+    "r": 128,
+    "selfattn_lora": true,
+    "use_gating": false,
+    "vera_b": null,
+    "vera_d": null
+  },
+  "hidden_size": 768,
+  "model_class": "SubwordXLMForTokenClassification",
+  "model_name": "segment-any-text/sat-6l",
+  "model_type": "xlm-token",
+  "name": "lora_adapter",
+  "version": "adapters.1.2.0"
+}
