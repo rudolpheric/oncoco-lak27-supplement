@@ -1,0 +1,11 @@
+\begin{tabular}{l r r r r r r r r r r}
+\toprule
+Condition & Spans & \multicolumn{7}{c}{$\Delta$BIC by state count $k$} & \multicolumn{2}{c}{Optimal $k$} \\
+\cmidrule(lr){3-9} \cmidrule(lr){10-11}
+ & & 2 & 3 & 4 & 5 & 6 & 7 & 8 & BIC & CV \\
+\midrule
+HH roleplay & 3{,}927 & 469 & 70 & \textbf{0} & 53 & 187 & 262 & 438 & 4 & 4 \\
+HH real & 4{,}927 & 302 & \textbf{0} & 12 & 112 & 260 & 403 & 502 & 3 & 6 \\
+H--LLM roleplay & 21{,}117 & 5556 & 2694 & 1385 & 621 & 133 & \textbf{0} & 220 & 7 & 8 \\
+\bottomrule
+\end{tabular}

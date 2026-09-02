@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.DS_Store
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+# raw and processed corpora are never committed
+data/raw/
+data/processed/

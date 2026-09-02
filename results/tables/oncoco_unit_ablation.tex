@@ -1,0 +1,13 @@
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Client} & \multicolumn{3}{c}{Counselor} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Unit of analysis & real--LLM & roleplay--LLM & $\Delta$ [95\% CI] & real--LLM & roleplay--LLM & $\Delta$ [95\% CI] \\
+\midrule
+SaT spans & 0.453 & 0.375 & +0.078$^{*}$ [0.043, 0.107] & 0.276 & 0.196 & +0.080$^{*}$ [0.042, 0.107] \\
+Regex spans & 0.342 & 0.281 & +0.062$^{*}$ [0.027, 0.091] & 0.245 & 0.192 & +0.053$^{*}$ [0.020, 0.083] \\
+Messages & 0.475 & 0.427 & +0.048$^{*}$ [0.005, 0.086] & 0.320 & 0.233 & +0.087$^{*}$ [0.043, 0.119] \\
+\midrule
+Naive character split & 0.106 & 0.118 & -0.012 [-0.024, 0.003] & 0.073 & 0.054 & +0.019$^{*}$ [0.006, 0.032] \\
+\bottomrule
+\end{tabular}

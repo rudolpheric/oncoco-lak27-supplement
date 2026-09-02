@@ -1,0 +1,31 @@
+comparison,speaker_type,label,label_text,median_a,median_b,median_diff,auc,p_a_gt_b_median,p_b_lt_a_median
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,CL-IF-ACP-*-Cons-*,Client: Consent,0.21807065217391303,0.031754032258064516,0.18631661991584852,0.9248898834896278,0.9705882352941176,0.9951690821256038
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,CL-O-*-*-O-*,Client: Other statements,0.10263157894736842,0.0,0.10263157894736842,0.8366723500994601,0.8823529411764706,0.927536231884058
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,CL-IF-HP-*-RepRA-*,Client: Report on the implementation of recommendations for action,0.0,0.045454545454545456,-0.045454545454545456,0.2486324239840864,0.058823529411764705,0.0
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,CL-IF-Mot-*-RC-*,Client: Articulation of reasons for a change in the client,0.0,0.037037037037037035,-0.037037037037037035,0.2977053140096618,0.10294117647058823,0.0
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,CL-IF-AO-*-Obj-*,Client: Objective of the assignment,0.03279569892473118,0.058823529411764705,-0.026027830487033526,0.3459256891162262,0.29411764705882354,0.30917874396135264
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counsellor,CO-Mod-*-*-*-*,Counselor: Moderation,0.125,0.05798319327731093,0.06701680672268907,0.7135549872122762,0.8235294117647058,0.7705314009661836
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counsellor,CO-IF-AC-RF-RLS-PS,Counselor: Professional situation,0.0,0.0,0.0,0.3523195510088093,0.058823529411764705,0.0
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counsellor,CO-IF-AC-RF-RC-*,Counselor: Request for concerns,0.047619047619047616,0.03333333333333333,0.014285714285714284,0.6319622051719238,0.6470588235294118,0.6304347826086957
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counsellor,CO-IF-AC-RE-RCR-*,Counselor: Complex Reflection,0.0,0.024099883855981417,-0.024099883855981417,0.4193130150610969,0.36764705882352944,0.0
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counsellor,CO-IF-AO-*-ICO-*,Counselor: Definition of counseling objectives,0.0,0.0,0.0,0.43478260869565216,0.4852941176470588,0.0
+HH_real_chat vs HH_roleplay_chat,Client,CL-O-*-*-O-*,Client: Other statements,0.21428571428571427,0.10263157894736842,0.11165413533834585,0.8799944506104328,0.9811320754716981,0.9411764705882353
+HH_real_chat vs HH_roleplay_chat,Client,CL-IF-ACP-*-Cons-*,Client: Consent,0.15625,0.21807065217391303,-0.06182065217391303,0.3765260821309656,0.24528301886792453,0.35294117647058826
+HH_real_chat vs HH_roleplay_chat,Client,CL-IF-AO-*-Obj-*,Client: Objective of the assignment,0.0,0.03279569892473118,-0.03279569892473118,0.3465593784683685,0.22641509433962265,0.0
+HH_real_chat vs HH_roleplay_chat,Client,CL-FC-*-*-F-*,Client: Formalities for conclusion,0.0,0.0339080459770115,-0.0339080459770115,0.24902885682574916,0.09433962264150944,0.0
+HH_real_chat vs HH_roleplay_chat,Client,CL-IF-ACP-*-FPA-*,Client: Feedback on previous attempts at solutions,0.01694915254237288,0.03518518518518518,-0.0182360326428123,0.4013596004439512,0.2641509433962264,0.38235294117647056
+HH_real_chat vs HH_roleplay_chat,Counsellor,CO-O-*-*-UCO-*,Counselor: Inappropriate remark,0.0392156862745098,0.0,0.0392156862745098,0.7566592674805771,0.7169811320754716,0.8529411764705882
+HH_real_chat vs HH_roleplay_chat,Counsellor,CO-IF-AC-RF-RTP-*,"Counselor: Targeted, precise request",0.05405405405405406,0.0,0.05405405405405406,0.7549944506104328,0.7735849056603774,0.8529411764705882
+HH_real_chat vs HH_roleplay_chat,Counsellor,CO-IF-AC-RF-RC-*,Counselor: Request for concerns,0.038461538461538464,0.047619047619047616,-0.009157509157509153,0.41856270810210877,0.37735849056603776,0.38235294117647056
+HH_real_chat vs HH_roleplay_chat,Counsellor,CO-IF-AC-RF-SRx-*,Counselor: Simple reflection,0.08,0.09569597069597069,-0.015695970695970687,0.4425638179800222,0.41509433962264153,0.4117647058823529
+HH_real_chat vs HH_roleplay_chat,Counsellor,CO-FC-*-*-OPR-*,Counselor: Offer to use the counselor’s professional resources,0.0,0.030776515151515152,-0.030776515151515152,0.2945338512763596,0.07547169811320754,0.0
+HH_real_mail vs HH_roleplay_mail,Client,CL-IF-HP-*-RepRA-*,Client: Report on the implementation of recommendations for action,0.0,0.0,0.0,0.30158730158730157,0.05309734513274336,0.0
+HH_real_mail vs HH_roleplay_mail,Client,CL-IF-ACP-*-PD-*,Client: Problem definition,0.0,0.0,0.0,0.567425200168563,0.45132743362831856,0.0
+HH_real_mail vs HH_roleplay_mail,Client,CL-IF-ACP-*-DPD-*,Client: Disclosure of personal data,0.0,0.0,0.0,0.5295687596572553,0.1592920353982301,0.0
+HH_real_mail vs HH_roleplay_mail,Client,CL-IF-Mot-*-RC-*,Client: Articulation of reasons for a change in the client,0.0,0.0,0.0,0.39085545722713866,0.061946902654867256,0.0
+HH_real_mail vs HH_roleplay_mail,Client,CL-O-*-*-O-*,Client: Other statements,0.0,0.045454545454545456,-0.045454545454545456,0.4109425481106897,0.2920353982300885,0.0
+HH_real_mail vs HH_roleplay_mail,Counsellor,CO-Mod-*-*-*-*,Counselor: Moderation,0.0,0.0,0.0,0.5672144964180362,0.45132743362831856,0.0
+HH_real_mail vs HH_roleplay_mail,Counsellor,CO-IF-HP-*-IPFR-*,"Counselor: Professional, formal, institutional recommendation",0.0,0.0,0.0,0.3378283466779042,0.008849557522123894,0.0
+HH_real_mail vs HH_roleplay_mail,Counsellor,CO-IF-Mot-*-IAC-*,Counselor: Articulation of the perceived ability to change in the client (MI),0.0,0.0,0.0,0.3193566512150583,0.13274336283185842,0.0
+HH_real_mail vs HH_roleplay_mail,Counsellor,CO-O-*-*-O-*,Counselor: Other statements,0.0,0.0,0.0,0.5274617221519876,0.415929203539823,0.0
+HH_real_mail vs HH_roleplay_mail,Counsellor,CO-IF-HP-*-ICO-*,Counselor: Calming,0.0,0.0,0.0,0.42857142857142855,0.0,0.0

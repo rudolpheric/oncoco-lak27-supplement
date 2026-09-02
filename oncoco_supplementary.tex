@@ -1,0 +1,286 @@
+%% Supplementary Material for
+%%   "Measuring Counseling Interaction Patterns Across Human--Human and Human--LLM Dialogues"
+%% Standalone companion document -- tables and figures are numbered S1, S2, ...
+%% Build: pdflatex -interaction=nonstopmode oncoco_supplementary.tex   (twice; no bibliography)
+
+\documentclass[fleqn,10pt]{JLA_article}
+
+\usepackage[american]{babel}
+\usepackage{csquotes}
+
+\newcommand{\fitwidth}[1]{\resizebox{\ifdim\width>\linewidth \linewidth\else \width\fi}{!}{#1}}
+% role-specific proximity gaps
+\newcommand{\dCL}{\Delta_{\mathrm{CL}}}
+\newcommand{\dCO}{\Delta_{\mathrm{CO}}}
+\setlength{\emergencystretch}{3em}
+
+% S-prefixed numbering so references from the main paper are unambiguous
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\PaperTitle{Supplementary Material: Measuring Counseling Interaction Patterns Across Human--Human and Human--LLM Dialogues}
+\Authors{}
+\affiliation{}
+\Keywords{}
+\Submitted{} \Accepted{} \Published{}
+\Volume{} \Number{} \Pages{} \Doi{}
+\WithoutNotestrue
+\Abstract{This document accompanies the main article. It reports the full persona list, complete client- and counselor-side OnCoCo label distributions, hidden-Markov state summaries and state-count sensitivity, transition heatmaps, sentence-embedding projections, per-conversation within-condition variability, the RQ3 multiplicity control, the noise-band placement under each unit of analysis, the classifier-confidence diagnostics, and the pre-declared category exclusion sets with their leave-one-out sweep. Tables and figures are numbered S1, S2, \ldots and are referenced by those numbers in the main text.}
+
+\begin{document}
+
+\flushbottom
+\maketitle
+\thispagestyle{fancy}
+
+\section{Prompts and Case Descriptions}
+Prompt templates, role constraints, and safety instructions are omitted in the review version for privacy reasons. They can be provided upon request.
+
+\section{Persona List}
+\label{Sapp:personas}
+\begin{table}[t]
+\caption{Personas used in chat roleplays (short descriptions truncated to the first sentence).}
+\label{Stab:personas}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\input{results/tables/persona_summary.tex}
+\end{table}
+
+\section{Additional Tables and Figures}
+This appendix reports full label distributions, persistence statistics, within-condition variability, transition heatmaps, and embedding projections.
+
+\begin{table}[t]
+\caption{Persistence of top label shifts across conversations. Med. diff is the difference in \emph{per-conversation median} label proportion, unweighted across conversations. It can diverge from the pooled shifts reported for RQ1 in the main paper (Section 5.1) when conversations contribute few spans. Conversations that never use a label contribute zero rather than being dropped. AUC is the more reliable, rank-based summary. It gives the probability that a random conversation from condition A exceeds one from condition B. P(a$>$med) is the fraction of condition-A conversations above the condition-B median.}
+\label{Stab:persistence}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_persistence_summary_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Full client-side OnCoCo label distribution (proportions) for the three chat conditions. The table lists labels reaching $\geq$0.01 in any condition.}
+\label{Stab:labeldist-client}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_label_dist_client_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Full counselor-side OnCoCo label distribution (proportions) for the three chat conditions. The table lists labels reaching $\geq$0.01 in any condition.}
+\label{Stab:labeldist-counselor}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_label_dist_counselor_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{HMM state summaries (three states per condition, best of 20 random initialisations). States are ordered by occupancy (Occ.), the share of spans assigned to a state, so state 0 is the most frequent.}
+\label{Stab:hmm-states}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\input{results/tables/oncoco_hmm_state_summary_chat.tex}
+\end{table}
+
+\begin{table}[t]
+\caption{HMM state-count sensitivity. $\Delta$BIC is relative to each condition's best value (bold, $\Delta=0$). ``Optimal $k$'' gives the state count minimising BIC and the one maximising 5-fold cross-validated held-out log-likelihood (conversation-level folds). Each cell is the best of 20 random initialisations. The cross-validated optimum grows with corpus size (4, 6 and 8 states). We therefore hold $k=3$ fixed across conditions. The BIC optimum is not monotone in corpus size.}
+\label{Stab:hmm-modelsel}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_hmm_model_selection_compact_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Within-condition variability: conversation-level JSD to the condition mean.}
+\label{Stab:within}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_within_condition_jsd_summary_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{RQ3 multiplicity control: all thirteen items of the simulated-client battery, comparing the two most recent semesters of the course line (GPT-OSS-120B, $n$=23, vs Llama 3.3 70B, $n$=26). Each row is a two-sided Mann--Whitney test with Cliff's $\delta$ as effect size. Means are on a 5-point disagreement-coded scale (1=agree, 5=disagree), so a negative $\delta$ means the GPT-OSS semester was rated more human-like. $p_{\text{Holm}}$ is the Holm step-down adjustment across all thirteen items. Only the realism item (A270\_02) survives ($p_{\text{Holm}}$=.026). The five acceptance constructs (perceived usefulness, ease of use, enjoyment, behavioral intention, social influence), tested the same way with Holm correction within the construct family, do not separate the semesters (all raw $p\geq$.17, max $|\delta|$=0.23). Rows are ordered by raw $p$.}
+\label{Stab:tam-multiplicity}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_tam_multiplicity.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Noise-band placement of the two chat comparisons under each unit of analysis, all referenced to HH real's own split-half band (1{,}000 splits). ``Pctl.'' is the empirical percentile of the observed distance within that band. The pattern reported in the main text is unit-invariant: under every unit, and on both roles, both comparisons lie beyond the band.}
+\label{Stab:unit-noise-band}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_unit_noise_band.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{The central RQ1 gap restricted to confidently labelled spans. $\Delta$ is the proximity gap of the main paper with a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``all items'' row reproduces the SaT row of Table~3 in the main paper, interval included, and its bounds are taken from that run rather than redrawn here. If classifier error generated the effect, discarding the least confidently labelled items would reduce $\Delta$. On the client side it does not, and $\dCL$ increases. On the counselor side $\dCO$ decreases and loses significance at the strictest threshold.}
+\label{Stab:highconf}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_rq1_highconf_sensitivity.tex}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.68\linewidth]{results/figures/oncoco/transition_HH_roleplay_chat.pdf}
+\caption{Transition heatmap for HH roleplay (row-normalized).}
+\label{Sfig:transition-hh-chat}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.68\linewidth]{results/figures/oncoco/transition_H_LLM_roleplay_chat.pdf}
+\caption{Transition heatmap for H--LLM roleplay (row-normalized).}
+\label{Sfig:transition-hllm-chat}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.68\linewidth]{results/figures/oncoco/transition_HH_real_chat.pdf}
+\caption{Transition heatmap for HH real (row-normalized).}
+\label{Sfig:transition-hh-real-chat}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.70\linewidth]{results/figures/oncoco/tsne_client_chat.pdf}
+\caption{t-SNE projection of sentence embeddings by condition (Client).}
+\label{Sfig:tsne-client}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.70\linewidth]{results/figures/oncoco/tsne_counsellor_chat.pdf}
+\caption{t-SNE projection of sentence embeddings by condition (Counselor).}
+\label{Sfig:tsne-counselor}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{results/figures/oncoco/within_jsd_client_chat.pdf}
+\caption{Within-condition variability (Client): distribution of conversation-level JSD to the condition mean.}
+\label{Sfig:within-client}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{results/figures/oncoco/within_jsd_counselor_chat.pdf}
+\caption{Within-condition variability (Counselor): distribution of conversation-level JSD to the condition mean.}
+\label{Sfig:within-counselor}
+\end{figure}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{results/figures/oncoco/behavioral_signatures_evolution.pdf}
+\caption{Behavioral signatures across model generations (share of Client spans), with human baselines (dashed for HH real, dotted for HH roleplay). Reciprocal questioning and restraint in problem disclosure improve for the newest model, but solution-space drift persists across generations.}
+\label{Sfig:sig-evolution}
+\end{figure}
+
+
+\section{Pre-Declared Category Exclusion Sets}
+\label{Ssec:exclusions}
+The sensitivity analysis reported in Section~5.6.1 of the main paper removes categories that are arguably fixed by the training setting rather than by counseling behavior. The first two sets below were declared before the analysis was run. S3 is post-hoc and is flagged as such. All three are reproduced here so the choice is auditable.
+
+\textbf{S1: setting-bound (primary).}
+\emph{Objective of the assignment} (\texttt{CL-IF-AO-*-Obj-*}) and \emph{Extension of the assignment} (\texttt{CL-IF-AO-*-Ext-*}): the assignment is supplied by the persona prompt and the course task, so a simulated client states it because it is in its context window.
+\emph{Definition of counseling objectives} (\texttt{CO-IF-AO-*-ICO-*}): the counselor mirror of the same construct.
+\emph{Formalities at the beginning} for both roles (\texttt{CL-FB-*-*-*-*}, \texttt{CO-FA-*-*-*-*}): the opening formalities are platform-dictated. Archived real conversations open with a system join event, and H--LLM sessions open with a scripted first turn.
+\emph{Inappropriate remark} for both roles (\texttt{CL-O-*-*-UCO-*}, \texttt{CO-O-*-*-UCO-*}): excluded not as a setting artifact but as a \emph{classifier} artifact. It carries the lowest median confidence of any label with appreciable support (median 0.48--0.60, against 0.88 or above for every category carrying the behavioral signature). The counselor-side code also absorbs 6.5\% of HH real counselor spans against about 1\% in the other two conditions. The client-side code is predicted with higher confidence (0.70--0.78) and is excluded only for symmetry with it. This was established in the confidence diagnostics before the present analysis was run.
+
+\textbf{S2: measurement residual (secondary).} \emph{Other statements} for both roles (\texttt{CL-O-*-*-O-*}, \texttt{CO-O-*-*-O-*}), the residual category for units the classifier cannot place elsewhere. It is kept as a separate tier because it tests a different threat, namely measurement error rather than a setting confound. Merging the two would let one exclusion set carry two arguments.
+
+\textbf{S3: closing formalities (tertiary, reported but not pre-declared).} \emph{Farewell} for both roles (\texttt{CO-FC-*-*-F-*}, \texttt{CL-FC-*-*-F-*}). Session end is partly imposed by the time frame of the exercise, but closing is itself a counseling skill, so the case is weaker and we report rather than assume it.
+
+\textbf{Deliberately not excluded: \emph{Consent}} (\texttt{CL-IF-ACP-*-Cons-*}). It captures brief acknowledgements and agreement rather than a setting artifact. It is the second-largest client-side category and the largest single driver of the gap. Removing the largest contributor \emph{because} it is large would be the post-hoc selection the objection warns against. It appears instead as one point among all others in the leave-one-out sweep (Figure~\ref{Sfig:loo}), where removing it \emph{increases} the gap.
+
+\begin{table}[t]
+\caption{Between-condition distance and central gap under each exclusion set, with $k$ the size of the label support after removal and renormalization. Band statistics use HH real's own split-half band recomputed on the reduced support. $\Delta$ carries a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``full'' row reproduces the SaT row of Table~3 in the main paper, interval included. Its bounds are taken from that run rather than redrawn here, so the baseline is one number and not two independent estimates of it.}
+\label{Stab:category-sensitivity}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_category_sensitivity.tex}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{results/figures/oncoco/leave_one_out_delta.pdf}
+\caption{Leave-one-out sweep: the proximity gap $\Delta$ recomputed with each category removed in turn, plotted against that category's pooled share. The dashed line is $\Delta$ on the full support. No single removal drives $\Delta$ to zero on either role, and the client-side category whose removal moves $\Delta$ most (\emph{Consent}) moves it upward rather than downward.}
+\label{Sfig:loo}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.80\linewidth]{results/figures/oncoco/confidence_ecdf.pdf}
+\caption{Cumulative distribution of prediction entropy by condition and role (symlog $x$-axis). HH real carries the heaviest uncertainty tail on both roles. The pooled client-side confidence ranking in the main text is driven by span length, which the length-matched comparison controls.}
+\label{Sfig:confidence-ecdf}
+\end{figure}
+
+\section{Methodological Details Referenced from the Main Text}
+\label{Ssec:moved}
+
+\textbf{HMM initialisation.} We fit each condition from 20 random initialisations and retain the best-likelihood solution, because the EM likelihood surface for these sequences is strongly multimodal. Across conditions, 20 random initialisations recover 6--11 distinct optima. A single fixed initialisation lands in a markedly inferior one for all three chat conditions (up to $\Delta\log L=1{,}468$), and the resulting states then have near-duplicate output distributions. Table~\ref{Stab:hmm-modelsel} reports the sensitivity sweep over $k=2\ldots8$, in which the cross-validated optimal state count tracks corpus size rather than any property of the conditions.
+
+\textbf{Misspecified segmentation.} The bottom row of Table~3 in the main paper is a naive character-class split. It produces 16.2 fragments per message with a mean length of 10 characters, because it splits on a frequent letter rather than only on sentence-final punctuation. The classifier can assign the resulting fragments only to residual categories. Under such a split the between-condition distances collapse by a factor of three to four, and the client-side gap becomes the single unit-by-role combination that fails to reach significance. The row is included in the main paper so that the contrast with a correctly specified sentence split is visible. It is not a segmentation comparison.
+
+\textbf{Cross-course association (RQ3, secondary).} Across all six courses with unambiguous survey linkage, client-side JSD and disagreement with the realism item correlate at Spearman $\rho$=.83 ($p$=.042). The result is fragile. Two of the six courses contribute only 2 and 9 respondents, and dropping them leaves the direction intact but not the significance ($\rho$=.80, $p$=.20 at $k$=4). A Pearson specification on all six gives $r$=.68 ($p$=.13). We therefore report it as descriptive support for the within-course-line result of Section~5.7 in the main paper rather than as independent evidence.
+
+\begin{table}[t]
+\caption{Numbers behind Figure~3 of the main paper: between-condition JSD anchored in the reference condition's split-half noise band (1{,}000 splits), with band mean (noise floor), band P95 (upper edge), the 95th percentile of the size-matched null (nm-P95), and Cram\'er's $V$. All comparisons use HH real as reference.}
+\label{Stab:noise-band-chat}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_noise_band_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Distributional proximity to HH real by model with 95\% conversation-level bootstrap CIs (lower = closer). These are the intervals drawn in the per-model rows of Figure~3 of the main paper.}
+\label{Stab:model-realness}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_rq1b_model_realness_bootstrap.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Sequential structure summary (role-aware transitions) for the three chat conditions. All three are dominated by cross-role alternation. Section~5.3 of the main paper reads these differences.}
+\label{Stab:transition-summary}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_transition_summary_chat.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{All 70 transition cells that shift significantly for H--LLM vs HH real under FDR control at $q=0.10$, sorted by absolute shift and set in two column blocks. Rates are row-normalized transition probabilities in each condition. $\Delta$ is the H--LLM rate minus the HH real rate, $n$ the combined transition count, and $p$ the empirical $p$-value from 2{,}000 split-half resamples of HH real. The smallest attainable value is shown as $<$0.001. Section~5.3 of the main paper reports the counts and the largest shifts.}
+\label{Stab:transition-fdr-hllm}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_transition_fdr_sig_hllm.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{All 20 transition cells that shift significantly for HH roleplay vs HH real under FDR control at $q=0.10$, sorted by absolute shift. Columns as in Table~\ref{Stab:transition-fdr-hllm}.}
+\label{Stab:transition-fdr-roleplay}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\fitwidth{\input{results/tables/oncoco_transition_fdr_sig_roleplay.tex}}
+\end{table}
+
+\end{document}

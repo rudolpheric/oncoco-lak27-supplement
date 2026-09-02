@@ -1,0 +1,9 @@
+unit,analysis_unit,speaker,jsd_real_vs_hllm,jsd_roleplay_vs_hllm,delta_point,ci_lo,ci_hi,frac_delta_positive,n_boot
+SaT,span,Client,0.452703,0.374541,0.078162,0.043001,0.107067,1.0,2000
+SaT,span,Counselor,0.275572,0.195669,0.079903,0.042053,0.106517,1.0,2000
+regex,span,Client,0.342435,0.280867,0.061569,0.027265,0.090674,1.0,2000
+regex,span,Counselor,0.245377,0.192095,0.053282,0.019869,0.082878,0.9995,2000
+message,message,Client,0.475441,0.427406,0.048035,0.00518,0.085604,0.9875,2000
+message,message,Counselor,0.320104,0.233279,0.086824,0.043147,0.119269,1.0,2000
+regex-published,span,Client,0.10614,0.117974,-0.011834,-0.024283,0.002817,0.0725,2000
+regex-published,span,Counselor,0.073346,0.054463,0.018883,0.005838,0.032018,0.9975,2000

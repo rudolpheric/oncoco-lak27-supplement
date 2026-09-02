@@ -1,0 +1,5 @@
+comparison,speaker_type,jsd
+HH_roleplay_chat vs HH_roleplay_mail,Client,0.5414651074792269
+HH_roleplay_chat vs HH_roleplay_mail,Counsellor,0.5674366538248653
+HH_roleplay_chat vs HH_real_mail,Client,0.517773556775518
+HH_roleplay_chat vs HH_real_mail,Counsellor,0.5111427014990335

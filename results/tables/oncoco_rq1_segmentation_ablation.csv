@@ -1,0 +1,13 @@
+comparison,speaker_type,sat_jsd,regex_jsd,abs_delta
+HH_roleplay_chat vs H_LLM_roleplay_chat,Client,0.3745406932677151,0.2808667950884084,0.09367389817930671
+HH_roleplay_chat vs H_LLM_roleplay_chat,Counselor,0.1956686768095458,0.19209546778056963,0.0035732090289761764
+HH_real_chat vs HH_roleplay_chat,Client,0.2329700268045715,0.22215103624156052,0.010818990563010972
+HH_real_chat vs HH_roleplay_chat,Counselor,0.2424412918102737,0.22492100105528234,0.01752029075499137
+HH_real_chat vs H_LLM_roleplay_chat,Client,0.4527029342949141,0.34243544589113917,0.11026748840377493
+HH_real_chat vs H_LLM_roleplay_chat,Counselor,0.2755719660652088,0.24537718078643606,0.03019478527877273
+HH_real_mail vs HH_roleplay_mail,Client,0.20741880512638436,,
+HH_real_mail vs HH_roleplay_mail,Counselor,0.27069223754083993,,
+HH_roleplay_chat vs HH_roleplay_mail,Client,0.5434937612949241,,
+HH_roleplay_chat vs HH_roleplay_mail,Counselor,0.5330529785441159,,
+HH_real_chat vs HH_real_mail,Client,0.5409735056607933,,
+HH_real_chat vs HH_real_mail,Counselor,0.5413360144506946,,

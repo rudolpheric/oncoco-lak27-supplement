@@ -1,0 +1,7 @@
+condition,model,n_conversations,n_with_request,share_with_request,n_with_question_mark,share_with_question_mark,n_without_rejection,share_without_rejection,n_negative_feedback,n_positive_feedback,neg_to_pos_feedback,p_request_vs_hh_real,p_question_vs_hh_real
+HH_real_chat,,53,31,0.5849,36,0.6792,23,0.4340,109,140,0.7786,,
+HH_roleplay_chat,,68,37,0.5441,53,0.7794,46,0.6765,50,116,0.4310,0.713683,0.298947
+H_LLM_roleplay_chat,,414,66,0.1594,188,0.4541,369,0.8913,170,955,0.1780,0.000000,0.002129
+H_LLM_roleplay_chat,GPT_OSS_120B,90,30,0.3333,72,0.8000,68,0.7556,68,364,0.1868,0.004907,0.112333
+H_LLM_roleplay_chat,LLama3_3_70B,238,36,0.1513,110,0.4622,228,0.9580,79,356,0.2219,0.000000,0.005914
+H_LLM_roleplay_chat,Mixtral,86,0,0.0000,6,0.0698,73,0.8488,23,235,0.0979,0.000000,0.000000

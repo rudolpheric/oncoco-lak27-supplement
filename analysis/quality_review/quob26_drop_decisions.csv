@@ -1,0 +1,3 @@
+idx,id,model,source,persona,n_msgs,decision,tier,reason
+3,176,GPT_OSS_120B,quob26ss.json,Frau Schuster,27,DROP,T1,"Counselor turns B14-B26 pasted from external chatbot: mail-register mid-chat, B18==B20 verbatim, B26 foreign-context paste (Kingshot gaming, 'du' statt 'Sie'); KI-Klient moniert Unpassendheit"
+27,266,GPT_OSS_120B,quob26ss.json,Luisa,29,BORDERLINE,T2,"lean KEEP: single turn B14 verbatim echo of client B13 (client broke persona, trainee pasted back); rest self-written with typos"

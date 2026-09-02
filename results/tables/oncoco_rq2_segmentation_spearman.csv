@@ -1,0 +1,15 @@
+condition,speaker_type,spearman
+HH_CAIA_mail,Client,0.6099864849237989
+HH_CAIA_mail,Counsellor,0.49657342972264923
+HH_real_chat,Client,0.6683717245622083
+HH_real_chat,Counsellor,0.8812741584564722
+HH_real_mail,Client,0.7360400991641068
+HH_real_mail,Counsellor,0.6338354760395831
+HH_roleplay_chat,Client,0.8820920733213864
+HH_roleplay_chat,Counsellor,0.6855333960673808
+HH_roleplay_mail,Client,0.728595692195122
+HH_roleplay_mail,Counsellor,0.5476968661326636
+H_LLM_roleplay_chat,Client,0.8063151403025993
+H_LLM_roleplay_chat,Counsellor,0.745144186294969
+LLM_LLM_mail,Client,0.6806805557012441
+LLM_LLM_mail,Counsellor,0.41232099729512006

@@ -1,0 +1,15 @@
+# Python 3.11 — versions used for the reported numbers
+numpy==2.4.1
+pandas==3.0.0
+scipy==1.17.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+hmmlearn==0.3.3
+PyYAML==6.0.3
+tqdm==4.67.2
+openpyxl
+# classification / confidence sidecar / embeddings only
+torch==2.10.0
+transformers==4.51.3
+wtpsplit==2.1.7

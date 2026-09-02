@@ -1,0 +1,7 @@
+contrast,condition_a,condition_b,metric,mean_a,mean_b,delta_b_minus_a,mannwhitney_u,p_value
+chat roleplay vs H--LLM,HH_roleplay_chat,H_LLM_roleplay_chat,client_entropy,3.2424068416461242,3.26397745060012,0.021570608953995762,13441.0,0.9896181269477102
+chat roleplay vs H--LLM,HH_roleplay_chat,H_LLM_roleplay_chat,counselor_moderation_share,0.13129924886837951,0.07931972312178254,-0.05197952574659698,19587.5,2.981739439312486e-09
+chat roleplay vs H--LLM,HH_roleplay_chat,H_LLM_roleplay_chat,counselor_complex_reflection_share,0.023006057720682403,0.03654227484051501,0.013536217119832609,11504.5,0.04515648083247519
+mail roleplay vs CAIA,HH_roleplay_mail,HH_CAIA_mail,client_entropy,2.2631127694806645,2.477193965505461,0.21408119602479658,271.0,0.007117724784521939
+mail roleplay vs CAIA,HH_roleplay_mail,HH_CAIA_mail,counselor_moderation_share,0.03613901044607566,0.14116439994249924,0.10502538949642358,197.5,8.212857541714474e-05
+mail roleplay vs CAIA,HH_roleplay_mail,HH_CAIA_mail,counselor_complex_reflection_share,0.0,0.017598343685300208,0.017598343685300208,360.0,0.002443364253055212

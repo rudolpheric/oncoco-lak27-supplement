@@ -1,0 +1,4 @@
+condition,conversations,conversations_with_author,distinct_authors,conv_per_author_mean,conv_per_author_median,conv_per_author_max,largest_author_share
+HH_roleplay_chat,68,68,5,13.6,1.0,64.0,0.941
+HH_real_chat,53,0,0,,,,
+H_LLM_roleplay_chat,414,414,281,1.47,1.0,5.0,0.012

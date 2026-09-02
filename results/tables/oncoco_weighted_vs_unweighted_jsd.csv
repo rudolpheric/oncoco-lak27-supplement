@@ -1,0 +1,13 @@
+condition,speaker_type,jsd
+HH_CAIA_mail,Client,0.06461594252856467
+HH_CAIA_mail,Counsellor,0.06467815652555226
+HH_real_chat,Client,0.03285837462274723
+HH_real_chat,Counsellor,0.045796827005366345
+HH_real_mail,Client,0.13160046728816033
+HH_real_mail,Counsellor,0.06897359233772585
+HH_roleplay_chat,Client,0.048476069272995734
+HH_roleplay_chat,Counsellor,0.06731367829193181
+HH_roleplay_mail,Client,0.05070095640955478
+HH_roleplay_mail,Counsellor,0.034536052885211416
+H_LLM_roleplay_chat,Client,0.022517751958948812
+H_LLM_roleplay_chat,Counsellor,0.024467676237012983
