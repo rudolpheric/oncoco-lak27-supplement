@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import csv
 import subprocess
+from tikz_fonts import scale_fonts
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -78,7 +79,7 @@ def main() -> None:
     add(r"\usepackage{sansmath}")
     add(r"\sansmath")
     add(r"\usepackage{tikz}")
-    add(r"\usetikzlibrary{arrows.meta,positioning,calc}")
+    add(r"\usetikzlibrary{arrows.meta,positioning,calc,patterns}")
     add("")
     for name, hexv in [("cReal", "2C6E63"), ("cRP", "4A6E9B"), ("cLLM", "C0503C"),
                        ("cInk", "1F2328"), ("cMute", "70757D"), ("cRule", "CFD4DA"),
@@ -107,9 +108,10 @@ def main() -> None:
         # noise band of the reference condition (identical to 3 decimals across rows)
         bm = sum(float(r[1]["band_mean"]) for r in rows) / len(rows)
         bp = sum(float(r[1]["band_p95"]) for r in rows) / len(rows)
-        add(rf"  \fill[cBand] ({xpos(bm):.3f},{Y_BOT:.2f}) rectangle ({xpos(bp):.3f},{Y_TOP:.2f});")
+        add(rf"  \fill[cReal!7] ({xpos(bm):.3f},{Y_BOT:.2f}) rectangle ({xpos(bp):.3f},{Y_TOP:.2f});")
+        add(rf"  \fill[pattern=north east lines, pattern color=cReal!45] ({xpos(bm):.3f},{Y_BOT:.2f}) rectangle ({xpos(bp):.3f},{Y_TOP:.2f});")
         add(r"  \draw[cReal!55, line width=0.5pt, dash pattern=on 1.6pt off 1.4pt]"
-            rf" ({xpos(bm):.3f},{Y_BOT:.2f}) -- ({xpos(bm):.3f},{Y_TOP:.2f});")
+            rf" ({xpos(bp):.3f},{Y_BOT:.2f}) -- ({xpos(bp):.3f},{Y_TOP:.2f});")
         add(r"  \node[anchor=south, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, align=center,"
             rf" inner sep=1pt] at ({xpos((bm + bp) / 2):.3f},{Y_TOP + 0.02:.2f})"
             r" {HH real's own\\split-half band};")
@@ -140,9 +142,6 @@ def main() -> None:
             add(r"  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont" + bold +
                 rf", text={'cInk' if sty != 'model' else 'cMute'}, inner sep=0pt]"
                 rf" at ({indent:.2f},{y:.3f}) {{{lab}}};")
-            add(r"  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt]"
-                rf" at ({indent:.2f},{y - 0.21:.3f}) {{{b['n_comp_conv']} conversations\,\textbullet\,"
-                rf"{float(b['ratio_to_floor']):.1f}$\times$ the floor}};")
             # size-matched null (P95)
             add(rf"  \draw[cMute!75, line width=0.6pt] ({xpos(nm):.3f},{y - 0.11:.3f}) --"
                 rf" ({xpos(nm):.3f},{y + 0.11:.3f});")
@@ -168,7 +167,10 @@ def main() -> None:
     add(rf"  \draw[cMute!75, line width=0.6pt] ({lx:.2f},{ly - 0.09:.2f}) -- ({lx:.2f},{ly + 0.09:.2f});")
     add(r"  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt]"
         rf" at ({lx + 0.10:.2f},{ly:.2f}) {{size-matched null P95: redrawn with replacement at these sizes}};")
-    add(rf"  \fill[cBand] ({lx + 6.30:.2f},{ly - 0.09:.2f}) rectangle ({lx + 6.62:.2f},{ly + 0.09:.2f});")
+    add(rf"  \fill[cReal!7] ({lx + 6.30:.2f},{ly - 0.09:.2f}) rectangle ({lx + 6.62:.2f},{ly + 0.09:.2f});")
+    add(rf"  \fill[pattern=north east lines, pattern color=cReal!45] ({lx + 6.30:.2f},{ly - 0.09:.2f}) rectangle ({lx + 6.62:.2f},{ly + 0.09:.2f});")
+    add(r"  \draw[cReal!45, line width=0.45pt, dash pattern=on 1.6pt off 1.4pt]"
+        rf" ({lx + 6.62:.2f},{ly - 0.09:.2f}) -- ({lx + 6.62:.2f},{ly + 0.09:.2f});")
     add(r"  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt]"
         rf" at ({lx + 6.72:.2f},{ly:.2f}) {{noise band: HH real cut into two disjoint halves, 1{{,}}000 splits}};")
     add(r"  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt]"
@@ -177,7 +179,7 @@ def main() -> None:
     add(r"\end{tikzpicture}")
     add(r"\end{document}")
 
-    OUT.write_text("\n".join(L) + "\n", encoding="utf-8")
+    OUT.write_text(scale_fonts("\n".join(L)) + "\n", encoding="utf-8")
     print(f"wrote {OUT}")
     subprocess.run(["pdflatex", "-interaction=nonstopmode", OUT.name],
                    cwd=OUTDIR, check=True, stdout=subprocess.DEVNULL)

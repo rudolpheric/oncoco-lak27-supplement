@@ -56,7 +56,7 @@ def parse_args():
 
 
 def apply_role_prefix(text: str, speaker_type: str) -> str:
-    """Mirrors analysis/semantic/edm/classification_all.py::apply_role_prefix (prefix always on)."""
+    """Mirrors analysis/semantic/classification/classification_all.py::apply_role_prefix (prefix always on)."""
     st = (speaker_type or "").strip().lower()
     if st.startswith("couns"):
         return f"Counselor: {text}"

@@ -4,12 +4,12 @@ Run sentence-level OnCoCo classification over combined chat + mail datasets.
 
 Inputs:
   - data/processed/chat/chat_all.csv
-  - data/processed/mail/mail_all_with_saeule4.csv
+  - data/processed/mail/mail_all_with_pillar4.csv
 
 Output:
   - data/processed/combined/normalized/oncoco_classification_all.json
 
-This mirrors the structure of edm_classification_merged.json but uses
+This mirrors the structure of classification_merged.json but uses
 OnCoCo labels and adds condition metadata for extended analyses.
 """
 from __future__ import annotations
@@ -38,7 +38,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--mail_csv",
-        default=str(PROJECT_ROOT / "data" / "processed" / "mail" / "mail_all_with_saeule4.csv"),
+        default=str(PROJECT_ROOT / "data" / "processed" / "mail" / "mail_all_with_pillar4.csv"),
         help="Merged mail CSV path.",
     )
     parser.add_argument(
@@ -110,13 +110,13 @@ def load_csv(path: Path) -> List[Dict[str, str]]:
 
 def map_mail_condition(dataset: str) -> str:
     ds = dataset.lower()
-    if "säule_1" in ds or "saeule_1" in ds:
+    if "pillar_1" in ds or "pillar_1" in ds:
         return "HH_roleplay_mail"
-    if "säule_3" in ds or "saeule_3" in ds:
+    if "pillar_3" in ds or "pillar_3" in ds:
         return "HH_real_mail"
-    if "säule_5" in ds or "saeule_5" in ds:
+    if "pillar_5" in ds or "pillar_5" in ds:
         return "HH_CAIA_mail"
-    if "säule_4" in ds or "saeule_4" in ds:
+    if "pillar_4" in ds or "pillar_4" in ds:
         return "LLM_LLM_mail"
     return "mail_unknown"
 
@@ -129,6 +129,9 @@ def map_chat_condition(dataset_group: str, source_file: str) -> str:
         return "HH_roleplay_chat"
     if dataset_group == "human_llm":
         return "H_LLM_roleplay_chat"
+    if dataset_group.startswith("replay:"):
+        # prompt-replay experiment (analysis/prompt_replay): one condition per arm
+        return f"H_LLM_replay_{dataset_group.split(':', 1)[1]}_chat"
     return "chat_unknown"
 
 
@@ -406,7 +409,7 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
     model.eval()
 

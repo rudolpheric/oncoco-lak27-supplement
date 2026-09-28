@@ -87,18 +87,18 @@ def parse_args():
     p.add_argument("--data-json", default=str(NORM / "oncoco_classification_all.json"))
     p.add_argument("--n-splits", type=int, default=1000)
     p.add_argument("--n-null", type=int, default=1000)
-    p.add_argument("--n-boot", type=int, default=2000)
+    p.add_argument("--n-boot", type=int, default=20000)
     p.add_argument("--seed", type=int, default=42)
     return p.parse_args()
 
 
 def unit_ablation_ci(speaker: str):
-    """95% CI of the full-support delta as computed by the unit-ablation run.
+    """95% CI of the full-support proximity gap delta' as computed by the unit-ablation run.
 
     The "full" row here is the same quantity as that run's SaT row. Two independent
-    2,000-draw bootstraps of it disagree in the third decimal (seed-to-seed spread is
-    about 0.003 at this B), so printing both would show two intervals for one number.
-    The baseline interval is therefore sourced from that run rather than recomputed.
+    bootstraps of it can disagree in the third decimal, so printing both would show two
+    intervals for one number. The baseline interval is therefore sourced from that run
+    rather than recomputed.
     """
     path = TABLES / "oncoco_unit_ablation.csv"
     df = pd.read_csv(path)
@@ -172,29 +172,31 @@ def main():
                     cramers_v=round(cramers_v(pooled[comp], pooled[REF]), 3),
                     v_large_threshold=round(large, 3)))
 
-            # ordering bootstrap under this exclusion set
+            # proximity-gap bootstrap under this exclusion set:
+            # delta' = JSD(real, H-LLM) - JSD(real, HH roleplay)
             deltas = np.empty(args.n_boot)
             for b in range(args.n_boot):
                 s = {c: mats[c][rng.integers(0, mats[c].shape[0], mats[c].shape[0])].sum(axis=0)
                      for c in CONDITIONS}
                 deltas[b] = (js_distance(s[REF], s["H_LLM_roleplay_chat"])
-                             - js_distance(s["HH_roleplay_chat"], s["H_LLM_roleplay_chat"]))
+                             - js_distance(s[REF], s["HH_roleplay_chat"]))
             point = (js_distance(pooled[REF], pooled["H_LLM_roleplay_chat"])
-                     - js_distance(pooled["HH_roleplay_chat"], pooled["H_LLM_roleplay_chat"]))
+                     - js_distance(pooled[REF], pooled["HH_roleplay_chat"]))
             lo, hi = np.percentile(deltas, [2.5, 97.5])
             # Keep the draw above so the RNG stream stays identical across sets, then take the
             # baseline interval from the unit-ablation run so both tables report one number.
             if set_name == "full":
                 lo, hi = unit_ablation_ci("Counselor" if speaker == "Counsellor" else speaker)
             results.append(dict(
-                exclusion_set=set_name, n_excluded=len(ex), k_labels=k, comparison="ordering delta",
+                exclusion_set=set_name, n_excluded=len(ex), k_labels=k, comparison="proximity gap",
                 speaker="Counselor" if speaker == "Counsellor" else speaker,
                 jsd=round(point, 4), band_mean=np.nan, band_p95=np.nan, band_pctl=np.nan,
                 ratio_to_floor=np.nan, nm_p95=round(float(lo), 4),
                 cramers_v=round(float(hi), 4), v_large_threshold=np.nan))
             print(f"{set_name:9s} {speaker:11s} k={k:3d}  "
                   f"JSD(real,LLM)={js_distance(pooled[REF], pooled['H_LLM_roleplay_chat']):.3f}  "
-                  f"delta={point:+.3f} [{lo:+.3f}, {hi:+.3f}]"
+                  f"JSD(real,rp)={js_distance(pooled[REF], pooled['HH_roleplay_chat']):.3f}  "
+                  f"delta'={point:+.3f} [{lo:+.3f}, {hi:+.3f}]"
                   f"{'  *' if lo > 0 else '   (CI includes 0)'}")
 
             # ---- leave-one-out sweep (full support, no resampling) ----
@@ -206,7 +208,7 @@ def main():
                     idx2 = {l: i for i, l in enumerate(labs2)}
                     pv = {c: count_matrix(one[c], idx2)[1].sum(axis=0) for c in CONDITIONS}
                     d = (js_distance(pv[REF], pv["H_LLM_roleplay_chat"])
-                         - js_distance(pv["HH_roleplay_chat"], pv["H_LLM_roleplay_chat"]))
+                         - js_distance(pv[REF], pv["HH_roleplay_chat"]))
                     share = float(sum(pooled[c][idx[lab]] for c in CONDITIONS)
                                   / sum(pooled[c].sum() for c in CONDITIONS))
                     loo_rows.append(dict(
@@ -221,7 +223,7 @@ def main():
     loo = pd.DataFrame(loo_rows).sort_values("change")
     loo.to_csv(TABLES / "oncoco_leave_one_out.csv", index=False)
 
-    print("\nLargest single-category effects on the client-side ordering:")
+    print("\nLargest single-category effects on the client-side proximity gap:")
     cl = loo[loo["speaker"] == "Client"]
     print(cl.nsmallest(5, "change")[["label", "pooled_share", "delta_without", "change"]]
           .to_string(index=False))
@@ -230,20 +232,22 @@ def main():
           .to_string(index=False))
 
     # ---- supplement table ----
-    lines = [r"\begin{tabular}{llrrrrc}", r"\toprule",
-             r"Exclusion set & Role & $k$ & JSD real--LLM & Band mean & Pctl. & "
+    lines = [r"\begin{tabular}{llrrrrrc}", r"\toprule",
+             r"Exclusion set & Role & $k$ & JSD real--LLM & JSD real--roleplay & Band mean & Pctl. & "
              r"$\Delta$ [95\% CI] \\", r"\midrule"]
     for set_name, _ in SETS:
         for sp in ("Client", "Counselor"):
             r_j = res[(res["exclusion_set"] == set_name) & (res["speaker"] == sp)
                       & (res["comparison"] == "H_LLM_roleplay_chat")]
+            r_r = res[(res["exclusion_set"] == set_name) & (res["speaker"] == sp)
+                      & (res["comparison"] == "HH_roleplay_chat")]
             r_d = res[(res["exclusion_set"] == set_name) & (res["speaker"] == sp)
-                      & (res["comparison"] == "ordering delta")]
-            if not len(r_j) or not len(r_d):
+                      & (res["comparison"] == "proximity gap")]
+            if not len(r_j) or not len(r_r) or not len(r_d):
                 continue
-            j, dd = r_j.iloc[0], r_d.iloc[0]
+            j, rr, dd = r_j.iloc[0], r_r.iloc[0], r_d.iloc[0]
             star = r"$^{*}$" if dd["nm_p95"] > 0 else ""
-            lines.append(f"{set_name} & {sp} & {int(j['k_labels'])} & {j['jsd']:.3f} & "
+            lines.append(f"{set_name} & {sp} & {int(j['k_labels'])} & {j['jsd']:.3f} & {rr['jsd']:.3f} & "
                          f"{j['band_mean']:.3f} & {j['band_pctl']:.1f} & "
                          f"{dd['jsd']:+.3f}{star} [{dd['nm_p95']:.3f}, {dd['cramers_v']:.3f}] " + r"\\")
     lines += [r"\bottomrule", r"\end{tabular}"]
@@ -268,7 +272,7 @@ def main():
             ax.set_xlabel("pooled share of the removed category")
             ax.set_title(sp, fontsize=10)
             ax.grid(alpha=.3, lw=.5)
-        axes[0].set_ylabel(r"ordering $\Delta$ without that category")
+        axes[0].set_ylabel(r"proximity gap $\Delta$ without that category")
         fig.tight_layout()
         FIGS.mkdir(parents=True, exist_ok=True)
         fig.savefig(FIGS / "leave_one_out_delta.pdf")

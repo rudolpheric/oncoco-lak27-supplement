@@ -4,22 +4,22 @@
   "HH_roleplay_chat": {
    "conversations": 68,
    "messages": 2723,
-   "messages_with_masking": 80,
+   "messages_with_masking": 86,
    "placeholders": {
     "private_person": 89,
-    "private_address": 1
+    "private_address": 11
    }
   },
   "H_LLM_roleplay_chat": {
    "conversations": 414,
    "messages": 15165,
-   "messages_with_masking": 755,
+   "messages_with_masking": 762,
    "placeholders": {
     "private_person": 831,
-    "private_url": 5,
+    "private_address": 17,
+    "private_url": 6,
     "private_date": 6,
     "private_phone": 1,
-    "private_address": 6,
     "private_email": 3
    }
   }
@@ -33,6 +33,7 @@
   "spans_fully_allowlisted": 443,
   "source_consistency": 139,
   "stoplisted_private_date": 2,
-  "stoplisted_private_address": 3
+  "stoplisted_private_address": 3,
+  "site_rule": 22
  }
 }

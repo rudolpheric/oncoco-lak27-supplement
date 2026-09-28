@@ -135,8 +135,8 @@ import ast
 qf = (QR / "apply_quality_filter.py").read_text(encoding="utf-8")
 m = re.search(r"^DROPS\s*=\s*(\{.*?^\})", qf, re.S | re.M)
 applied = ast.literal_eval(re.sub(r"#.*", "", m.group(1))) if m else set()
-quob = pd.read_csv(QR / "quob26_drop_decisions.csv") if (QR / "quob26_drop_decisions.csv").exists() else None
-quob_n = int(quob["decision"].astype(str).str.upper().eq("DROP").sum()) if quob is not None else 0
+c13 = pd.read_csv(QR / "c13_drop_decisions.csv") if (QR / "c13_drop_decisions.csv").exists() else None
+c13_n = int(c13["decision"].astype(str).str.upper().eq("DROP").sum()) if c13 is not None else 0
 dec = pd.read_csv(QR / "drop_decisions.csv") if (QR / "drop_decisions.csv").exists() else None
 dec_drop = int(dec["decision"].astype(str).str.upper().eq("DROP").sum()) if dec is not None else 0
 
@@ -151,8 +151,8 @@ for step in ("legacy (no model metadata)", "quality screening"):
           f"{int(sub['messages'].sum())} messages / {int(sub['spans'].sum())} spans "
           f"across {len(sub)} source files")
     print(sub[["source_file", "conversations", "messages", "spans"]].to_string(index=False))
-print(f"    quality screening, authoritative list: {len(applied)} (main wave) + {quob_n} (QUOB26) "
-      f"= {len(applied) + quob_n} conversations")
+print(f"    quality screening, authoritative list: {len(applied)} (main wave) + {c13_n} (C13) "
+      f"= {len(applied) + c13_n} conversations")
 print(f"      of the main-wave {len(applied)}, {dec_drop} carry a literal DROP decision and "
       f"{len(applied) - dec_drop} are annotated 'borderline -> drop' in apply_quality_filter.py")
 

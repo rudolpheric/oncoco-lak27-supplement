@@ -1,0 +1,32 @@
+\begin{tabular}{llrrcc}
+\toprule
+Block & Prompt configuration & Conv. & Med. words & JSD real--LLM [95\% CI] & $\Delta$ [95\% CI] \\
+\midrule
+all & all H--LLM & 414 & 38 & 0.453 [0.429, 0.483] & +0.220$^{*}$ [0.178, 0.243] \\
+\addlinespace
+template family & plain template & 207 & 52 & 0.396 [0.372, 0.430] & +0.163$^{*}$ [0.122, 0.190] \\
+ & chat template & 121 & 39 & 0.597 [0.575, 0.625] & +0.364$^{*}$ [0.322, 0.387] \\
+ & prompt not logged & 86 & 30 & 0.495 [0.469, 0.529] & +0.262$^{*}$ [0.220, 0.289] \\
+\addlinespace
+persona brevity cue & persona asks for brevity & 225 & 30 & 0.448 [0.422, 0.482] & +0.215$^{*}$ [0.171, 0.242] \\
+ & persona silent on length & 189 & 54 & 0.487 [0.464, 0.517] & +0.254$^{*}$ [0.213, 0.278] \\
+\addlinespace
+model x template family & Mixtral 8x7B, not logged & 86 & 30 & 0.495 [0.469, 0.529] & +0.262$^{*}$ [0.220, 0.289] \\
+\addlinespace
+model x persona brevity cue & Mixtral 8x7B, brevity yes & 83 & 30 & 0.497 [0.471, 0.531] & +0.264$^{*}$ [0.221, 0.291] \\
+\addlinespace
+model x template family & Llama 3.3 70B, plain & 117 & 61 & 0.492 [0.471, 0.521] & +0.259$^{*}$ [0.218, 0.283] \\
+ & Llama 3.3 70B, chat & 121 & 39 & 0.597 [0.575, 0.625] & +0.364$^{*}$ [0.322, 0.387] \\
+\addlinespace
+model x persona brevity cue & Llama 3.3 70B, brevity yes & 70 & 36 & 0.600 [0.576, 0.633] & +0.367$^{*}$ [0.324, 0.395] \\
+ & Llama 3.3 70B, brevity no & 168 & 56 & 0.507 [0.485, 0.536] & +0.275$^{*}$ [0.233, 0.299] \\
+\addlinespace
+model x template family & GPT-OSS-120B, plain & 90 & 26 & 0.361 [0.336, 0.400] & +0.128$^{*}$ [0.085, 0.161] \\
+\addlinespace
+model x persona brevity cue & GPT-OSS-120B, brevity yes & 72 & 26 & 0.362 [0.335, 0.405] & +0.129$^{*}$ [0.083, 0.165] \\
+ & GPT-OSS-120B, brevity no & 18 & 29 & 0.434 [0.414, 0.496] & +0.201$^{*}$ [0.165, 0.255] \\
+\addlinespace
+Llama, persona-matched & Llama 3.3 70B, plain, persona-matched & 45 & 64 & 0.491 [0.466, 0.528] & +0.258$^{*}$ [0.215, 0.289] \\
+ & Llama 3.3 70B, chat, persona-matched & 36 & 38 & 0.655 [0.632, 0.686] & +0.422$^{*}$ [0.379, 0.449] \\
+\bottomrule
+\end{tabular}

@@ -9,7 +9,7 @@
 \usepackage{csquotes}
 
 \newcommand{\fitwidth}[1]{\resizebox{\ifdim\width>\linewidth \linewidth\else \width\fi}{!}{#1}}
-% role-specific proximity gaps
+% role-specific proximity gaps: Delta = JSD(HH real, H-LLM) - JSD(HH real, HH roleplay)
 \newcommand{\dCL}{\Delta_{\mathrm{CL}}}
 \newcommand{\dCO}{\Delta_{\mathrm{CO}}}
 \setlength{\emergencystretch}{3em}
@@ -26,7 +26,7 @@
 \Submitted{} \Accepted{} \Published{}
 \Volume{} \Number{} \Pages{} \Doi{}
 \WithoutNotestrue
-\Abstract{This document accompanies the main article. It reports the full persona list, complete client- and counselor-side OnCoCo label distributions, hidden-Markov state summaries and state-count sensitivity, transition heatmaps, sentence-embedding projections, per-conversation within-condition variability, the RQ3 multiplicity control, the noise-band placement under each unit of analysis, the classifier-confidence diagnostics, and the pre-declared category exclusion sets with their leave-one-out sweep. Tables and figures are numbered S1, S2, \ldots and are referenced by those numbers in the main text.}
+\Abstract{This document accompanies the main article. It reports the full persona list, complete client- and counselor-side OnCoCo label distributions, hidden-Markov state summaries and state-count sensitivity, transition heatmaps, sentence-embedding projections, per-conversation within-condition variability, the RQ2 multiplicity control, the noise-band placement under each unit of analysis, the classifier-confidence diagnostics, the pre-declared category exclusion sets with their leave-one-out sweep, the unit-of-analysis table, and the prompt-replay experiment of RQ3. Tables and figures are numbered S1, S2, \ldots and are referenced by those numbers in the main text.}
 
 \begin{document}
 
@@ -35,7 +35,11 @@
 \thispagestyle{fancy}
 
 \section{Prompts and Case Descriptions}
+\label{Ssec:prompts}
 The prompt templates that drove the simulated client are released in the companion repository (directory \texttt{prompts/}), one file per persona and template variant, with the conversation history that the platform inserts at generation time replaced by a placeholder. The repository also contains the HH roleplay and H--LLM conversations with personal data masked, the OnCoCo labels aligned to the masked text, the persona definitions, and the segmentation adapter. Prompts of the earliest deployment (Mixtral 8x7B) were not logged by the platform at that time. HH real conversations are not released because they stem from real help-seekers.
+
+The platform assembles each prompt from a persona profile and one of two template families. Plain-text templates open with a role instruction (``\# Rollenanweisung'' for the first turn, ``Du bist \ldots'' for later turns).
+Chat-template prompts wrap the same persona in the Llama~3 chat format with a structured ``\#\# Antwortformat'' block. Every logged template carries a brevity instruction at template level (``Maximal 1-2 kurze S\"atze'', ``1-4 S\"atze maximal'', ``kurz und pr\"azise''), so the only brevity cue that varies between conversations is the persona profile's ``Sprachliche Merkmale'' field (e.g.\ ``Kurze pr\"agnante R\"uckmeldungen''). Ten of the 26 personas in the analysed H--LLM conversations carry such a cue. Table~\ref{Stab:prompt-variants} reports the client-side distance to HH real per prompt configuration, Table~\ref{Stab:verbosity} the message-length and punctuation statistics behind the verbosity signature, and Table~\ref{Stab:sizematched} the size-matched subsample check.
 
 \section{Persona List}
 \label{Sapp:personas}
@@ -106,7 +110,7 @@ This appendix reports full label distributions, persistence statistics, within-c
 \end{table}
 
 \begin{table}[t]
-\caption{RQ3 multiplicity control: all thirteen items of the simulated-client battery, comparing the two most recent semesters of the course line (GPT-OSS-120B, $n$=23, vs Llama 3.3 70B, $n$=26). Each row is a two-sided Mann--Whitney test with Cliff's $\delta$ as effect size. Means are on a 5-point disagreement-coded scale (1=agree, 5=disagree), so a negative $\delta$ means the GPT-OSS semester was rated more human-like. $p_{\text{Holm}}$ is the Holm step-down adjustment across all thirteen items. Only the realism item (A270\_02) survives ($p_{\text{Holm}}$=.026). The five acceptance constructs (perceived usefulness, ease of use, enjoyment, behavioral intention, social influence), tested the same way with Holm correction within the construct family, do not separate the semesters (all raw $p\geq$.17, max $|\delta|$=0.23). Rows are ordered by raw $p$.}
+\caption{RQ2 multiplicity control: all thirteen items of the simulated-client battery, comparing the two most recent semesters of the course line (GPT-OSS-120B, $n$=23, vs Llama 3.3 70B, $n$=26). Each row is a two-sided Mann--Whitney test with Cliff's $\delta$ as effect size. Means are on a 5-point disagreement-coded scale (1=agree, 5=disagree), so a negative $\delta$ means the GPT-OSS semester was rated more human-like. $p_{\text{Holm}}$ is the Holm step-down adjustment across all thirteen items. Only the realism item (A270\_02) survives ($p_{\text{Holm}}$=.026). The five acceptance constructs (perceived usefulness, ease of use, enjoyment, behavioral intention, social influence), tested the same way with Holm correction within the construct family, do not separate the semesters (all raw $p\geq$.17, max $|\delta|$=0.23). Rows are ordered by raw $p$.}
 \label{Stab:tam-multiplicity}
 \centering
 \scriptsize
@@ -124,7 +128,7 @@ This appendix reports full label distributions, persistence statistics, within-c
 \end{table}
 
 \begin{table}[t]
-\caption{The central RQ1 gap restricted to confidently labelled spans. $\Delta$ is the proximity gap of the main paper with a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``all items'' row reproduces the SaT row of Table~3 in the main paper, interval included, and its bounds are taken from that run rather than redrawn here. If classifier error generated the effect, discarding the least confidently labelled items would reduce $\Delta$. On the client side it does not, and $\dCL$ increases. On the counselor side $\dCO$ decreases and loses significance at the strictest threshold.}
+\caption{The central RQ1 gap restricted to confidently labelled spans. $\Delta = \mathrm{JSD}(\text{HH real},\text{H--LLM}) - \mathrm{JSD}(\text{HH real},\text{HH roleplay})$ is the proximity gap of the main paper with a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``all items'' row reproduces the SaT row of Table~\ref{Stab:unit-ablation}, interval included, and its bounds are taken from that run rather than redrawn here. If classifier error generated the effect, discarding the least confidently labelled items would reduce $\Delta$. On the client side it does not, and $\dCL$ stays between 0.213 and 0.239. On the counselor side $\dCO$ stays small and its interval includes zero at the 0.90 threshold.}
 \label{Stab:highconf}
 \centering
 \footnotesize
@@ -192,7 +196,7 @@ This appendix reports full label distributions, persistence statistics, within-c
 
 \section{Pre-Declared Category Exclusion Sets}
 \label{Ssec:exclusions}
-The sensitivity analysis reported in Section~5.6.1 of the main paper removes categories that are arguably fixed by the training setting rather than by counseling behavior. The first two sets below were declared before the analysis was run. S3 is post-hoc and is flagged as such. All three are reproduced here so the choice is auditable.
+The sensitivity analysis reported in Section~5.5.1 of the main paper removes categories that are arguably fixed by the training setting rather than by counseling behavior. The first two sets below were declared before the analysis was run. S3 is post-hoc and is flagged as such. All three are reproduced here so the choice is auditable.
 
 \textbf{S1: setting-bound (primary).}
 \emph{Objective of the assignment} (\texttt{CL-IF-AO-*-Obj-*}) and \emph{Extension of the assignment} (\texttt{CL-IF-AO-*-Ext-*}): the assignment is supplied by the persona prompt and the course task, so a simulated client states it because it is in its context window.
@@ -204,10 +208,10 @@ The sensitivity analysis reported in Section~5.6.1 of the main paper removes cat
 
 \textbf{S3: closing formalities (tertiary, reported but not pre-declared).} \emph{Farewell} for both roles (\texttt{CO-FC-*-*-F-*}, \texttt{CL-FC-*-*-F-*}). Session end is partly imposed by the time frame of the exercise, but closing is itself a counseling skill, so the case is weaker and we report rather than assume it.
 
-\textbf{Deliberately not excluded: \emph{Consent}} (\texttt{CL-IF-ACP-*-Cons-*}). It captures brief acknowledgements and agreement rather than a setting artifact. It is the second-largest client-side category and the largest single driver of the gap. Removing the largest contributor \emph{because} it is large would be the post-hoc selection the objection warns against. It appears instead as one point among all others in the leave-one-out sweep (Figure~\ref{Sfig:loo}), where removing it \emph{increases} the gap.
+\textbf{Deliberately not excluded: \emph{Consent}} (\texttt{CL-IF-ACP-*-Cons-*}). It captures brief acknowledgements and agreement rather than a setting artifact. It is the second-largest client-side category and the largest single contributor to the gap. Removing the largest contributor \emph{because} it is large would be the post-hoc selection the objection warns against. It appears instead as one point among all others in the leave-one-out sweep (Figure~\ref{Sfig:loo}), where removing it lowers $\dCL$ by 0.033, from 0.220 to 0.187.
 
 \begin{table}[t]
-\caption{Between-condition distance and central gap under each exclusion set, with $k$ the size of the label support after removal and renormalization. Band statistics use HH real's own split-half band recomputed on the reduced support. $\Delta$ carries a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``full'' row reproduces the SaT row of Table~3 in the main paper, interval included. Its bounds are taken from that run rather than redrawn here, so the baseline is one number and not two independent estimates of it.}
+\caption{Between-condition distance and central gap under each exclusion set, with $k$ the size of the label support after removal and renormalization. Band statistics use HH real's own split-half band recomputed on the reduced support. $\Delta$ carries a 95\% interval from 20{,}000 conversation-level bootstrap resamples, and $^{*}$ marks intervals excluding zero. The ``full'' row reproduces the SaT row of Table~\ref{Stab:unit-ablation}, interval included. Its bounds are taken from that run rather than redrawn here, so the baseline is one number and not two independent estimates of it.}
 \label{Stab:category-sensitivity}
 \centering
 \footnotesize
@@ -218,7 +222,7 @@ The sensitivity analysis reported in Section~5.6.1 of the main paper removes cat
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.92\textwidth]{results/figures/oncoco/leave_one_out_delta.pdf}
-\caption{Leave-one-out sweep: the proximity gap $\Delta$ recomputed with each category removed in turn, plotted against that category's pooled share. The dashed line is $\Delta$ on the full support. No single removal drives $\Delta$ to zero on either role, and the client-side category whose removal moves $\Delta$ most (\emph{Consent}) moves it upward rather than downward.}
+\caption{Leave-one-out sweep: the proximity gap $\Delta$ recomputed with each category removed in turn, plotted against that category's pooled share. The dashed line is $\Delta$ on the full support. No single removal brings the client-side $\Delta$ below 0.187. The two categories whose removal lowers it most (\emph{Consent} and \emph{Other statements}) each take off about 0.03.}
 \label{Sfig:loo}
 \end{figure}
 
@@ -234,12 +238,12 @@ The sensitivity analysis reported in Section~5.6.1 of the main paper removes cat
 
 \textbf{HMM initialisation.} We fit each condition from 20 random initialisations and retain the best-likelihood solution, because the EM likelihood surface for these sequences is strongly multimodal. Across conditions, 20 random initialisations recover 6--11 distinct optima. A single fixed initialisation lands in a markedly inferior one for all three chat conditions (up to $\Delta\log L=1{,}468$), and the resulting states then have near-duplicate output distributions. Table~\ref{Stab:hmm-modelsel} reports the sensitivity sweep over $k=2\ldots8$, in which the cross-validated optimal state count tracks corpus size rather than any property of the conditions.
 
-\textbf{Misspecified segmentation.} The bottom row of Table~3 in the main paper is a naive character-class split. It produces 16.2 fragments per message with a mean length of 10 characters, because it splits on a frequent letter rather than only on sentence-final punctuation. The classifier can assign the resulting fragments only to residual categories. Under such a split the between-condition distances collapse by a factor of three to four, and the client-side gap becomes the single unit-by-role combination that fails to reach significance. The row is included in the main paper so that the contrast with a correctly specified sentence split is visible. It is not a segmentation comparison.
+\textbf{Misspecified segmentation.} The bottom row of Table~\ref{Stab:unit-ablation} is a naive character-class split. It produces 16.2 fragments per message with a mean length of 10 characters, because it splits on a frequent letter rather than only on sentence-final punctuation. The classifier can assign the resulting fragments only to residual categories. Under such a split the between-condition distances collapse by a factor of three to four, the client-side gap shrinks to 0.033, a seventh of its value, and the counselor-side gap changes sign. The row is included in the table so that the contrast with a correctly specified sentence split is visible. It is not a segmentation comparison.
 
-\textbf{Cross-course association (RQ3, secondary).} Across all six courses with unambiguous survey linkage, client-side JSD and disagreement with the realism item correlate at Spearman $\rho$=.83 ($p$=.042). The result is fragile. Two of the six courses contribute only 2 and 9 respondents, and dropping them leaves the direction intact but not the significance ($\rho$=.80, $p$=.20 at $k$=4). A Pearson specification on all six gives $r$=.68 ($p$=.13). We therefore report it as descriptive support for the within-course-line result of Section~5.7 in the main paper rather than as independent evidence.
+\textbf{Cross-course association (RQ2, secondary).} Across all six courses with unambiguous survey linkage, client-side JSD and disagreement with the realism item correlate at Spearman $\rho$=.83 ($p$=.042). The result is fragile. Two of the six courses contribute only 2 and 9 respondents, and dropping them leaves the direction intact but not the significance ($\rho$=.80, $p$=.20 at $k$=4). A Pearson specification on all six gives $r$=.68 ($p$=.13). We therefore report it as descriptive support for the within-course-line result of Section~5.6 in the main paper rather than as independent evidence.
 
 \begin{table}[t]
-\caption{Numbers behind Figure~3 of the main paper: between-condition JSD anchored in the reference condition's split-half noise band (1{,}000 splits), with band mean (noise floor), band P95 (upper edge), the 95th percentile of the size-matched null (nm-P95), and Cram\'er's $V$. All comparisons use HH real as reference.}
+\caption{Numbers behind Figure~2 of the main paper: between-condition JSD anchored in the reference condition's split-half noise band (1{,}000 splits), with band mean (noise floor), band P95 (upper edge), the 95th percentile of the size-matched null (nm-P95), and Cram\'er's $V$. All comparisons use HH real as reference.}
 \label{Stab:noise-band-chat}
 \centering
 \footnotesize
@@ -248,7 +252,7 @@ The sensitivity analysis reported in Section~5.6.1 of the main paper removes cat
 \end{table}
 
 \begin{table}[t]
-\caption{Distributional proximity to HH real by model with 95\% conversation-level bootstrap CIs (lower = closer). These are the intervals drawn in the per-model rows of Figure~3 of the main paper.}
+\caption{Distributional proximity to HH real by model with 95\% conversation-level bootstrap CIs (lower = closer). These are the intervals drawn in the per-model rows of Figure~2 of the main paper.}
 \label{Stab:model-realness}
 \centering
 \footnotesize
@@ -281,6 +285,210 @@ The sensitivity analysis reported in Section~5.6.1 of the main paper removes cat
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \fitwidth{\input{results/tables/oncoco_transition_fdr_sig_roleplay.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Message length and surface register of client messages per condition and, within H--LLM, per model, persona brevity cue, and template family (Section~5.2 of the main paper). Median words per client message with interquartile range, and the share of messages without sentence-final punctuation. ``Llama x template\_family'' restricts the template contrast to the one model that ran under both families.}
+\label{Stab:verbosity}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_verbosity.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Client-side distance to HH real and proximity gap $\Delta$ per prompt configuration, SaT spans, with 95\% intervals from 20{,}000 conversation-level bootstrap resamples (Section~5.4 of the main paper). Template family is nested in model and semester: GPT-OSS-120B ran plain templates only and Mixtral 8x7B logged no prompts. The persona-matched block restricts Llama 3.3 70B to the four personas that appear under both families. The difference between its two rows is 0.164 [0.129, 0.194].}
+\label{Stab:prompt-variants}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_prompt_variants.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Size-matched subsample check (Section~5.5.3 of the main paper). Client-side $\Delta$ recomputed on 1{,}000 random draws of 68 H--LLM conversations without replacement, the size of the HH roleplay condition, pooled and within each model. Columns give the mean, the central 95\% range of the draws, and the share of draws above zero.}
+\label{Stab:sizematched}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_prompt_variants_sizematched.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{The central RQ1 gap across units of analysis (Section~5.5 of the main paper).
+Columns give the client- and counselor-side distances from HH real to H--LLM roleplay and to HH roleplay, and their difference ($\dCL$ and $\dCO$), with a 95\% interval from 20{,}000 conversation-level resamples. $^{*}$ marks a gap whose whole interval lies above zero.
+The bottom row is a misspecified character-class split, not a real segmentation.}
+\label{Stab:unit-ablation}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_unit_ablation.tex}}
+\end{table}
+
+\section{Prompt-Replay Experiment}
+\label{Ssec:replay}
+This section documents the replay experiment of Section~5.7 in the main paper. Its code and prompts are in the companion repository (directories \texttt{analysis/prompt\_replay/} and \texttt{prompts/replay/}). The generated client turns are not released, because the requests carry the unmasked counselor turns of the original conversations.
+
+\textbf{Design.} The platform logged, for every simulated-client turn, the complete prompt it sent to the model, including the persona profile and the conversation history up to that turn. Each turn can therefore be generated again as an independent request whose context is the original history. We regenerate all 1{,}489 client turns of the 90 GPT-OSS-120B conversations (one turn has no logged prompt and is skipped) with the same model (\texttt{openai/gpt-oss-120b}, served with vLLM 0.28 on one A100 80\,GB) and the platform's sampling settings (temperature 1, at most 3{,}000 tokens, no penalties). The prompt is sent as one user message. Only the instruction block of the prompt varies between arms. The persona block and the history block are byte-identical across arms, which the request builder asserts for every turn. The counselor turns are the original human turns in every arm. This isolates the prompt effect and leaves the counselor's reaction to a changed client untested.
+
+\textbf{Arms.} Arm O passes the original client text through the current pipeline and is the comparison base. Arm A resends the logged prompt unchanged and tests whether our setup reproduces the deployment. Arm B replaces the instruction block by a generic cue (``write like a real help-seeking person in a counseling chat, realistic, authentic, short''). Arm C replaces it by five rules written against the five signatures of Section~5.2 in the main paper: disclose only what the counselor asked for and at most one new aspect per message, stay with the problem when the counselor proposes something and reject what does not fit, ask the counselor a question in about every third message, do not thank or confirm, and write at most 20 words in chat register without a final period. Arm D keeps C and doses the two rules that overshot: questions become rare (``at most once or twice in the whole conversation''), and short assent is allowed while thanking in every message is not. Arm E keeps D and allows positive feedback about as often as disagreement. Arm F decodes the history before each turn with the HH real phase model of Section~5.3 in the main paper and uses one rule block for the clarification phase (as D, with entry into the help phase left to the counselor) and one for the help phase (feedback on suggestions allowed, no new problem, no planning, closing accepted). Arm G keeps F, removes the form examples from the help-phase block, forbids commitments to implementation (``whether it helps, yes, what you will do with it, no''), and phrases entry into the help phase conditionally instead of ``once''.
+
+\textbf{Measurement.} Every arm is converted to the chat format of the corpus and classified with the unchanged pipeline (SaT-6l with the OnCoCo adapter, XLM-RoBERTa-large OnCoCo classifier). The counselor spans are identical across arms, which we verify. The current segmentation reproduces the paper corpus exactly for about 90\% of messages, with differences concentrated on emoji and special characters, so arm O and not the paper's deployment row is the comparison base. The differing messages are split more finely, 1.87 spans per client message in arm O against 1.68 in the deployment, with more one-word spans (14.7\% against 12.1\%) and more \emph{Other statements} (10.3\% against 7.0\%). On whole messages, where no segmentation is involved, arm O and the deployment are indistinguishable (JSD 0.003), and on spans arm O lies at 0.058 from the deployment row, inside the deployment's own split-half band (95th percentile 0.158). Arm A, the logged prompt replayed, lies at 0.083 from the deployment row, also inside that band. All arms pass through the same current segmentation, so differences between arms are not segmentation effects. Table~\ref{Stab:replay-all} gives every arm on the span and the message unit. Figure~\ref{Sfig:replay-deciles} gives the decile profiles.
+
+\textbf{Profiles.} Equal distance to HH real does not mean equal behavior. Arms D and G lie 0.233 and 0.213 from HH real but 0.322 and 0.302 from HH roleplay, farther than either lies from real counseling. Arm D matches real clients on the residual \emph{Other statements} (0.232 against 0.241) and on \emph{Consent} (0.182 against 0.171), where role-play clients depart (0.108 and 0.223). It departs where role-play clients do not, with almost no \emph{General positive feedback} (0.004 against 0.047 in HH real and 0.046 in HH roleplay) and few \emph{General requests} (0.007 against 0.027 and 0.040). The dosed arms therefore reach the distance of a human role-play partner by a different route.
+
+\textbf{Phases.} The three-state HMM fitted on HH real (Section~5.3 in the main paper) separates an opening phase (6\% of spans), a clarification phase (80\%), and a help-and-closing phase (15\%). Every condition is decoded with this one reference model, because states of separately fitted models are not comparable: the third state of the H--LLM fit is a solution-planning mode (Help 0.27, Resources 0.10, Objectives 0.11) that occupies 39\% of its spans, while the third state of HH real is a help-and-closing phase. Under the reference model, real clients express problems, questions, and disagreement in the clarification phase and positive feedback almost only in the help phase (0.241 of their spans there against 0.026 in clarification). Real clients initiate 44\% of the moves from clarification into help. The turn-level test decodes the original history before each client turn and again with the client's spans appended. A move from clarification to help counts as client-led entry. Table~\ref{Stab:phase-transitions} reports the rates.
+
+\textbf{Example echo.} Arm F copied the form examples of its help-phase block. 105 of its 243 help-phase turns read ``ja das hilft danke'', so part of its positive feedback was copied rather than generated. Arm G removed the examples, and its 243 help-phase turns contain 227 distinct messages. The main text reports G, not F.
+
+\begin{table}[t]
+\caption{Prompt replay, all arms (Section~5.7 of the main paper). Client-side JSD to HH real on the span unit and on the message unit with 95\% intervals from conversation-level bootstrap resamples (20{,}000 for spans, 5{,}000 for messages), Cram\'er's $V$, the problem share in the first decile, the pooled solution-space share, the share of conversations with at least one general request and at least one rejection, the negative-to-positive feedback ratio, and the median words per client message.}
+\label{Stab:replay-all}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_prompt_replay_supplement.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Turn-level phase test under the HH real phase model. For every client turn the original history is decoded before the turn and again with the client's spans appended. Client-led entry is the share of clarification turns after which the state is the help phase, and client-led return is the share of help-phase turns after which the state is the clarification phase. The replay arms share the histories of the GPT-OSS-120B deployment.}
+\label{Stab:phase-transitions}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_phase_transition_test.tex}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\linewidth]{results/figures/oncoco/prompt_replay_deciles.pdf}
+\caption{Client-side decile profiles of the replay arms next to the human conditions: share of client spans on problem disclosure, solution-space engagement, and general requests per conversation decile.}
+\label{Sfig:replay-deciles}
+\end{figure}
+
+\section{Human Validation on the Study Corpora}
+\label{Ssec:validation}
+This section reports the expert validation of the OnCoCo classifier referenced in Sections~4.2, 5.5.2, and~7 of the main paper.
+
+\textbf{Setup.} Both human corpora carry expert annotation under the OnCoCo scheme, produced by two different annotation teams: 4{,}354 units in 64 HH roleplay conversations and 3{,}591 chat units in 54 HH real conversations, the latter exported from MAXQDA and reconstructed from the source documents paragraph by paragraph. The experts segment by function and the pipeline by sentence, and the two cuts rarely coincide (boundary F1 0.13 on HH roleplay). We therefore re-classified the experts' own units with the pipeline's role prefix, so that the comparison holds the segmentation fixed and only the labels differ. No simulated-client conversation has expert annotation.
+
+\textbf{Agreement.} Table~\ref{Stab:human-validation} gives unit-level agreement per corpus and role. Both corpora lie far below the in-domain figures of the OnCoCo test set (accuracy 0.79, model-to-human $\kappa$=0.88) and below the human intercoder agreement of the scheme ($\kappa$=0.84). HH real is the harder corpus throughout, with $\kappa$=0.34 against 0.45, and on its client side the classifier does not beat the majority baseline, because \emph{Problem statement} makes up 39\% of the units there and is recalled at 0.22. At the level of the scheme's pillars both corpora reach 0.81 to 0.82, so the broad field of action is recognized and the fine category is not. The classifier is too generous rather than blind: on the counselor side it uses 50 categories where the annotators use 33 to 35, and every category the annotators never use is by construction an error. The single largest confusion is \emph{Problem statement} against \emph{Problem definition}, 197 units in both directions in HH real and 90 in HH roleplay, with \emph{Own emotional expression} as the third member of the same family, and merging only these three labels raises the client-side $\kappa$ from 0.48 to 0.55 on HH roleplay and from 0.33 to 0.45 on HH real. A tolerant reading that merges neighbouring categories (backchannel against residual, consent against positive feedback, reflection types, question types, and the problem family) raises $\kappa$ to 0.62 on HH roleplay and 0.54 on HH real. That is the most generous figure obtainable, not the strictest, and every analysis that reports single categories is bound by the strict one.
+
+\textbf{Signature categories.} Table~\ref{Stab:human-validation-categories} gives precision, recall, and F1 for the categories that carry the signatures of Section~5.2 in the main paper, next to the shares the experts and the classifier assign. \emph{Consent}, \emph{General request}, and \emph{Rejection} are the best-identified categories in both corpora. The largest error is the under-detection of \emph{Problem statement} in HH real (recall 0.22, expert share 0.202 against 0.068 for the classifier). Table~\ref{Stab:human-validation-buckets} pools the categories into the three client-side buckets of Section~5.2. Reciprocal requests are measured almost without loss (0.94 of the expert share in both corpora), solution-space engagement in the same direction with a rough match of the shares, and problem disclosure is over-reported by 15\% in HH roleplay and under-reported by 34\% in HH real. The units the classifier loses from the problem bucket do not move within the bucket but leave it, mostly to \emph{Consent}, the residual categories, and \emph{Own emotional expression}. Short units carry most of this loss (recall 0.09 at one to three words against 0.69 at 26 words and more), but length explains only a sixth of the gap between the corpora. The classifier is worse on real counseling in every length class.
+
+\textbf{Distance compression.} With expert labels on both human corpora, the distance between them can be computed twice on identical units. Under expert labels the client-side JSD between HH roleplay and HH real is 0.359 [0.333, 0.402], under classifier labels 0.196 [0.182, 0.244], and the pipeline's own SaT spans give 0.233, so the unit is not the cause. A paired conversation-level bootstrap puts the compression at 0.163 [0.113, 0.197] on the client side and 0.140 [0.107, 0.160] over both roles. Within HH real, where one team and one codebook apply, the same comparison between the three regional services shows no compression (0.012 to 0.056, all intervals including zero). Two readings remain open: the classifier compresses exactly this contrast, or part of the expert distance is a codebook and team difference between the two annotation groups. We therefore read the result as a direction and not as a clean attenuation estimate. In either reading the classifier measures the distance between the two human conditions smaller than the experts do. Whether the same holds for the distance to simulated clients is the open question below.
+
+\textbf{What the validation cannot settle.} The H--LLM term of $\Delta$ has no expert labels. If the classifier compresses the distance from real counseling to simulated clients by the same amount as the distance to human roleplay, $\Delta_{\mathrm{CL}}$ is unchanged. If it compresses it less, because simulated text is closer to the register of the training material, $\Delta_{\mathrm{CL}}$ shrinks. A stratified sample of about 400 expert-coded simulated-client units would close this gap.
+
+\textbf{Repair attempts.} Three changes to how the classifier is fed do not repair the loss on HH real. Prefixing the preceding counselor turn collapses accuracy to 0.08, because 66\% of the predictions then come from the other role's inventory. Prefixing the client's own preceding unit raises problem recall from 0.47 to 0.53 but lowers accuracy from 0.36 to 0.26, because the model copies the previous label. Merging units of at most three words into the following unit moves the recall from 0.47 to 0.48 and the between-corpus contrast by 0.001. The bias is a property of the model, and a fix would need retraining with a context field.
+
+\textbf{Inappropriate remark.} The category is a lexical artifact. Apology formulas (``tut mir leid''), prescriptive phrasing (``du musst''), absolute words (``niemand''), and generalizations trigger it at 6 to 10 times the base rate, and the four strongest triggers occur in none of the 49 units the experts themselves coded as inappropriate. The classifier marks assertive counselor speech, that is assessments, advice, and reassurance delivered in an informal register, as inappropriate, which is why the primary exclusion set of Section~\ref{Ssec:exclusions} removes the category.
+
+\input{results/tables/oncoco_human_validation.tex}
+
+\begin{table}[t]
+\caption{Classifier against expert annotation for the categories that carry the signatures of Section~5.2 in the main paper, per human corpus. \emph{Exp.} and \emph{Model} are the shares of that role's units the experts and the classifier assign to the category, \emph{P}, \emph{R}, and \emph{F1} precision, recall, and F1 of the classifier against the experts. Client categories are shares of client units, counselor categories shares of counselor units. The counselor residual category does not exist in the German scheme of the HH roleplay annotation, so every unit the classifier places there is an error.}
+\label{Stab:human-validation-categories}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_human_validation_categories.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{The three client-side signature buckets of Section~5.2 in the main paper under expert and classifier labels, on the experts' units. Shares are of client units with 95\% conversation-level bootstrap intervals, \emph{Ratio} is the classifier share over the expert share, and \emph{Recall} and \emph{Precision} are computed at bucket level, so a confusion inside the bucket does not count as an error.}
+\label{Stab:human-validation-buckets}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_human_validation_buckets.tex}}
+\end{table}
+
+\section{Weighting and Persona-Matched Checks}
+\label{Ssec:weighting}
+Two further checks on the client-side proximity gap of Section~5.1 in the main paper (Table~\ref{Stab:weighting}). Pooled label proportions weight conversations by their length. Weighting every conversation equally instead, by averaging the per-conversation label distributions with explicit zeros for unused labels, moves $\Delta_{\mathrm{CL}}$ from 0.220 to 0.217. Restricting both roleplay conditions to the six personas that occur in HH roleplay and in H--LLM (40 and 220 conversations, persona identity as in Section~\ref{Sapp:personas}) moves it to 0.208, and equal weighting on the matched set gives 0.209. All intervals are conversation-level bootstraps with 5{,}000 resamples. Script: \texttt{analysis/semantic/oncoco/oncoco\_equal\_weight\_persona\_delta.py}.
+
+\begin{table}[t]
+\caption{Client-side proximity gap under equal conversation weighting and persona matching. JSD to HH real for H--LLM and HH roleplay, and their difference $\Delta_{\mathrm{CL}}$ with a 95\% conversation-level bootstrap interval. The first row reproduces the pooled result of the main paper.}
+\label{Stab:weighting}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_equal_weight_persona_delta.tex}}
+\end{table}
+
+\section{Repeated Participation and Absolute Turn Positions}
+\label{Ssec:participation}
+This section checks two assumptions behind the intervals of Section~3.1 and the temporal signatures of Section~5.2 in the main paper.
+
+\textbf{Repeated participation.} The 414 H--LLM conversations come from 281 students, identified by the platform's course-member account within each export. 202 students held one conversation, 39 two, 28 three, 10 four, and 2 five, and no student appears in more than one course or model. The main paper resamples conversations. Table~\ref{Stab:students} resamples students instead, so that all conversations of a student enter or leave a bootstrap sample together. HH real and HH roleplay are resampled by conversation in both columns, because the HH roleplays ran under a shared course account and repeated participation cannot be reconstructed there. Resampling students moves no interval bound by more than 0.004, and every per-model comparison of Figure~2 in the main paper keeps its reading. Script: \texttt{analysis/semantic/oncoco/oncoco\_student\_clustered\_bootstrap.py}.
+
+\textbf{Absolute turn positions.} The deciles of Section~5.2 in the main paper place each client span relative to the client's own spans in that conversation. Real conversations are longer, with a median of 28 client turns against 18 in HH roleplay and 16 in H--LLM, so a decile covers more turns in HH real. Table~\ref{Stab:absolute-turns} therefore counts client turns in absolute terms, from the start and from the end of the conversation. A client turn is a maximal run of consecutive client messages, because the HH real export merges consecutive lines of one speaker while the other conditions keep them apart. Every signature holds. In the first three client turns, problem labels take 0.319 [0.302, 0.336] of H--LLM client spans against 0.122 [0.088, 0.158] in HH real and 0.173 [0.132, 0.216] in HH roleplay. In the last three client turns, solution-space labels take 0.368 [0.339, 0.396] against 0.029 [0.013, 0.046] and 0.094 [0.061, 0.132]. From the fourth client turn on, the H--LLM solution share is three to nine times the HH real share at the same turn, and it keeps rising in the 121 simulated conversations that run beyond 20 client turns. The H--LLM \emph{Rejection} share stays at or below 0.012 in every bin. Intervals are conversation-level bootstraps. Script: \texttt{analysis/semantic/oncoco/oncoco\_absolute\_turn\_profile.py}.
+
+\begin{table}[t]
+\caption{Conversation-resampled and student-resampled 95\% intervals for the proximity gaps and the per-model distances to HH real. Students are the platform's course-member accounts within each export. HH real and HH roleplay are resampled by conversation in both columns.}
+\label{Stab:students}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_student_clustered_bootstrap.tex}}
+\end{table}
+
+\begin{table}[t]
+\caption{Client-side signature shares by absolute client turn, aligned at the start and at the end of the conversation. A client turn is a maximal run of consecutive client messages. Shares are of all client spans in the bin, pooled over conversations. Problem disclosure is \emph{Problem statement} and \emph{Problem definition}. Solution space is the feedback on recommendations, the report on their implementation, and the two resource-activation labels, as in Section~5.2 of the main paper.}
+\label{Stab:absolute-turns}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_absolute_turn_profile.tex}}
+\end{table}
+
+\section{Held-out Replay}
+\label{Ssec:heldout}
+This section tests whether the dosed prompts of Section~5.7 in the main paper transfer to conversations they were not written for. Arms D and G were written and dosed on the 90 GPT-OSS-120B conversations. We applied both unchanged to the 117 Llama 3.3 70B conversations that ran under the same plain-text template family and passed the quality filter. 114 of them use personas that never occur in the GPT-OSS deployment. GPT-OSS-120B generates every arm with the settings of Section~\ref{Ssec:replay}, so arm A, the logged Llama prompt replayed by GPT-OSS-120B, is the baseline that isolates the prompt. Arm O passes the original Llama client text through the current pipeline. The arms were classified on a GPU node with the package versions of Table~\ref{Stab:parameters}, and that setup reproduces the local classification of arm O exactly (3{,}561 of 3{,}561 messages with identical spans and 5{,}417 of 5{,}417 identical span labels). Scripts: \texttt{analysis/prompt\_replay/} and \texttt{analysis/semantic/oncoco/oncoco\_prompt\_replay\_heldout.py}.
+
+Both prompts transfer (Table~\ref{Stab:heldout}). The dosed rules lower the distance to HH real from 0.421 under the logged prompt to 0.287, and the phase-dependent rules to 0.253. Their proximity gaps are 0.054 [0.010, 0.089] and 0.020 [$-$0.024, 0.056], so the phase-dependent arm reaches the role-play level and the dosed arm stays slightly above it. The reduction against the logged prompt is larger than on the development conversations (0.134 and 0.169 against 0.093 and 0.112), where the logged prompt started closer to real counseling (0.326 against 0.421). The residual departures of the development set return. Positive feedback stays too rare (negative-to-positive ratios 7.32 and 2.15 against 0.78), early disclosure falls below the real level (0.074 and 0.095 against 0.128), and client-led entry into the help phase stays below the real-client rate (1.6\% and 0.7\% against 2.0\%). Both arms again lie farther from HH roleplay (0.327 and 0.309) than from HH real, so they reach the distance of a role-play partner by a different route, as on the development conversations.
+
+\begin{table}[t]
+\caption{Held-out prompt replay on the 117 Llama 3.3 70B conversations of the plain-text template family, client side. Arms A, D, and G are generated by GPT-OSS-120B on the original histories, and arm O is the original Llama text through the current pipeline. Columns as in Table~4 of the main paper, plus the JSD to HH roleplay. Intervals are conversation-level bootstraps with 20{,}000 resamples.}
+\label{Stab:heldout}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\fitwidth{\input{results/tables/oncoco_prompt_replay_heldout.tex}}
+\end{table}
+
+\section{Pipeline and Generation Parameters}
+\label{Ssec:parameters}
+Table~\ref{Stab:parameters} lists the settings behind every number in the main paper. Code, prompts, and the adapter are in the companion repository.
+
+\begin{table}[t]
+\caption{Pipeline and generation parameters.}
+\label{Stab:parameters}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\input{results/tables/oncoco_pipeline_parameters.tex}
+\end{table}
+
+\section{Client Sentiment Against Both Human Baselines}
+\label{Ssec:sentiment}
+This section reports the client sentiment behind the recommendation in Section~6 of the main paper. We scored every client message with the German sentiment model \texttt{oliverguhr/german-sentiment-bert}, the classifier that Tr\"ag et al. (2026) used for AI-guided debriefings. Table~\ref{Stab:sentiment} gives the shares per condition. Roleplay clients are about as positive as simulated clients. Both are more positive than real clients. We compared the positive share per conversation with two-sided Mann--Whitney tests. HH roleplay differs from HH real (Cliff's $\delta$=0.35, $p$=.001). H--LLM differs from HH real as well ($\delta$=0.29, $p<.001$). H--LLM and HH roleplay do not differ ($\delta$=0.05, $p$=.50).
+
+\begin{table}[t]
+\caption{Sentiment of client messages per condition. Shares of messages that \texttt{oliverguhr/german-sentiment-bert} classifies as negative, neutral, or positive.}
+\label{Stab:sentiment}
+\centering
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Client messages & Negative & Neutral & Positive \\
+\midrule
+HH real & 1{,}632 & 0.586 & 0.170 & 0.244 \\
+HH roleplay & 1{,}366 & 0.455 & 0.220 & 0.324 \\
+H--LLM & 7{,}758 & 0.451 & 0.196 & 0.353 \\
+\bottomrule
+\end{tabular}
 \end{table}
 
 \end{document}

@@ -17,8 +17,8 @@ RESULTS_SUMMARIES = PROJECT_ROOT / "results" / "summaries"
 RESULTS_TABLES.mkdir(parents=True, exist_ok=True)
 RESULTS_SUMMARIES.mkdir(parents=True, exist_ok=True)
 
-MAIL_MERGED = PROJECT_ROOT / "data" / "raw" / "mail" / "kia-data" / "data" / "merged" / "all_data.csv"
-SAEULE4_DIR = PROJECT_ROOT / "data" / "raw" / "mail" / "kia-data" / "data" / "saeule_4"
+MAIL_MERGED = PROJECT_ROOT / "data" / "raw" / "mail" / "mail-data" / "data" / "merged" / "all_data.csv"
+PILLAR4_DIR = PROJECT_ROOT / "data" / "raw" / "mail" / "mail-data" / "data" / "pillar_4"
 
 CHAT_HH_DIR = PROJECT_ROOT / "data" / "raw" / "human_human" / "chats"
 CHAT_HL_DIR = PROJECT_ROOT / "data" / "raw" / "human_llm" / "chats"
@@ -76,11 +76,11 @@ def inventory_mail() -> Tuple[List[Dict[str, str]], List[str]]:
     else:
         notes.append(f"Missing mail merged CSV: {MAIL_MERGED}")
 
-    # Saeule 4 synthetic (LLM-LLM)
-    if SAEULE4_DIR.exists():
+    # Pillar 4 synthetic (LLM-LLM)
+    if PILLAR4_DIR.exists():
         conv_count = 0
         msg_count = 0
-        for p in _iter_json_files(SAEULE4_DIR):
+        for p in _iter_json_files(PILLAR4_DIR):
             data = _load_json_any(p)
             if data is None:
                 continue
@@ -98,14 +98,14 @@ def inventory_mail() -> Tuple[List[Dict[str, str]], List[str]]:
                 {
                     "modality": "mail",
                     "dataset_group": "kia",
-                    "dataset": "saeule_4",
+                    "dataset": "pillar_4",
                     "model": "",
                     "conversations": str(conv_count),
                     "messages": str(msg_count),
                 }
             )
     else:
-        notes.append(f"Missing saeule_4 dir: {SAEULE4_DIR}")
+        notes.append(f"Missing pillar_4 dir: {PILLAR4_DIR}")
 
     return rows, notes
 

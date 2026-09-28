@@ -29,7 +29,7 @@ the classification JSON and segments the client stream at the ``Beigetreten`` jo
 events. Dropping that boilerplate at this stage would destroy the very boundaries the
 repair needs, and it would leave the reference condition's roles uncorrected.
 
-Pipeline order: this script -> analysis/semantic/edm/classification_all.py ->
+Pipeline order: this script -> analysis/semantic/classification/classification_all.py ->
 analysis/quality_review/repair_hh_real_roles.py.
 """
 from __future__ import annotations
@@ -100,12 +100,12 @@ def _map_role(author: str, source_file: Path) -> str:
     # RealCounsellings exports use "user/system" author IDs with reversed semantics:
     # user = client side, system = counselor side.
     if source_file.name.lower() == "realcounsellings.json":
-        if a in {"user", "vikl", "client", "ratsuchende"}:
+        if a in {"user", "virtual_client", "client", "ratsuchende"}:
             return "Ratsuchende"
         if a in {"system", "berater", "beratende", "counsellor", "counselor"}:
             return "Beratende"
         return "Beratende"
-    if a in {"vikl", "client", "ratsuchende"}:
+    if a in {"virtual_client", "client", "ratsuchende"}:
         return "Ratsuchende"
     return "Beratende"
 
@@ -144,7 +144,7 @@ def _iter_chat_files(base: Path, group: str) -> List[Path]:
 
 
 def _condition(group: str, source_file: str) -> str:
-    """Mirrors analysis/semantic/edm/classification_all.py::map_chat_condition."""
+    """Mirrors analysis/semantic/classification/classification_all.py::map_chat_condition."""
     if group == "human_llm":
         return "H_LLM_roleplay_chat"
     return "HH_real_chat" if "realcounsellings" in source_file.lower() else "HH_roleplay_chat"

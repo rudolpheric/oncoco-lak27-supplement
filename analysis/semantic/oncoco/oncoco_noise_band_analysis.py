@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Noise-band, size-matched null, Cramer's V and FDR-controlled transition tests.
 
-Implements the GEMCo validation methodology (Steigerwald et al., 2026) for the
-OnCoCo reanalysis paper:
+Implements the validation methodology that the paper cites in its methods section:
 
 1. Split-half noise band: the reference condition's conversations are split
    into two random halves B times; the JSD between halves forms the

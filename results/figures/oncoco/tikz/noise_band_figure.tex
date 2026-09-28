@@ -6,7 +6,7 @@
 \usepackage{sansmath}
 \sansmath
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns}
 
 \definecolor{cReal}{HTML}{2C6E63}
 \definecolor{cRP}{HTML}{4A6E9B}
@@ -24,130 +24,124 @@
   % ---------------- Client side
   \begin{scope}[shift={(0.00,0)}]
   \draw[rounded corners=2.5pt, draw=cRule, fill=cPanel, line width=0.5pt] (0,0) rectangle (8.55,5.05);
-  \node[anchor=west, font=\small\bfseries, text=cInk, inner sep=0pt] at (0.24,4.63) {Client side};
-  \node[anchor=east, font=\fontsize{5.6}{6.6}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.63) {distance to HH real (JSD), lower = closer};
-  \fill[cBand] (3.235,0.94) rectangle (3.411,3.92);
-  \draw[cReal!55, line width=0.5pt, dash pattern=on 1.6pt off 1.4pt] (3.235,0.94) -- (3.235,3.92);
-  \node[anchor=south, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, align=center, inner sep=1pt] at (3.323,3.94) {HH real's own\\split-half band};
+  \node[anchor=west, font=\fontsize{9.5}{11}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,4.63) {Client side};
+  \node[anchor=east, font=\fontsize{6.7}{7.9}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.63) {distance to HH real (JSD), lower = closer};
+  \fill[cReal!7] (3.235,0.94) rectangle (3.411,3.92);
+  \fill[pattern=north east lines, pattern color=cReal!45] (3.235,0.94) rectangle (3.411,3.92);
+  \draw[cReal!55, line width=0.5pt, dash pattern=on 1.6pt off 1.4pt] (3.411,0.94) -- (3.411,3.92);
+  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, align=center, inner sep=1pt] at (3.323,3.94) {HH real's own\\split-half band};
   \draw[cRule, line width=0.4pt] (2.42,0.94) -- (6.92,0.94);
   \draw[cRule, line width=0.4pt] (2.420,0.94) -- (2.420,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (2.420,0.87) {0.0};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (2.420,0.87) {0.0};
   \draw[cRule, line width=0.4pt] (3.920,0.94) -- (3.920,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (3.920,0.87) {0.2};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (3.920,0.87) {0.2};
   \draw[cRule, line width=0.4pt] (5.420,0.94) -- (5.420,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (5.420,0.87) {0.4};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (5.420,0.87) {0.4};
   \draw[cRule, line width=0.4pt] (6.920,0.94) -- (6.920,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (6.920,0.87) {0.6};
-  \node[anchor=east, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.00) {Cram\'er's $V$};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (6.920,0.87) {0.6};
+  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.00) {Cram\'er's $V$};
   \draw[cRule, line width=0.4pt] (0.24,2.680) -- (8.31,2.680);
-  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.510) {H--LLM by model};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.620) {HH roleplay};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.24,3.410) {68 conversations\,\textbullet\,2.1$\times$ the floor};
+  \node[anchor=west, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.510) {H--LLM by model};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.620) {HH roleplay};
   \draw[cMute!75, line width=0.6pt] (3.108,3.510) -- (3.108,3.730);
   \fill[cRP] (4.168,3.620) circle (2.6pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont\bfseries, text=cRP, inner sep=1.6pt] at (4.168,3.680) {0.233};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.620) {0.27};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.060) {H--LLM chat (pooled)};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.850) {414 conversations\,\textbullet\,4.2$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont\bfseries, text=cRP, inner sep=1.6pt] at (4.168,3.680) {0.233};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.620) {0.27};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.060) {H--LLM chat (pooled)};
   \draw[cMute!75, line width=0.6pt] (2.967,2.950) -- (2.967,3.170);
   \fill[cLLM] (5.815,3.060) circle (2.6pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont\bfseries, text=cLLM, inner sep=1.6pt] at (5.815,3.120) {0.453};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.060) {0.46};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.300) {GPT-OSS-120B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.090) {90 conversations\,\textbullet\,3.3$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont\bfseries, text=cLLM, inner sep=1.6pt] at (5.815,3.120) {0.453};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.060) {0.46};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.300) {GPT-OSS-120B};
   \draw[cMute!75, line width=0.6pt] (3.072,2.190) -- (3.072,2.410);
-  \draw[cLLM!55, line width=1.0pt] (4.954,2.300) -- (5.433,2.300);
-  \draw[cLLM!55, line width=0.7pt] (4.954,2.230) -- (4.954,2.370);
-  \draw[cLLM!55, line width=0.7pt] (5.433,2.230) -- (5.433,2.370);
+  \draw[cLLM!55, line width=1.0pt] (4.940,2.300) -- (5.428,2.300);
+  \draw[cLLM!55, line width=0.7pt] (4.940,2.230) -- (4.940,2.370);
+  \draw[cLLM!55, line width=0.7pt] (5.428,2.230) -- (5.428,2.370);
   \fill[cLLM] (5.128,2.300) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (5.128,2.360) {0.361};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,2.300) {0.41};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.740) {Llama 3.3 70B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.530) {238 conversations\,\textbullet\,4.8$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (5.128,2.360) {0.361};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,2.300) {0.41};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.740) {Llama 3.3 70B};
   \draw[cMute!75, line width=0.6pt] (2.989,1.630) -- (2.989,1.850);
-  \draw[cLLM!55, line width=1.0pt] (6.189,1.740) -- (6.560,1.740);
-  \draw[cLLM!55, line width=0.7pt] (6.189,1.670) -- (6.189,1.810);
-  \draw[cLLM!55, line width=0.7pt] (6.560,1.670) -- (6.560,1.810);
+  \draw[cLLM!55, line width=1.0pt] (6.181,1.740) -- (6.562,1.740);
+  \draw[cLLM!55, line width=0.7pt] (6.181,1.670) -- (6.181,1.810);
+  \draw[cLLM!55, line width=0.7pt] (6.562,1.670) -- (6.562,1.810);
   \fill[cLLM] (6.352,1.740) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (6.352,1.800) {0.524};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.740) {0.57};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.180) {Mixtral 8x7B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,0.970) {86 conversations\,\textbullet\,4.5$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (6.352,1.800) {0.524};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.740) {0.57};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.180) {Mixtral 8x7B};
   \draw[cMute!75, line width=0.6pt] (3.063,1.070) -- (3.063,1.290);
-  \draw[cLLM!55, line width=1.0pt] (5.930,1.180) -- (6.392,1.180);
-  \draw[cLLM!55, line width=0.7pt] (5.930,1.110) -- (5.930,1.250);
-  \draw[cLLM!55, line width=0.7pt] (6.392,1.110) -- (6.392,1.250);
+  \draw[cLLM!55, line width=1.0pt] (5.942,1.180) -- (6.389,1.180);
+  \draw[cLLM!55, line width=0.7pt] (5.942,1.110) -- (5.942,1.250);
+  \draw[cLLM!55, line width=0.7pt] (6.389,1.110) -- (6.389,1.250);
   \fill[cLLM] (6.131,1.180) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (6.131,1.240) {0.495};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.180) {0.54};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (6.131,1.240) {0.495};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.180) {0.54};
   \end{scope}
 
   % ---------------- Counselor side
   \begin{scope}[shift={(8.85,0)}]
   \draw[rounded corners=2.5pt, draw=cRule, fill=cPanel, line width=0.5pt] (0,0) rectangle (8.55,5.05);
-  \node[anchor=west, font=\small\bfseries, text=cInk, inner sep=0pt] at (0.24,4.63) {Counselor side};
-  \node[anchor=east, font=\fontsize{5.6}{6.6}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.63) {distance to HH real (JSD), lower = closer};
-  \fill[cBand] (3.496,0.94) rectangle (3.684,3.92);
-  \draw[cReal!55, line width=0.5pt, dash pattern=on 1.6pt off 1.4pt] (3.496,0.94) -- (3.496,3.92);
-  \node[anchor=south, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, align=center, inner sep=1pt] at (3.590,3.94) {HH real's own\\split-half band};
+  \node[anchor=west, font=\fontsize{9.5}{11}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,4.63) {Counselor side};
+  \node[anchor=east, font=\fontsize{6.7}{7.9}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.63) {distance to HH real (JSD), lower = closer};
+  \fill[cReal!7] (3.496,0.94) rectangle (3.684,3.92);
+  \fill[pattern=north east lines, pattern color=cReal!45] (3.496,0.94) rectangle (3.684,3.92);
+  \draw[cReal!55, line width=0.5pt, dash pattern=on 1.6pt off 1.4pt] (3.684,0.94) -- (3.684,3.92);
+  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, align=center, inner sep=1pt] at (3.590,3.94) {HH real's own\\split-half band};
   \draw[cRule, line width=0.4pt] (2.42,0.94) -- (6.92,0.94);
   \draw[cRule, line width=0.4pt] (2.420,0.94) -- (2.420,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (2.420,0.87) {0.0};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (2.420,0.87) {0.0};
   \draw[cRule, line width=0.4pt] (3.920,0.94) -- (3.920,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (3.920,0.87) {0.2};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (3.920,0.87) {0.2};
   \draw[cRule, line width=0.4pt] (5.420,0.94) -- (5.420,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (5.420,0.87) {0.4};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (5.420,0.87) {0.4};
   \draw[cRule, line width=0.4pt] (6.920,0.94) -- (6.920,0.87);
-  \node[anchor=north, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=1.2pt] at (6.920,0.87) {0.6};
-  \node[anchor=east, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.00) {Cram\'er's $V$};
+  \node[anchor=north, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=1.2pt] at (6.920,0.87) {0.6};
+  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,4.00) {Cram\'er's $V$};
   \draw[cRule, line width=0.4pt] (0.24,2.680) -- (8.31,2.680);
-  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.510) {H--LLM by model};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.620) {HH roleplay};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.24,3.410) {68 conversations\,\textbullet\,1.7$\times$ the floor};
+  \node[anchor=west, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.510) {H--LLM by model};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.620) {HH roleplay};
   \draw[cMute!75, line width=0.6pt] (3.286,3.510) -- (3.286,3.730);
   \fill[cRP] (4.238,3.620) circle (2.6pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont\bfseries, text=cRP, inner sep=1.6pt] at (4.238,3.680) {0.242};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.620) {0.27};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.060) {H--LLM chat (pooled)};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.24,2.850) {414 conversations\,\textbullet\,1.9$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont\bfseries, text=cRP, inner sep=1.6pt] at (4.238,3.680) {0.242};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.620) {0.27};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.24,3.060) {H--LLM chat (pooled)};
   \draw[cMute!75, line width=0.6pt] (3.105,2.950) -- (3.105,3.170);
   \fill[cLLM] (4.487,3.060) circle (2.6pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont\bfseries, text=cLLM, inner sep=1.6pt] at (4.487,3.120) {0.276};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.060) {0.26};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.300) {GPT-OSS-120B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.090) {90 conversations\,\textbullet\,2.0$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont\bfseries, text=cLLM, inner sep=1.6pt] at (4.487,3.120) {0.276};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,3.060) {0.26};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,2.300) {GPT-OSS-120B};
   \draw[cMute!75, line width=0.6pt] (3.249,2.190) -- (3.249,2.410);
-  \draw[cLLM!55, line width=1.0pt] (4.477,2.300) -- (4.957,2.300);
-  \draw[cLLM!55, line width=0.7pt] (4.477,2.230) -- (4.477,2.370);
-  \draw[cLLM!55, line width=0.7pt] (4.957,2.230) -- (4.957,2.370);
+  \draw[cLLM!55, line width=1.0pt] (4.473,2.300) -- (4.960,2.300);
+  \draw[cLLM!55, line width=0.7pt] (4.473,2.230) -- (4.473,2.370);
+  \draw[cLLM!55, line width=0.7pt] (4.960,2.230) -- (4.960,2.370);
   \fill[cLLM] (4.615,2.300) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (4.615,2.360) {0.293};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,2.300) {0.33};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.740) {Llama 3.3 70B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.530) {238 conversations\,\textbullet\,2.1$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (4.615,2.360) {0.293};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,2.300) {0.33};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.740) {Llama 3.3 70B};
   \draw[cMute!75, line width=0.6pt] (3.152,1.630) -- (3.152,1.850);
-  \draw[cLLM!55, line width=1.0pt] (4.565,1.740) -- (4.908,1.740);
-  \draw[cLLM!55, line width=0.7pt] (4.565,1.670) -- (4.565,1.810);
-  \draw[cLLM!55, line width=0.7pt] (4.908,1.670) -- (4.908,1.810);
+  \draw[cLLM!55, line width=1.0pt] (4.563,1.740) -- (4.897,1.740);
+  \draw[cLLM!55, line width=0.7pt] (4.563,1.670) -- (4.563,1.810);
+  \draw[cLLM!55, line width=0.7pt] (4.897,1.670) -- (4.897,1.810);
   \fill[cLLM] (4.654,1.740) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (4.654,1.800) {0.298};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.740) {0.30};
-  \node[anchor=west, font=\fontsize{6.4}{7.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.180) {Mixtral 8x7B};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0.44,0.970) {86 conversations\,\textbullet\,2.0$\times$ the floor};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (4.654,1.800) {0.298};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.740) {0.30};
+  \node[anchor=west, font=\fontsize{7.7}{8.9}\selectfont, text=cMute, inner sep=0pt] at (0.44,1.180) {Mixtral 8x7B};
   \draw[cMute!75, line width=0.6pt] (3.248,1.070) -- (3.248,1.290);
-  \draw[cLLM!55, line width=1.0pt] (4.464,1.180) -- (4.954,1.180);
-  \draw[cLLM!55, line width=0.7pt] (4.464,1.110) -- (4.464,1.250);
+  \draw[cLLM!55, line width=1.0pt] (4.477,1.180) -- (4.954,1.180);
+  \draw[cLLM!55, line width=0.7pt] (4.477,1.110) -- (4.477,1.250);
   \draw[cLLM!55, line width=0.7pt] (4.954,1.110) -- (4.954,1.250);
   \fill[cLLM] (4.610,1.180) circle (2.2pt);
-  \node[anchor=south, font=\fontsize{6.0}{7.0}\selectfont, text=cLLM, inner sep=1.6pt] at (4.610,1.240) {0.292};
-  \node[anchor=east, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.180) {0.33};
+  \node[anchor=south, font=\fontsize{7.2}{8.4}\selectfont, text=cLLM, inner sep=1.6pt] at (4.610,1.240) {0.292};
+  \node[anchor=east, font=\fontsize{7.2}{8.4}\selectfont, text=cMute, inner sep=0pt] at (8.31,1.180) {0.33};
   \end{scope}
 
   % ---------------- legend
   \draw[cMute!75, line width=0.6pt] (0.24,0.27) -- (0.24,0.45);
-  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (0.34,0.36) {size-matched null P95: redrawn with replacement at these sizes};
-  \fill[cBand] (6.54,0.27) rectangle (6.86,0.45);
-  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (6.96,0.36) {noise band: HH real cut into two disjoint halves, 1{,}000 splits};
-  \node[anchor=west, font=\fontsize{5.0}{5.8}\selectfont, text=cMute, inner sep=0pt] at (13.54,0.36) {bars: 95\% bootstrap CI};
+  \node[anchor=west, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (0.34,0.36) {size-matched null P95: redrawn with replacement at these sizes};
+  \fill[cReal!7] (6.54,0.27) rectangle (6.86,0.45);
+  \fill[pattern=north east lines, pattern color=cReal!45] (6.54,0.27) rectangle (6.86,0.45);
+  \draw[cReal!45, line width=0.45pt, dash pattern=on 1.6pt off 1.4pt] (6.86,0.27) -- (6.86,0.45);
+  \node[anchor=west, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (6.96,0.36) {noise band: HH real cut into two disjoint halves, 1{,}000 splits};
+  \node[anchor=west, font=\fontsize{6.0}{7.0}\selectfont, text=cMute, inner sep=0pt] at (13.54,0.36) {bars: 95\% bootstrap CI};
 \end{tikzpicture}
 \end{document}

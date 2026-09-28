@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--regex-json",
         # CORRECTED artifact; the original split German text on the letter "n" (see
-        # analysis/semantic/edm/classification_all.py).
+        # analysis/semantic/classification/classification_all.py).
         default=str(PROJECT_ROOT / "data" / "processed" / "combined" / "normalized" / "oncoco_classification_all_regex_v2.json"),
         help="Regex-based sentence classification JSON.",
     )

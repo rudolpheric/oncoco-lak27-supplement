@@ -12,7 +12,7 @@ Two reviewer objections are answered here:
       -> the same correlation after dropping the two smallest courses, plus a Pearson
          specification, so the fragility is reported rather than discovered by a reviewer.
 
-Inputs : data/Testungen eb.KIT Gesamtübersicht.xlsx
+Inputs : data/surveys/course_surveys.xlsx
          results/tables/oncoco_tam_courses.csv   (written by tam_convergence.py)
 Outputs: results/tables/oncoco_tam_multiplicity.csv / .tex
          results/tables/oncoco_tam_spearman_sensitivity.csv
@@ -24,7 +24,7 @@ import pandas as pd
 from scipy.stats import mannwhitneyu, spearmanr, pearsonr
 
 ROOT = Path(__file__).resolve().parents[2]
-XLSX = ROOT / "data/Testungen eb.KIT Gesamtübersicht.xlsx"
+XLSX = ROOT / "data/surveys/course_surveys.xlsx"
 COURSES_CSV = ROOT / "results/tables/oncoco_tam_courses.csv"
 OUT_CSV = ROOT / "results/tables/oncoco_tam_multiplicity.csv"
 OUT_TEX = ROOT / "results/tables/oncoco_tam_multiplicity.tex"
@@ -85,8 +85,8 @@ def holm(pvals):
 
 
 # --- (1) multiplicity over the 13-item battery --------------------------------
-g = sheet("QS SoSe 2026")      # GPT-OSS-120B
-l = sheet("QS WiSe 25 26")     # Llama 3.3 70B
+g = sheet("survey_C13")      # GPT-OSS-120B
+l = sheet("survey_C09")     # Llama 3.3 70B
 
 rows = []
 for item in A270:

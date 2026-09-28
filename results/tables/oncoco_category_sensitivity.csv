@@ -1,25 +1,25 @@
 exclusion_set,n_excluded,k_labels,comparison,speaker,jsd,band_mean,band_p95,band_pctl,ratio_to_floor,nm_p95,cramers_v,v_large_threshold
 full,0,38,HH_roleplay_chat,Client,0.233,0.109,0.1329,100.0,2.1,0.0917,0.266,0.5
 full,0,38,H_LLM_roleplay_chat,Client,0.4527,0.109,0.1329,100.0,4.2,0.0728,0.461,0.5
-full,0,38,ordering delta,Client,0.0782,,,,,0.0419,0.1086,
-full,0,57,HH_roleplay_chat,Counselor,0.2424,0.1438,0.1691,100.0,1.7,0.1171,0.27,0.5
-full,0,57,H_LLM_roleplay_chat,Counselor,0.2756,0.1438,0.1691,100.0,1.9,0.0936,0.262,0.5
-full,0,57,ordering delta,Counselor,0.0799,,,,,0.0421,0.1056,
+full,0,38,proximity gap,Client,0.2197,,,,,0.1781,0.2432,
+full,0,57,HH_roleplay_chat,Counselor,0.2424,0.143,0.1694,100.0,1.7,0.1161,0.27,0.5
+full,0,57,H_LLM_roleplay_chat,Counselor,0.2756,0.143,0.1694,100.0,1.9,0.0932,0.262,0.5
+full,0,57,proximity gap,Counselor,0.0331,,,,,0.0003,0.049,
 S1,7,33,HH_roleplay_chat,Client,0.2372,0.1078,0.1333,100.0,2.2,0.0916,0.27,0.5
 S1,7,33,H_LLM_roleplay_chat,Client,0.4598,0.1078,0.1333,100.0,4.3,0.073,0.47,0.5
-S1,7,33,ordering delta,Client,0.0665,,,,,0.0276,0.098,
-S1,7,51,HH_roleplay_chat,Counselor,0.2161,0.1488,0.1753,100.0,1.5,0.1219,0.242,0.5
-S1,7,51,H_LLM_roleplay_chat,Counselor,0.2433,0.1488,0.1753,100.0,1.6,0.0969,0.215,0.5
-S1,7,51,ordering delta,Counselor,0.0389,,,,,0.0013,0.0699,
+S1,7,33,proximity gap,Client,0.2226,,,,,0.1799,0.2495,
+S1,7,51,HH_roleplay_chat,Counselor,0.2161,0.1477,0.1767,100.0,1.5,0.1199,0.242,0.5
+S1,7,51,H_LLM_roleplay_chat,Counselor,0.2433,0.1477,0.1767,100.0,1.6,0.0961,0.215,0.5
+S1,7,51,proximity gap,Counselor,0.0273,,,,,-0.0126,0.0453,
 S1+S2,9,32,HH_roleplay_chat,Client,0.1993,0.1217,0.1499,100.0,1.6,0.1042,0.228,0.5
 S1+S2,9,32,H_LLM_roleplay_chat,Client,0.3909,0.1217,0.1499,100.0,3.2,0.082,0.367,0.5
-S1+S2,9,32,ordering delta,Client,0.0083,,,,,-0.029,0.0429,
-S1+S2,9,50,HH_roleplay_chat,Counselor,0.2373,0.1618,0.1919,100.0,1.5,0.1317,0.266,0.5
-S1+S2,9,50,H_LLM_roleplay_chat,Counselor,0.2672,0.1618,0.1919,100.0,1.7,0.1053,0.236,0.5
-S1+S2,9,50,ordering delta,Counselor,0.043,,,,,0.0022,0.077,
+S1+S2,9,32,proximity gap,Client,0.1915,,,,,0.141,0.219,
+S1+S2,9,50,HH_roleplay_chat,Counselor,0.2373,0.1606,0.1914,100.0,1.5,0.132,0.266,0.5
+S1+S2,9,50,H_LLM_roleplay_chat,Counselor,0.2672,0.1606,0.1914,100.0,1.7,0.1045,0.236,0.5
+S1+S2,9,50,proximity gap,Counselor,0.0299,,,,,-0.0131,0.0499,
 S1+S2+S3,11,31,HH_roleplay_chat,Client,0.1914,0.1213,0.1501,100.0,1.6,0.1035,0.218,0.5
 S1+S2+S3,11,31,H_LLM_roleplay_chat,Client,0.3943,0.1213,0.1501,100.0,3.3,0.0821,0.371,0.5
-S1+S2+S3,11,31,ordering delta,Client,0.0115,,,,,-0.0263,0.0463,
-S1+S2+S3,11,48,HH_roleplay_chat,Counselor,0.2386,0.1614,0.1927,100.0,1.5,0.1321,0.267,0.5
-S1+S2+S3,11,48,H_LLM_roleplay_chat,Counselor,0.2703,0.1614,0.1927,100.0,1.7,0.1052,0.239,0.5
-S1+S2+S3,11,48,ordering delta,Counselor,0.0436,,,,,0.002,0.0775,
+S1+S2+S3,11,31,proximity gap,Client,0.2029,,,,,0.151,0.2306,
+S1+S2+S3,11,48,HH_roleplay_chat,Counselor,0.2386,0.1601,0.1916,100.0,1.5,0.1321,0.267,0.5
+S1+S2+S3,11,48,H_LLM_roleplay_chat,Counselor,0.2703,0.1601,0.1916,100.0,1.7,0.1044,0.239,0.5
+S1+S2+S3,11,48,proximity gap,Counselor,0.0317,,,,,-0.0122,0.0523,

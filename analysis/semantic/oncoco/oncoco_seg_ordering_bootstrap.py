@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-"""Bootstrap the RQ1 triadic ordering across units of analysis.
+"""Bootstrap the RQ1 proximity gap across units of analysis.
 
 For each bootstrap sample, conversations are resampled with replacement
-within each chat condition; the ordering statistic is
-    delta = JSD(HH_real, H_LLM) - JSD(HH_roleplay, H_LLM)
-computed on the pooled label distributions. delta > 0 means the triadic
-ordering of the paper holds (H-LLM closer to roleplay than to real counseling).
+within each chat condition; the statistic is the proximity gap
+    delta' = JSD(HH_real, H_LLM) - JSD(HH_real, HH_roleplay)
+computed on the pooled label distributions. Both terms are distances to real
+counseling, so delta' compares the simulated client with a human roleplay
+partner on the same yardstick. delta' > 0 means the simulated client is
+FARTHER from real counseling than human roleplay is (the bad direction);
+delta' <= 0 is what a simulated client should reach to be at least as
+realistic as roleplay.
+
+(Until 2026-09 the statistic was JSD(HH_real, H_LLM) - JSD(HH_roleplay, H_LLM),
+i.e. "is H-LLM closer to roleplay than to real". That reading is kept in the
+text as a description of the distance triangle but is no longer the metric.)
 
 Four units are available, and the ordering should be read across all of them:
 
@@ -58,7 +66,7 @@ EXPECTED_CONVERSATIONS = {"HH_roleplay_chat": 68, "HH_real_chat": 53, "H_LLM_rol
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Bootstrap the RQ1 triadic ordering across units.")
+    parser = argparse.ArgumentParser(description="Bootstrap the RQ1 proximity gap across units.")
     parser.add_argument(
         "--units",
         default=DEFAULT_UNITS,
@@ -68,7 +76,7 @@ def parse_args() -> argparse.Namespace:
         "--out-csv",
         default=str(PROJECT_ROOT / "results" / "tables" / "oncoco_seg_ordering_bootstrap.csv"),
     )
-    parser.add_argument("--n-boot", type=int, default=2000)
+    parser.add_argument("--n-boot", type=int, default=20000)
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()
 
@@ -120,6 +128,15 @@ def pooled_counts(conv_labels: Dict[str, List[str]], conv_ids: List[str], label_
     return vec
 
 
+def conversation_matrix(conv_labels: Dict[str, List[str]], conv_ids: List[str], label_index: Dict[str, int]) -> np.ndarray:
+    """One row of label counts per conversation, so a resample is a row draw plus a column sum."""
+    mat = np.zeros((len(conv_ids), len(label_index)), dtype=float)
+    for i, cid in enumerate(conv_ids):
+        for lab in conv_labels[cid]:
+            mat[i, label_index[lab]] += 1.0
+    return mat
+
+
 def main() -> None:
     args = parse_args()
     rng = np.random.default_rng(args.seed)
@@ -147,20 +164,20 @@ def main() -> None:
             conv_ids = {c: sorted(conv_labels[c]) for c in CONDITIONS}
 
             # Point estimate on the full data
-            full = {c: pooled_counts(conv_labels[c], conv_ids[c], label_index) for c in CONDITIONS}
-            jsd_real = js_distance(full["HH_real_chat"], full["H_LLM_roleplay_chat"])
-            jsd_role = js_distance(full["HH_roleplay_chat"], full["H_LLM_roleplay_chat"])
-            point = jsd_real - jsd_role
+            mats = {c: conversation_matrix(conv_labels[c], conv_ids[c], label_index) for c in CONDITIONS}
+            full = {c: mats[c].sum(axis=0) for c in CONDITIONS}
+            jsd_llm = js_distance(full["HH_real_chat"], full["H_LLM_roleplay_chat"])
+            jsd_rp = js_distance(full["HH_real_chat"], full["HH_roleplay_chat"])
+            point = jsd_llm - jsd_rp
 
             deltas = np.empty(args.n_boot)
             for b in range(args.n_boot):
                 sample = {}
                 for c in CONDITIONS:
-                    ids = conv_ids[c]
-                    draw = rng.choice(len(ids), size=len(ids), replace=True)
-                    sample[c] = pooled_counts(conv_labels[c], [ids[i] for i in draw], label_index)
+                    n = mats[c].shape[0]
+                    sample[c] = mats[c][rng.integers(0, n, n)].sum(axis=0)
                 deltas[b] = js_distance(sample["HH_real_chat"], sample["H_LLM_roleplay_chat"]) - js_distance(
-                    sample["HH_roleplay_chat"], sample["H_LLM_roleplay_chat"]
+                    sample["HH_real_chat"], sample["HH_roleplay_chat"]
                 )
 
             lo, hi = np.percentile(deltas, [2.5, 97.5])
@@ -171,8 +188,8 @@ def main() -> None:
                     "speaker": "Counselor" if speaker == "Counsellor" else speaker,
                     # 6 decimals, not 4: the tables format these to 3 places, and rounding twice
                     # turned 0.374541 into 0.374 while the text said 0.375.
-                    "jsd_real_vs_hllm": round(jsd_real, 6),
-                    "jsd_roleplay_vs_hllm": round(jsd_role, 6),
+                    "jsd_real_vs_hllm": round(jsd_llm, 6),
+                    "jsd_real_vs_roleplay": round(jsd_rp, 6),
                     "delta_point": round(point, 6),
                     "ci_lo": round(lo, 6),
                     "ci_hi": round(hi, 6),

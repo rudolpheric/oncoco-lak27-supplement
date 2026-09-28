@@ -4,7 +4,7 @@
 WHY
 ---
 `scripts/analysis/02_chat_to_common.py::_map_role` assigns roles from the author string
-alone: for RealCounsellings.json, `user`/`vikl` -> client and `system` -> counselor. That
+alone: for RealCounsellings.json, `user`/`virtual_client` -> client and `system` -> counselor. That
 holds for 26 of the 54 conversations. In the other 28 the counseling platform put BOTH
 participants in the `user` stream: the counselor enters the chat with a second "Beigetreten"
 join event and every subsequent counselor turn is authored as `user`. Under the author rule
@@ -58,7 +58,7 @@ BOILERPLATE_PREFIXES = (
     "Beigetreten",
 )
 JOIN_MARKER = "Beigetreten"
-CLIENT_AUTHORS = {"user", "vikl", "client", "ratsuchende"}
+CLIENT_AUTHORS = {"user", "virtual_client", "client", "ratsuchende"}
 
 
 def parse_args():
@@ -83,7 +83,7 @@ def has_join(text: str) -> bool:
 
 
 def apply_role_prefix(text: str, speaker_type: str) -> str:
-    """Mirrors analysis/semantic/edm/classification_all.py::apply_role_prefix."""
+    """Mirrors analysis/semantic/classification/classification_all.py::apply_role_prefix."""
     st = (speaker_type or "").strip().lower()
     if st.startswith("couns"):
         return f"Counselor: {text}"

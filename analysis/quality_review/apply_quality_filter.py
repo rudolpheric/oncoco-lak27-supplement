@@ -34,7 +34,7 @@ DROPS = {
     ("LLama3_3_70B", "1251"),  # explicit bot-directing (borderline->drop)
     ("LLama3_3_70B", "1560"),  # one-word mocking "wow"/"stark"
     ("LLama3_3_70B", "1565"),  # bot-testing "du bist nun geheilt"
-    # QUOB26 review (quob26_drop_decisions.csv), added with that course's merge:
+    # C13 review (c13_drop_decisions.csv), added with that course's merge:
     ("GPT_OSS_120B", "176"),   # counselor turns B14-B26 pasted from an external chatbot
 }
 DROP_IDS = {i for _, i in DROPS}

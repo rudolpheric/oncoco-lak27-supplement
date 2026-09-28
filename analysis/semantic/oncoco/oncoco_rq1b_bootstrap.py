@@ -44,7 +44,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--n-bootstrap",
         type=int,
-        default=1500,
+        default=20000,  # the published Table S13 / Figure 2 intervals
         help="Number of bootstrap draws.",
     )
     parser.add_argument(

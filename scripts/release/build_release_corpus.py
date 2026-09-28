@@ -25,7 +25,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 HL_MODEL_DIRS = ["Mixtral", "LLama3_3_70B", "GPT_OSS_120B"]
-HH_FILES = ["vk_rollenspiele.json", "vk_shk_ieb_test.json"]
+HH_FILES = ["E01.json", "E02.json"]
 MODEL_LABEL = {"Mixtral": "Mixtral 8x7B", "LLama3_3_70B": "Llama 3.3 70B", "GPT_OSS_120B": "GPT-OSS-120B"}
 
 HISTORY = "{{CONVERSATION_HISTORY}}"
@@ -40,14 +40,14 @@ def load_module(path: Path, name: str):
 
 
 def role_of(author: str) -> str:
-    return "Client" if str(author or "").strip().lower() in {"vikl", "client", "ratsuchende"} else "Counselor"
+    return "Client" if str(author or "").strip().lower() in {"virtual_client", "client", "ratsuchende"} else "Counselor"
 
 
 # ---------------------------------------------------------------- prompt templates
 def strip_history(prompt: str) -> tuple[str, str]:
     """Return (variant, template) with the conversation history replaced by a placeholder."""
     if prompt.startswith("# Rollenanweisung"):
-        assert "vikl:" not in prompt and "Gesprächsverlauf" not in prompt
+        assert "virtual_client:" not in prompt and "Gesprächsverlauf" not in prompt
         return "first_message", prompt
     if prompt.startswith("Du bist"):
         m = re.search(r"(Kontext der Beratungssitzung:)(.*?)(\n+Deine Aufgabe:)", prompt, re.S)

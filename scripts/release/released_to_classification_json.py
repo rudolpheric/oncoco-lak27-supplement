@@ -43,7 +43,7 @@ def main() -> None:
                     msg_learn_counselling_id=cid,
                     msg_message_number=str(m["message_number"]),
                     msg_content=text,
-                    msg_author="vikl" if m["role"] == "Client" else "user",
+                    msg_author="virtual_client" if m["role"] == "Client" else "user",
                     msg_created_at=m.get("created_at"),
                     speaker_type=SPEAKER[m["role"]],
                     speaker_origin=m["speaker_origin"],

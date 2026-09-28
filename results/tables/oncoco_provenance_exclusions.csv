@@ -1,11 +1,11 @@
 step,source_file,conversations,messages,spans,messages_with_model
 legacy (no model metadata),data/raw/human_llm/chats/Counsellings.json,426,9742,14418,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_qs_ws_2425.json,68,2233,3253,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_kbb_grueneberg.json,48,1132,1578,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_qs_ss_24.json,19,840,1143,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_st_poelten_1.json,18,768,1012,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_st_Poelten_2.json,18,455,763,0
-legacy (no model metadata),data/raw/human_llm/chats/vk_kbb_mocigemba.json,8,160,260,0
-quality screening,data/raw/human_llm/chats/LLama3_3_70B/LLama3_3_70B_Berufliche_Beratung.json,6,202,281,202
-quality screening,data/raw/human_llm/chats/LLama3_3_70B/LLama3_3_70B_Gesundheitsberatung_Master.json,2,72,92,72
-quality screening,data/raw/human_llm/chats/GPT_OSS_120B/gpt-oss-120b_KI_u_Soz_Arbeit_und_VHB.json,2,92,141,92
+legacy (no model metadata),data/raw/human_llm/chats/L04.json,68,2233,3253,0
+legacy (no model metadata),data/raw/human_llm/chats/L01.json,48,1132,1578,0
+legacy (no model metadata),data/raw/human_llm/chats/L03.json,19,840,1143,0
+legacy (no model metadata),data/raw/human_llm/chats/L06.json,18,768,1012,0
+legacy (no model metadata),data/raw/human_llm/chats/L05.json,18,455,763,0
+legacy (no model metadata),data/raw/human_llm/chats/L02.json,8,160,260,0
+quality screening,data/raw/human_llm/chats/LLama3_3_70B/E04.json,6,202,281,202
+quality screening,data/raw/human_llm/chats/LLama3_3_70B/E06.json,2,72,92,72
+quality screening,data/raw/human_llm/chats/GPT_OSS_120B/E10.json,2,92,141,92

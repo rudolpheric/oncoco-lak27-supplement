@@ -85,11 +85,15 @@ def plot_label_distribution(dist: pd.DataFrame, role: str, top_n: int = 10) -> N
 
 
 def add_deciles(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.sort_values(["conversation_id", "speaker_type", "msg_message_number", "sentence_index"])
-    df["sentence_order"] = df.groupby(["conversation_id", "speaker_type"]).cumcount()
-    counts = df.groupby(["conversation_id", "speaker_type"])["sentence_order"].max().reset_index()
+    # Conversation ids repeat across source files (HH real, HH roleplay and H-LLM all
+    # start at 1001), so the conversation key must include the condition. Without it
+    # the relative position was computed over spans of two or three merged conversations.
+    key = ["condition", "conversation_id", "speaker_type"]
+    df = df.sort_values(key + ["msg_message_number", "sentence_index"])
+    df["sentence_order"] = df.groupby(key).cumcount()
+    counts = df.groupby(key)["sentence_order"].max().reset_index()
     counts["n_sentences"] = counts["sentence_order"] + 1
-    df = df.merge(counts[["conversation_id", "speaker_type", "n_sentences"]], on=["conversation_id", "speaker_type"], how="left")
+    df = df.merge(counts[key + ["n_sentences"]], on=key, how="left")
     df["rel_pos"] = df.apply(
         lambda row: 0.0 if row["n_sentences"] <= 1 else row["sentence_order"] / (row["n_sentences"] - 1),
         axis=1,

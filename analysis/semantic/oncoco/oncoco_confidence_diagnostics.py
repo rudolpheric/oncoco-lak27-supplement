@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Is classifier uncertainty correlated with condition? And does the RQ1 ordering survive if we
-keep only the items the classifier is confident about?
+"""Is classifier uncertainty correlated with condition? And does the RQ1 proximity gap
+delta' = JSD(HH real, H-LLM) - JSD(HH real, HH roleplay) survive if we keep only the items
+the classifier is confident about?
 
 PRE-DECLARED INTERPRETATIONS (written before the sidecar had finished running, so that neither
 outcome can be rationalised after the fact):
@@ -22,7 +23,7 @@ outcome can be rationalised after the fact):
   (iii) If confidence does not separate the conditions at all, sections 1-4 are a null result and
        only section 5 carries weight.
 
-  In every case section 5 is the decisive test: if the triadic ordering survives restricting the
+  In every case section 5 is the decisive test: if the proximity gap survives restricting the
   analysis to high-confidence items, "classifier error drives the effect" is not viable.
 
 MANDATORY CONTROL: confidence tracks item length, and the conditions differ in length. Every
@@ -72,7 +73,7 @@ def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--sidecar", default=str(NORM / "oncoco_confidence_sat.csv.gz"))
     p.add_argument("--unit", choices=["span", "message"], default="span")
-    p.add_argument("--n-boot", type=int, default=2000)
+    p.add_argument("--n-boot", type=int, default=20000)
     p.add_argument("--n-perm", type=int, default=2000,
                    help="Conversation-label permutations for the clustered p-values.")
     p.add_argument("--seed", type=int, default=42)
@@ -288,7 +289,7 @@ def main():
         print(piv.round(4).to_string())
 
     # --- 5. the decisive test: RQ1 ordering on high-confidence items only -----
-    print("\n5. RQ1 ordering restricted to high-confidence items")
+    print("\n5. RQ1 proximity gap restricted to high-confidence items")
     sens_rows = []
     for thr in (0.0, 0.7, 0.9, 0.99):
         f = d[d["top1_prob"] >= thr]
@@ -300,18 +301,19 @@ def main():
             labels = sorted(s["pred_label"].dropna().unique())
             vec = {c: pooled_vec(v, labels) for c, v in parts.items()}
             d_real = js_distance(vec["HH_real_chat"], vec["H_LLM_roleplay_chat"])
-            d_role = js_distance(vec["HH_roleplay_chat"], vec["H_LLM_roleplay_chat"])
+            d_role = js_distance(vec["HH_real_chat"], vec["HH_roleplay_chat"])
 
-            convs = {c: [g for _, g in v.groupby("conv")] for c, v in parts.items()}
+            # one count row per conversation, so a resample is a row draw plus a column sum
+            mats = {c: np.vstack([pooled_vec(g, labels) for _, g in v.groupby("conv")])
+                    for c, v in parts.items()}
             deltas = np.empty(args.n_boot)
             for b in range(args.n_boot):
                 vv = {}
                 for c in CHAT:
-                    gs = convs[c]
-                    pick = pd.concat([gs[j] for j in rng.integers(0, len(gs), len(gs))])
-                    vv[c] = pooled_vec(pick, labels)
+                    n = mats[c].shape[0]
+                    vv[c] = mats[c][rng.integers(0, n, n)].sum(axis=0)
                 deltas[b] = (js_distance(vv["HH_real_chat"], vv["H_LLM_roleplay_chat"])
-                             - js_distance(vv["HH_roleplay_chat"], vv["H_LLM_roleplay_chat"]))
+                             - js_distance(vv["HH_real_chat"], vv["HH_roleplay_chat"]))
             lo, hi = np.percentile(deltas, [2.5, 97.5])
             # The "all items" row is the same quantity as the SaT row of the main paper's unit
             # ablation. Two independent bootstraps of it disagree in the third decimal, so the
@@ -327,17 +329,17 @@ def main():
             kept = len(s) / max(len(d[(d["speaker_type"] == sp)]), 1)
             sens_rows.append(dict(threshold=thr, speaker=sp, retained_share=kept,
                                   n_items=len(s), n_labels=len(labels),
-                                  jsd_real_vs_hllm=d_real, jsd_roleplay_vs_hllm=d_role,
+                                  jsd_real_vs_hllm=d_real, jsd_real_vs_roleplay=d_role,
                                   delta=d_real - d_role, ci_lo=lo, ci_hi=hi,
                                   excludes_zero=bool(lo > 0)))
             print(f"  top1 >= {thr:.2f}  {sp:11s} retained {kept:5.1%} "
-                  f"({len(s):6d} items)  delta={d_real - d_role:+.3f} [{lo:+.3f}, {hi:+.3f}]"
+                  f"({len(s):6d} items)  delta'={d_real - d_role:+.3f} [{lo:+.3f}, {hi:+.3f}]"
                   f"{'  *' if lo > 0 else '   (CI includes 0)'}")
     sens = pd.DataFrame(sens_rows)
     sens.to_csv(TABLES / "oncoco_rq1_highconf_sensitivity.csv", index=False)
 
     lines = [r"\begin{tabular}{lcrrrc}", r"\toprule",
-             r"Confidence threshold & Role & Items retained & JSD real--LLM & JSD roleplay--LLM "
+             r"Confidence threshold & Role & Items retained & JSD real--LLM & JSD real--roleplay "
              r"& $\Delta$ [95\% CI] \\", r"\midrule"]
     for _, r in sens.iterrows():
         thr = "all items" if r["threshold"] == 0 else f"$\\geq$ {r['threshold']:.2f}"
@@ -345,7 +347,7 @@ def main():
         # NB: escape the percent sign, otherwise it comments out the rest of the LaTeX row.
         lines.append(f"{thr} & {r['speaker'].replace('Counsellor', 'Counselor')} & "
                      f"{r['retained_share'] * 100:.0f}\\% & {r['jsd_real_vs_hllm']:.3f} & "
-                     f"{r['jsd_roleplay_vs_hllm']:.3f} & {r['delta']:+.3f}{star} "
+                     f"{r['jsd_real_vs_roleplay']:.3f} & {r['delta']:+.3f}{star} "
                      f"[{r['ci_lo']:.3f}, {r['ci_hi']:.3f}] " + r"\\")
     lines += [r"\bottomrule", r"\end{tabular}"]
     (TABLES / "oncoco_rq1_highconf_sensitivity.tex").write_text("\n".join(lines) + "\n",

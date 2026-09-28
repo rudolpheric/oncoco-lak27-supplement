@@ -1,9 +1,9 @@
-unit,speaker,jsd_real_vs_hllm,jsd_roleplay_vs_hllm,delta,ci_lo,ci_hi,excludes_zero
-SaT spans,Client,0.452703,0.374541,0.078162,0.043001,0.107067,True
-SaT spans,Counselor,0.275572,0.195669,0.079903,0.042053,0.106517,True
-Regex spans,Client,0.342435,0.280867,0.061569,0.027265,0.090674,True
-Regex spans,Counselor,0.245377,0.192095,0.053282,0.019869,0.082878,True
-Messages,Client,0.475441,0.427406,0.048035,0.00518,0.085604,True
-Messages,Counselor,0.320104,0.233279,0.086824,0.043147,0.119269,True
-Naive character split,Client,0.10614,0.117974,-0.011834,-0.024283,0.002817,False
-Naive character split,Counselor,0.073346,0.054463,0.018883,0.005838,0.032018,True
+unit,speaker,jsd_real_vs_hllm,jsd_real_vs_roleplay,delta,ci_lo,ci_hi,excludes_zero
+SaT spans,Client,0.452703,0.23297,0.219733,0.178071,0.243159,True
+SaT spans,Counselor,0.275572,0.242441,0.033131,0.000252,0.049027,True
+Regex spans,Client,0.342435,0.222151,0.120284,0.086048,0.143288,True
+Regex spans,Counselor,0.245377,0.224921,0.020456,-0.012394,0.041114,False
+Messages,Client,0.475441,0.242224,0.233217,0.182087,0.257893,True
+Messages,Counselor,0.320104,0.297991,0.022112,-0.021675,0.047332,False
+Naive character split,Client,0.10614,0.073189,0.032952,0.011495,0.047614,True
+Naive character split,Counselor,0.073346,0.092538,-0.019192,-0.030369,-0.010358,True

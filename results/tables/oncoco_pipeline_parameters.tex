@@ -1,0 +1,15 @@
+\begin{tabular}{lp{0.72\linewidth}}
+\toprule
+Stage & Setting \\
+\midrule
+Segmentation & SaT-6l (\texttt{segment-any-text/sat-6l}) with a LoRA adapter (rank 128, alpha 256, dropout 0.1, attention query and value), boundary threshold 0.5, sliding windows of 512 tokens. wtpsplit 2.1.7, adapters 1.2.0. \\
+Classification & XLM-RoBERTa-large fine-tuned on OnCoCo 1.0, the study checkpoint (68 output units, two of them counselor codes outside the 66-category scheme that are never predicted in the corpora), input prefixed with ``Counselor:'' or ``Client:'', no role masking of the output, batch size 16. transformers 4.51.3, torch 2.10.0. \\
+Distance & Jensen--Shannon distance, square root of the base-2 divergence, over pooled span counts per condition and role. \\
+Intervals & Percentile bootstrap over conversations, seed 42. 20{,}000 resamples for proximity gaps, per-model distances, student-clustered intervals, and replay arms on spans. 5{,}000 for replay arms on messages, weighting checks, and absolute turn positions. \\
+Noise scale & Split-half band from 1{,}000 random halvings of HH real. Size-matched null from 1{,}000 draws with replacement at the compared sizes. \\
+Transitions & 2{,}000 split-halves of HH real, two-sided empirical $p$ for off-diagonal cells with at least 10 transitions, Benjamini--Hochberg at $q=0.10$. \\
+Phase model & Categorical HMM (hmmlearn 0.3.3), three states, 20 random initialisations with seeds 42 to 61, at most 500 EM iterations, tolerance $10^{-4}$, best log-likelihood kept. \\
+Deployments & Logged sampling of the GPT-OSS-120B and Llama 3.3 70B deployments on a hosted inference service: temperature 1, at most 3{,}000 tokens, no frequency or presence penalty. The Mixtral 8x7B deployment logged neither prompts nor settings. \\
+Replay & \texttt{openai/gpt-oss-120b} served with vLLM 0.28 on one A100 80\,GB, temperature 1, at most 3{,}000 tokens, no penalties, top-$p$ and reasoning effort at server defaults, no fixed seed, prompt sent as one user message, context length 16{,}384 tokens. \\
+\bottomrule
+\end{tabular}

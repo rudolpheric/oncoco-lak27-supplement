@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """RQ3: Convergence of learner-perceived realism (shortened TAM) with distributional proximity.
 
-Within the Querschnitt-Onlineberatung course line, three consecutive semesters used the
+Within course line A, three consecutive semesters used the
 same shortened TAM questionnaire (incl. the A270 'simulated client' realism battery)
 while only the client model changed (Mixtral 8x7B -> Llama 3.3 70B -> GPT-OSS-120B).
 This script computes per-course client/counselor JSD to HH real chat on the merged
@@ -20,7 +20,7 @@ from scipy.stats import mannwhitneyu, spearmanr
 
 ROOT = Path(__file__).resolve().parents[2]
 CLS = ROOT / "data/processed/combined/normalized/oncoco_classification_all.json"
-XLSX = ROOT / "data/Testungen eb.KIT Gesamtübersicht.xlsx"
+XLSX = ROOT / "data/surveys/course_surveys.xlsx"
 OUT_TEX = ROOT / "results/tables/oncoco_tam_convergence.tex"
 
 rows = json.load(open(CLS))
@@ -89,7 +89,7 @@ def has_label_row(d):
     """A German label row is present iff row 0's CASE is not numeric.
 
     The flag used to be hand-declared per sheet, and one declaration was wrong:
-    'QS WiSe 25 26' has no label row, so d.iloc[1:] silently dropped a real
+    'survey_C09' has no label row, so d.iloc[1:] silently dropped a real
     respondent (CASE 292, A270_02=4) and reported n=25 instead of 26.
     """
     if "CASE" not in d.columns or len(d) == 0:
@@ -115,9 +115,9 @@ def cliffs(a, b):
 
 
 COURSES = [  # (semester, model, corpus course name, sheet, label_row)
-    ("WiSe 24/25", "Mixtral 8x7B", "Querschnitt Onlineberatung WiSe 24/25", "SoSci QS WeSe 24_25", True),
-    ("WiSe 25/26", "Llama 3.3 70B", "Querschnitt Onlineberatung WiSe 25/26", "QS WiSe 25 26", False),
-    ("SoSe 26", "GPT-OSS-120B", "QUOB26", "QS SoSe 2026", False),
+    ("WiSe 24/25", "Mixtral 8x7B", "C03", "survey_C03", True),
+    ("WiSe 25/26", "Llama 3.3 70B", "C09", "survey_C09", False),
+    ("SoSe 26", "GPT-OSS-120B", "C13", "survey_C13", False),
 ]
 
 rng = np.random.default_rng(42)
@@ -149,9 +149,9 @@ for k, items in TAM.items():
 # --- pooled item pattern across all shortened-TAM waves ----------------------
 # The hand-maintained GESAMT sheet is NOT the union of the waves: it has 213 rows but only
 # 190 distinct CASE ids, and it is missing three entire waves (both most recent semesters
-# and Hochschule Coburg). CASE is also only unique *within* a wave, so the pool must be
+# and one external cohort). CASE is also only unique *within* a wave, so the pool must be
 # keyed on (sheet, CASE). We build the pool programmatically and print the reconciliation.
-# A wave qualifies if it carries the A270 battery AND a CASE id. 'SoSci SHK' carries the
+# A wave qualifies if it carries the A270 battery AND a CASE id. 'survey_pilot' carries the
 # battery but no CASE column: it is the student-assistant test wave, not a course cohort,
 # and is excluded here deliberately (it is absent from the hand-maintained sheet as well).
 WAVE_SHEETS = []
@@ -186,9 +186,9 @@ print(f"  [Abgleich] handgepflegtes GESAMT-Sheet: n={ges['A270_02'].notna().sum(
       f"jüngste Wellen fehlen) und wird deshalb nicht mehr für die gepoolten Kennwerte benutzt.")
 
 # --- secondary: cross-course association (unambiguous survey mappings only) --
-EXTRA = [("Grüneberg Professionelle Beratung 1 (Juli 2025)", " HdBA Juli 2025", True),
-         ("Grüneberg - HDBA - Konzepte Beruflicher Beratung", "SoSci HdBA Grüneberg", True),
-         ("Telefonseelsorge Bamberg", "TSÖ Bamberg", True)]
+EXTRA = [("C05", "survey_C05", True),
+         ("C04", "survey_C04", True),
+         ("C10", "survey_C10", True)]
 xs, ys, ns, labels, sheets_used = [], [], [], [], []
 for sem, model, cname, sh, lr in COURSES:
     t = [t for t in tab if t["sem"] == sem][0]
@@ -211,12 +211,15 @@ pd.DataFrame({"course": labels, "sheet": sheets_used, "jsd_client": xs,
 print(f"Wrote {OUT_CSV}")
 
 # --- paper table --------------------------------------------------------------
+from scipy import stats as _st
 lines = ["\\begin{tabular}{llrrrr}", "\\toprule",
-         "Semester & Client model & Conv. & Client JSD (nm-P95) & Survey $n$ & Realism item M (SD) \\\\",
+         "Semester & Client model & Conv. & Client JSD (nm-P95) & Survey $n$ & Realism item M (SD) [95\\% CI] \\\\",
          "\\midrule"]
 for t in tab:
+    # t-based 95% interval of the item mean, so the reader sees the precision behind n=9, 26 and 23
+    half = _st.t.ppf(0.975, t['n_resp'] - 1) * t['real_sd'] / (t['n_resp'] ** 0.5)
     lines.append(f"{t['sem']} & {t['model']} & {t['n_conv']} & {t['jsd_cl']:.3f} ({t['nm95']:.3f}) & "
-                 f"{t['n_resp']} & {t['real_m']:.2f} ({t['real_sd']:.2f}) \\\\")
+                 f"{t['n_resp']} & {t['real_m']:.2f} ({t['real_sd']:.2f}) [{t['real_m']-half:.2f}, {t['real_m']+half:.2f}] \\\\")
 lines += ["\\bottomrule", "\\end{tabular}"]
 OUT_TEX.write_text("\n".join(lines) + "\n")
 print("\nWrote", OUT_TEX)

@@ -1,0 +1,19 @@
+\begin{tabular}{llrrrr}
+\toprule
+Grouping & Level & Conv. & Client msgs & Median words [IQR] & No final punct. \\
+\midrule
+condition & HH roleplay & 68 & 1366 & 12 [5, 26] & 38.7\% \\
+ & HH real & 53 & 1632 & 10 [3, 21] & 85.4\% \\
+ & H--LLM & 414 & 7758 & 39 [28, 51] & 9.2\% \\
+model & Mixtral 8x7B & 86 & 1464 & 30 [22, 39] & 0.0\% \\
+ & Llama 3.3 70B & 238 & 4804 & 44 [35, 57] & 0.3\% \\
+ & GPT-OSS-120B & 90 & 1490 & 25 [17, 37] & 47.1\% \\
+brevity\_persona & yes & 225 & 4312 & 32 [23, 40] & 16.5\% \\
+ & no & 189 & 3446 & 50 [39, 63] & 0.1\% \\
+template\_family & plain & 207 & 3330 & 45 [26, 63] & 21.5\% \\
+ & chat & 121 & 2964 & 39 [33, 47] & 0.0\% \\
+ & not logged & 86 & 1464 & 30 [22, 39] & 0.0\% \\
+Llama x template\_family & plain & 117 & 1840 & 59 [47, 72] & 0.8\% \\
+ & chat & 121 & 2964 & 39 [33, 47] & 0.0\% \\
+\bottomrule
+\end{tabular}

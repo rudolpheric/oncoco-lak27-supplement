@@ -6,8 +6,8 @@ Both are `standalone` documents, compiled to PDF and included with
 
 | file | what it is | size |
 |---|---|---|
-| `hero_figure.pdf` | result-first hero: the gap, the signature, the convergence | 17.4 × 7.3 cm |
-| `pipeline_figure.pdf` | five-step study pipeline, picture-first | 17.4 × 4.8 cm |
+| `hero_figure.pdf` | result-first hero: the gap, the signature, the convergence | 17.4 × 7.4 cm |
+| `pipeline_figure.pdf` | Figure 2: five-box study pipeline, no embedded numbers (reduced 2026-09 after co-author review) | 17.4 × 4.2 cm |
 | `noise_band_figure.pdf` | Figure 3: every comparison on HH real chat's split-half band, two role panels | 17.4 × 5.05 cm |
 | `hmm_phase_figure.pdf` | Figure 4: three-state HMM phase structure, one panel per chat condition | 13.05 × 4.85 cm |
 
@@ -28,13 +28,15 @@ read from the analysis outputs, so the figure follows the results.
 
 | panel | source |
 |---|---|
-| 1 triangle, counselor strip | `results/tables/oncoco_rq1_distances.csv` (distances), `oncoco_noise_band.csv` (bands, ratio, *V*) |
+| 1 triangle, counselor strip | `results/tables/oncoco_rq1_distances.csv` (distances), `oncoco_noise_band.csv` (bands, *V*) |
 | 2 decile series | `results/tables/oncoco_temporal_distribution.csv`, bucketed exactly as `oncoco_behavioral_signatures.py` plus a Rejection bucket |
 | 3 bars | `results/tables/oncoco_tam_convergence.tex` |
 
 Read the *unrounded* `oncoco_noise_band.csv`, not `oncoco_noise_band_chat.tex`:
 the rounded band mean (0.111 instead of 0.1105) turns the 4.4× ratio reported in
-Section 5.2 into 4.3×.
+Section 5.2 into 4.3×. Since 2026-09-28 panel 1 no longer prints the ratio or the
+per-condition conversation counts (the numbers stay in the text and in Table 1),
+the script still reads them so the convention is kept for the counselor strip.
 
 The panel-1 triangle is drawn to scale. JSD is a metric, so the three client-side
 distances (0.270 / 0.375 / 0.482) embed exactly in the plane; the vertex positions
@@ -67,8 +69,18 @@ The last hand-written version is kept as `pipeline_figure.tex.bak_handwritten`.
 \end{figure*}
 ```
 
-The natural width is 495.7 pt against a JLA text width of 498.9 pt, so
-`width=\textwidth` scales by 0.6\% — a 4.7 pt label stays at 4.7 pt.
+The natural width is 495.7 pt against a JLA text width of 500.5 pt, so
+`width=\textwidth` scales by 1\% — a label keeps its nominal size.
+
+## Label sizes
+
+All three generators pass their TeX through `analysis/semantic/oncoco/tikz_fonts.py`
+before writing it. It multiplies every `\fontsize{a}{b}` by `FONT_SCALE`
+(1.2 since 2026-09-28, after the labels were judged unreadable in print) and maps
+the panel-title sizes `\small` / `\scriptsize` to 9.5 pt / 7.8 pt. The base
+sizes in the generators are therefore not the sizes on the page: 4.7 pt in the
+source is 5.6 pt in the PDF, 6.4 pt is 7.7 pt. Raise `FONT_SCALE` only together
+with a visual check, the layouts are dense and collisions appear above about 1.25.
 
 ## `noise_band_figure`
 
@@ -81,7 +93,7 @@ bars = 95% conversation-level bootstrap CI (per model), right column = Cramér's
 
 | element | source |
 |---|---|
-| dots, band, null ticks, *V*, ×floor | `results/tables/oncoco_noise_band.csv` (unrounded) |
+| dots, band, null ticks, *V* | `results/tables/oncoco_noise_band.csv` (unrounded) |
 | per-model CIs | `results/tables/oncoco_rq1b_model_realness_bootstrap.csv` |
 
 ## `hmm_phase_figure`
@@ -95,8 +107,8 @@ structural name (*Phase 3*) in all three panels so that they stay comparable —
 what it is made of differs and is said in the line underneath (a Help-led
 solution phase in H--LLM, a residual phase in both human conditions).
 
-Laid out at 13.05 cm, so `width=0.75\textwidth` scales by 1.0 and the 4.8 pt
-labels stay at 4.8 pt. Opening and Clarify keep their self-loop but not its
+Laid out at 13.05 cm, so `width=0.75\textwidth` scales by 1.0 and the labels
+keep their nominal size (4.8 pt in the source, 5.8 pt on the page). Opening and Clarify keep their self-loop but not its
 number — the text cites neither, and the narrow panel needs the margin.
 
 Circle area and the strip below each panel encode occupancy on the same scale.

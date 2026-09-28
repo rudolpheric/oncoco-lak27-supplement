@@ -16,3 +16,5 @@ __pycache__/
 # the released, masked corpus lives in data/conversations/
 data/raw/
 data/processed/
+# duplicate of supplementary_material.pdf, written by the LaTeX build
+/oncoco_supplementary.pdf

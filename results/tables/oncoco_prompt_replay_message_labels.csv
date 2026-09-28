@@ -1,0 +1,419 @@
+group,label,label_text,share
+HH_real_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0006127450980392157
+HH_real_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.0055147058823529415
+HH_real_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.00857843137254902
+HH_real_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.0545343137254902
+HH_real_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.015318627450980392
+HH_real_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.00428921568627451
+HH_real_chat,CL-IF-ACP-*-Cons-*,Consent,0.13786764705882354
+HH_real_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.023284313725490197
+HH_real_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.03799019607843137
+HH_real_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.03982843137254902
+HH_real_chat,CL-IF-ACP-*-PD-*,Problem definition,0.13848039215686275
+HH_real_chat,CL-IF-ACP-*-PS-*,Problem statement,0.12254901960784313
+HH_real_chat,CL-IF-ACP-*-Rej-*,Rejection,0.024509803921568627
+HH_real_chat,CL-IF-ACP-*-Req-*,General request,0.032475490196078434
+HH_real_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.025122549019607844
+HH_real_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.02144607843137255
+HH_real_chat,CL-IF-HP-*-Fail-*,Final failure,0.03125
+HH_real_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.022058823529411766
+HH_real_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.04656862745098039
+HH_real_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.012254901960784314
+HH_real_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.018995098039215685
+HH_real_chat,CL-IF-HP-*-Succ-*,Final success,0.003676470588235294
+HH_real_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.01715686274509804
+HH_real_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.03002450980392157
+HH_real_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.006127450980392157
+HH_real_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.00857843137254902
+HH_real_chat,CL-O-*-*-O-*,Other statements,0.08394607843137254
+HH_real_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.022058823529411766
+HH_real_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+HH_real_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+HH_real_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+HH_real_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0012254901960784314
+HH_real_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+HH_real_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+HH_real_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+HH_real_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+HH_real_chat,CO-IF-HP-*-PP-IW,Wish,0.0012254901960784314
+HH_real_chat,CO-Mod-*-*-*-*,Moderation,0.0024509803921568627
+HH_roleplay_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0014641288433382138
+HH_roleplay_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.013177159590043924
+HH_roleplay_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.007320644216691069
+HH_roleplay_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.05197657393850659
+HH_roleplay_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.0424597364568082
+HH_roleplay_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.01903367496339678
+HH_roleplay_chat,CL-IF-ACP-*-Cons-*,Consent,0.18814055636896046
+HH_roleplay_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.032210834553440704
+HH_roleplay_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.05490483162518302
+HH_roleplay_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.015373352855051245
+HH_roleplay_chat,CL-IF-ACP-*-PD-*,Problem definition,0.13689604685212298
+HH_roleplay_chat,CL-IF-ACP-*-PS-*,Problem statement,0.09224011713030747
+HH_roleplay_chat,CL-IF-ACP-*-Rej-*,Rejection,0.018301610541727673
+HH_roleplay_chat,CL-IF-ACP-*-Req-*,General request,0.03953147877013177
+HH_roleplay_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.024890190336749635
+HH_roleplay_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.0527086383601757
+HH_roleplay_chat,CL-IF-HP-*-Fail-*,Final failure,0.0036603221083455345
+HH_roleplay_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.005856515373352855
+HH_roleplay_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.034407027818448024
+HH_roleplay_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.024158125915080528
+HH_roleplay_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.012445095168374817
+HH_roleplay_chat,CL-IF-HP-*-Succ-*,Final success,0.007320644216691069
+HH_roleplay_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.014641288433382138
+HH_roleplay_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.015373352855051245
+HH_roleplay_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.010980966325036604
+HH_roleplay_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.030014641288433383
+HH_roleplay_chat,CL-O-*-*-O-*,Other statements,0.034407027818448024
+HH_roleplay_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.010980966325036604
+HH_roleplay_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+HH_roleplay_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+HH_roleplay_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0007320644216691069
+HH_roleplay_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0036603221083455345
+HH_roleplay_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+HH_roleplay_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+HH_roleplay_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+HH_roleplay_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+HH_roleplay_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+HH_roleplay_chat,CO-Mod-*-*-*-*,Moderation,0.0007320644216691069
+orig,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+orig,CL-E-*-*-ECP-*,Concern for another person (EC),0.016778523489932886
+orig,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.013422818791946308
+orig,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.0959731543624161
+orig,CL-FC-*-*-F-*,Formalities for conclusion,0.019463087248322148
+orig,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.02214765100671141
+orig,CL-IF-ACP-*-Cons-*,Consent,0.009395973154362415
+orig,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.014093959731543624
+orig,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.05570469798657718
+orig,CL-IF-ACP-*-OE-*,Own emotional expression,0.03422818791946309
+orig,CL-IF-ACP-*-PD-*,Problem definition,0.10067114093959731
+orig,CL-IF-ACP-*-PS-*,Problem statement,0.09060402684563758
+orig,CL-IF-ACP-*-Rej-*,Rejection,0.004697986577181208
+orig,CL-IF-ACP-*-Req-*,General request,0.02348993288590604
+orig,CL-IF-AO-*-Ext-*,Extension of the assignment,0.0476510067114094
+orig,CL-IF-AO-*-Obj-*,Objective of the assignment,0.06040268456375839
+orig,CL-IF-HP-*-Fail-*,Final failure,0.013422818791946308
+orig,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.022818791946308724
+orig,CL-IF-HP-*-PosF-*,General positive feedback,0.030201342281879196
+orig,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.09060402684563758
+orig,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.09731543624161074
+orig,CL-IF-HP-*-Succ-*,Final success,0.006040268456375839
+orig,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.006711409395973154
+orig,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.0436241610738255
+orig,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.027516778523489934
+orig,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.027516778523489934
+orig,CL-O-*-*-O-*,Other statements,0.011409395973154362
+orig,CL-O-*-*-UCO-*,Inappropriate remark,0.010067114093959731
+orig,CO-IF-AC-RE-RES-*,Request for emotional state,0.0013422818791946308
+orig,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+orig,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+orig,CO-IF-AC-RF-SRx-*,Simple reflection,0.0013422818791946308
+orig,CO-IF-HP-*-ICO-*,Calming,0.0
+orig,CO-IF-HP-*-IF-*,Future forecast,0.0
+orig,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0006711409395973154
+orig,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+orig,CO-IF-HP-*-PP-IW,Wish,0.0006711409395973154
+orig,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_A_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.000671591672263264
+H_LLM_replay_A_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.01208865010073875
+H_LLM_replay_A_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.017461383478844864
+H_LLM_replay_A_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.09267965077233042
+H_LLM_replay_A_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.0167897918065816
+H_LLM_replay_A_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.018132975151108125
+H_LLM_replay_A_chat,CL-IF-ACP-*-Cons-*,Consent,0.013431833445265278
+H_LLM_replay_A_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.010745466756212223
+H_LLM_replay_A_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.06178643384822028
+H_LLM_replay_A_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.03425117528542646
+H_LLM_replay_A_chat,CL-IF-ACP-*-PD-*,Problem definition,0.09939556749496306
+H_LLM_replay_A_chat,CL-IF-ACP-*-PS-*,Problem statement,0.09066487575554064
+H_LLM_replay_A_chat,CL-IF-ACP-*-Rej-*,Rejection,0.005372733378106112
+H_LLM_replay_A_chat,CL-IF-ACP-*-Req-*,General request,0.020147750167897917
+H_LLM_replay_A_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.052384150436534584
+H_LLM_replay_A_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.05842847548690396
+H_LLM_replay_A_chat,CL-IF-HP-*-Fail-*,Final failure,0.010745466756212223
+H_LLM_replay_A_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.018132975151108125
+H_LLM_replay_A_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.03425117528542646
+H_LLM_replay_A_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.09335124244459368
+H_LLM_replay_A_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.10208193418401612
+H_LLM_replay_A_chat,CL-IF-HP-*-Succ-*,Final success,0.004029550033579583
+H_LLM_replay_A_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.008730691739422432
+H_LLM_replay_A_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.041638683680322364
+H_LLM_replay_A_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.027535258562793822
+H_LLM_replay_A_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.03223640026863667
+H_LLM_replay_A_chat,CL-O-*-*-O-*,Other statements,0.006044325050369375
+H_LLM_replay_A_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.013431833445265278
+H_LLM_replay_A_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.000671591672263264
+H_LLM_replay_A_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_A_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_A_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0020147750167897917
+H_LLM_replay_A_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_A_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_A_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.000671591672263264
+H_LLM_replay_A_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_A_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_A_chat,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_B_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.000671591672263264
+H_LLM_replay_B_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.010073875083948958
+H_LLM_replay_B_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.012760241773002015
+H_LLM_replay_B_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.07051712558764271
+H_LLM_replay_B_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.006715916722632639
+H_LLM_replay_B_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.006044325050369375
+H_LLM_replay_B_chat,CL-IF-ACP-*-Cons-*,Consent,0.000671591672263264
+H_LLM_replay_B_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.010745466756212223
+H_LLM_replay_B_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.07991940899932841
+H_LLM_replay_B_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.02350570852921424
+H_LLM_replay_B_chat,CL-IF-ACP-*-PD-*,Problem definition,0.12961719274680994
+H_LLM_replay_B_chat,CL-IF-ACP-*-PS-*,Problem statement,0.10946944257891202
+H_LLM_replay_B_chat,CL-IF-ACP-*-Rej-*,Rejection,0.000671591672263264
+H_LLM_replay_B_chat,CL-IF-ACP-*-Req-*,General request,0.02350570852921424
+H_LLM_replay_B_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.1343183344526528
+H_LLM_replay_B_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.07991940899932841
+H_LLM_replay_B_chat,CL-IF-HP-*-Fail-*,Final failure,0.009402283411685695
+H_LLM_replay_B_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.014775016789791807
+H_LLM_replay_B_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.03760913364674278
+H_LLM_replay_B_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.05574210879785091
+H_LLM_replay_B_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.06447280053727333
+H_LLM_replay_B_chat,CL-IF-HP-*-Succ-*,Final success,0.0047011417058428475
+H_LLM_replay_B_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.002686366689053056
+H_LLM_replay_B_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.03290799194089993
+H_LLM_replay_B_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.03022162525184688
+H_LLM_replay_B_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.0315648085963734
+H_LLM_replay_B_chat,CL-O-*-*-O-*,Other statements,0.008059100067159167
+H_LLM_replay_B_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.006044325050369375
+H_LLM_replay_B_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.001343183344526528
+H_LLM_replay_B_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_B_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_B_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.001343183344526528
+H_LLM_replay_B_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_B_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_B_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_B_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_B_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_B_chat,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_C_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_C_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.007387508394895903
+H_LLM_replay_C_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.024848891873740765
+H_LLM_replay_C_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.05842847548690396
+H_LLM_replay_C_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.000671591672263264
+H_LLM_replay_C_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.0020147750167897917
+H_LLM_replay_C_chat,CL-IF-ACP-*-Cons-*,Consent,0.042981867024848894
+H_LLM_replay_C_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.011417058428475487
+H_LLM_replay_C_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.04499664204163868
+H_LLM_replay_C_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.04231027535258563
+H_LLM_replay_C_chat,CL-IF-ACP-*-PD-*,Problem definition,0.06850235057085292
+H_LLM_replay_C_chat,CL-IF-ACP-*-PS-*,Problem statement,0.0893216924110141
+H_LLM_replay_C_chat,CL-IF-ACP-*-Rej-*,Rejection,0.008059100067159167
+H_LLM_replay_C_chat,CL-IF-ACP-*-Req-*,General request,0.18535930154466085
+H_LLM_replay_C_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.07924781732706515
+H_LLM_replay_C_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.17528542646071188
+H_LLM_replay_C_chat,CL-IF-HP-*-Fail-*,Final failure,0.0033579583613163196
+H_LLM_replay_C_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.0167897918065816
+H_LLM_replay_C_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.001343183344526528
+H_LLM_replay_C_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.0020147750167897917
+H_LLM_replay_C_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.020819341840161182
+H_LLM_replay_C_chat,CL-IF-HP-*-Succ-*,Final success,0.000671591672263264
+H_LLM_replay_C_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.007387508394895903
+H_LLM_replay_C_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.019476158495634655
+H_LLM_replay_C_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.010073875083948958
+H_LLM_replay_C_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.01880456682337139
+H_LLM_replay_C_chat,CL-O-*-*-O-*,Other statements,0.0241773002014775
+H_LLM_replay_C_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.03022162525184688
+H_LLM_replay_C_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+H_LLM_replay_C_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.000671591672263264
+H_LLM_replay_C_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_C_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.000671591672263264
+H_LLM_replay_C_chat,CO-IF-HP-*-ICO-*,Calming,0.0020147750167897917
+H_LLM_replay_C_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_C_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_C_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.000671591672263264
+H_LLM_replay_C_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_C_chat,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_D_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_D_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.03022162525184688
+H_LLM_replay_D_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.011417058428475487
+H_LLM_replay_D_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.05910006715916723
+H_LLM_replay_D_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.0033579583613163196
+H_LLM_replay_D_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.002686366689053056
+H_LLM_replay_D_chat,CL-IF-ACP-*-Cons-*,Consent,0.1490933512424446
+H_LLM_replay_D_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.018132975151108125
+H_LLM_replay_D_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.0819341840161182
+H_LLM_replay_D_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.062458025520483546
+H_LLM_replay_D_chat,CL-IF-ACP-*-PD-*,Problem definition,0.07656145063801209
+H_LLM_replay_D_chat,CL-IF-ACP-*-PS-*,Problem statement,0.11014103425117529
+H_LLM_replay_D_chat,CL-IF-ACP-*-Rej-*,Rejection,0.026863666890530557
+H_LLM_replay_D_chat,CL-IF-ACP-*-Req-*,General request,0.004029550033579583
+H_LLM_replay_D_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.04499664204163868
+H_LLM_replay_D_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.05104096709200806
+H_LLM_replay_D_chat,CL-IF-HP-*-Fail-*,Final failure,0.010745466756212223
+H_LLM_replay_D_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.03425117528542646
+H_LLM_replay_D_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.005372733378106112
+H_LLM_replay_D_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.018132975151108125
+H_LLM_replay_D_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.04633982538616521
+H_LLM_replay_D_chat,CL-IF-HP-*-Succ-*,Final success,0.004029550033579583
+H_LLM_replay_D_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.013431833445265278
+H_LLM_replay_D_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.012760241773002015
+H_LLM_replay_D_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.014775016789791807
+H_LLM_replay_D_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.020147750167897917
+H_LLM_replay_D_chat,CL-O-*-*-O-*,Other statements,0.04231027535258563
+H_LLM_replay_D_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.04432505036937542
+H_LLM_replay_D_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+H_LLM_replay_D_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_D_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_D_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0
+H_LLM_replay_D_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_D_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_D_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_D_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_D_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_D_chat,CO-Mod-*-*-*-*,Moderation,0.001343183344526528
+H_LLM_replay_E_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_E_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.022834116856950974
+H_LLM_replay_E_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.01880456682337139
+H_LLM_replay_E_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.05910006715916723
+H_LLM_replay_E_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.001343183344526528
+H_LLM_replay_E_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.002686366689053056
+H_LLM_replay_E_chat,CL-IF-ACP-*-Cons-*,Consent,0.17797179314976494
+H_LLM_replay_E_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.018132975151108125
+H_LLM_replay_E_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.08059100067159167
+H_LLM_replay_E_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.051712558764271326
+H_LLM_replay_E_chat,CL-IF-ACP-*-PD-*,Problem definition,0.049026192075218265
+H_LLM_replay_E_chat,CL-IF-ACP-*-PS-*,Problem statement,0.11954331766286098
+H_LLM_replay_E_chat,CL-IF-ACP-*-Rej-*,Rejection,0.03089321692411014
+H_LLM_replay_E_chat,CL-IF-ACP-*-Req-*,General request,0.007387508394895903
+H_LLM_replay_E_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.042981867024848894
+H_LLM_replay_E_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.04701141705842848
+H_LLM_replay_E_chat,CL-IF-HP-*-Fail-*,Final failure,0.012760241773002015
+H_LLM_replay_E_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.03089321692411014
+H_LLM_replay_E_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.007387508394895903
+H_LLM_replay_E_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.0241773002014775
+H_LLM_replay_E_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.04969778374748153
+H_LLM_replay_E_chat,CL-IF-HP-*-Succ-*,Final success,0.0033579583613163196
+H_LLM_replay_E_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.009402283411685695
+H_LLM_replay_E_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.020147750167897917
+H_LLM_replay_E_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.014103425117528543
+H_LLM_replay_E_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.017461383478844864
+H_LLM_replay_E_chat,CL-O-*-*-O-*,Other statements,0.03760913364674278
+H_LLM_replay_E_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.042981867024848894
+H_LLM_replay_E_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+H_LLM_replay_E_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_E_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_E_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0
+H_LLM_replay_E_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_E_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_E_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_E_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_E_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_E_chat,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_F_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_F_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.022834116856950974
+H_LLM_replay_F_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.014103425117528543
+H_LLM_replay_F_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.0577568838146407
+H_LLM_replay_F_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.007387508394895903
+H_LLM_replay_F_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.000671591672263264
+H_LLM_replay_F_chat,CL-IF-ACP-*-Cons-*,Consent,0.19207521826729348
+H_LLM_replay_F_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.0167897918065816
+H_LLM_replay_F_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.0913364674278039
+H_LLM_replay_F_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.05910006715916723
+H_LLM_replay_F_chat,CL-IF-ACP-*-PD-*,Problem definition,0.06044325050369376
+H_LLM_replay_F_chat,CL-IF-ACP-*-PS-*,Problem statement,0.11484217595701814
+H_LLM_replay_F_chat,CL-IF-ACP-*-Rej-*,Rejection,0.029550033579583614
+H_LLM_replay_F_chat,CL-IF-ACP-*-Req-*,General request,0.000671591672263264
+H_LLM_replay_F_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.026863666890530557
+H_LLM_replay_F_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.03895231699126931
+H_LLM_replay_F_chat,CL-IF-HP-*-Fail-*,Final failure,0.008730691739422432
+H_LLM_replay_F_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.036937541974479515
+H_LLM_replay_F_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.009402283411685695
+H_LLM_replay_F_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.041638683680322364
+H_LLM_replay_F_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.03089321692411014
+H_LLM_replay_F_chat,CL-IF-HP-*-Succ-*,Final success,0.000671591672263264
+H_LLM_replay_F_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.014103425117528543
+H_LLM_replay_F_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.02216252518468771
+H_LLM_replay_F_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.008730691739422432
+H_LLM_replay_F_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.009402283411685695
+H_LLM_replay_F_chat,CL-O-*-*-O-*,Other statements,0.028206850235057087
+H_LLM_replay_F_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.052384150436534584
+H_LLM_replay_F_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+H_LLM_replay_F_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_F_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_F_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0020147750167897917
+H_LLM_replay_F_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_F_chat,CO-IF-HP-*-IF-*,Future forecast,0.000671591672263264
+H_LLM_replay_F_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_F_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_F_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_F_chat,CO-Mod-*-*-*-*,Moderation,0.000671591672263264
+H_LLM_replay_G_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_G_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.021490933512424447
+H_LLM_replay_G_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.01544660846205507
+H_LLM_replay_G_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.06044325050369376
+H_LLM_replay_G_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.0033579583613163196
+H_LLM_replay_G_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.004029550033579583
+H_LLM_replay_G_chat,CL-IF-ACP-*-Cons-*,Consent,0.10006715916722633
+H_LLM_replay_G_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.0167897918065816
+H_LLM_replay_G_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.0987239758226998
+H_LLM_replay_G_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.05305574210879785
+H_LLM_replay_G_chat,CL-IF-ACP-*-PD-*,Problem definition,0.05910006715916723
+H_LLM_replay_G_chat,CL-IF-ACP-*-PS-*,Problem statement,0.10678307588985897
+H_LLM_replay_G_chat,CL-IF-ACP-*-Rej-*,Rejection,0.028206850235057087
+H_LLM_replay_G_chat,CL-IF-ACP-*-Req-*,General request,0.002686366689053056
+H_LLM_replay_G_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.03492276695768973
+H_LLM_replay_G_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.0335795836131632
+H_LLM_replay_G_chat,CL-IF-HP-*-Fail-*,Final failure,0.011417058428475487
+H_LLM_replay_G_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.03425117528542646
+H_LLM_replay_G_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.12088650100738751
+H_LLM_replay_G_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.008730691739422432
+H_LLM_replay_G_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.0241773002014775
+H_LLM_replay_G_chat,CL-IF-HP-*-Succ-*,Final success,0.010073875083948958
+H_LLM_replay_G_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.014775016789791807
+H_LLM_replay_G_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.016118200134318333
+H_LLM_replay_G_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.009402283411685695
+H_LLM_replay_G_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.011417058428475487
+H_LLM_replay_G_chat,CL-O-*-*-O-*,Other statements,0.027535258562793822
+H_LLM_replay_G_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.07186030893216924
+H_LLM_replay_G_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.0
+H_LLM_replay_G_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_G_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_G_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.0
+H_LLM_replay_G_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_G_chat,CO-IF-HP-*-IF-*,Future forecast,0.000671591672263264
+H_LLM_replay_G_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.0
+H_LLM_replay_G_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_G_chat,CO-IF-HP-*-PP-IW,Wish,0.0
+H_LLM_replay_G_chat,CO-Mod-*-*-*-*,Moderation,0.0
+H_LLM_replay_O_chat,CL-E-*-*-ECC-*,Compassion for others (EC),0.0
+H_LLM_replay_O_chat,CL-E-*-*-ECP-*,Concern for another person (EC),0.0167897918065816
+H_LLM_replay_O_chat,CL-E-*-*-PT-*,Empathy for third parties or related to the present situation (PT),0.013431833445265278
+H_LLM_replay_O_chat,CL-FB-*-*-*-*,Formalities at the beginning and greeting,0.09603760913364674
+H_LLM_replay_O_chat,CL-FC-*-*-F-*,Formalities for conclusion,0.019476158495634655
+H_LLM_replay_O_chat,CL-FC-*-*-UPR-*,Further use of professional resources of counselor,0.02216252518468771
+H_LLM_replay_O_chat,CL-IF-ACP-*-Cons-*,Consent,0.009402283411685695
+H_LLM_replay_O_chat,CL-IF-ACP-*-DPD-*,Disclosure of personal data,0.014103425117528543
+H_LLM_replay_O_chat,CL-IF-ACP-*-FPA-*,Feedback on previous attempts at solutions,0.05574210879785091
+H_LLM_replay_O_chat,CL-IF-ACP-*-OE-*,Own emotional expression,0.03425117528542646
+H_LLM_replay_O_chat,CL-IF-ACP-*-PD-*,Problem definition,0.10073875083948959
+H_LLM_replay_O_chat,CL-IF-ACP-*-PS-*,Problem statement,0.09066487575554064
+H_LLM_replay_O_chat,CL-IF-ACP-*-Rej-*,Rejection,0.0047011417058428475
+H_LLM_replay_O_chat,CL-IF-ACP-*-Req-*,General request,0.02350570852921424
+H_LLM_replay_O_chat,CL-IF-AO-*-Ext-*,Extension of the assignment,0.04768300873069174
+H_LLM_replay_O_chat,CL-IF-AO-*-Obj-*,Objective of the assignment,0.05977165883143049
+H_LLM_replay_O_chat,CL-IF-HP-*-Fail-*,Final failure,0.013431833445265278
+H_LLM_replay_O_chat,CL-IF-HP-*-NegFR-*,Negative feedback on specific action recommendation,0.022834116856950974
+H_LLM_replay_O_chat,CL-IF-HP-*-PosF-*,General positive feedback,0.03022162525184688
+H_LLM_replay_O_chat,CL-IF-HP-*-PosFR-*,Positive feedback on specific recommendations for action,0.09066487575554064
+H_LLM_replay_O_chat,CL-IF-HP-*-RepRA-*,Report on the implementation of recommendations for action,0.09738079247817327
+H_LLM_replay_O_chat,CL-IF-HP-*-Succ-*,Final success,0.006044325050369375
+H_LLM_replay_O_chat,CL-IF-Mot-*-FC-*,"Eliciting/Evoking ""Change-Talk"" (MI)",0.006715916722632639
+H_LLM_replay_O_chat,CL-IF-Mot-*-RC-*,Articulation of reasons for a change in the client,0.04365345869711216
+H_LLM_replay_O_chat,CL-IF-RA-*-RF-*,Considering resource activation at the level of friends and family,0.027535258562793822
+H_LLM_replay_O_chat,CL-IF-RA-*-RP-*,Considering resource activation at a professional level,0.028206850235057087
+H_LLM_replay_O_chat,CL-O-*-*-O-*,Other statements,0.010745466756212223
+H_LLM_replay_O_chat,CL-O-*-*-UCO-*,Inappropriate remark,0.010073875083948958
+H_LLM_replay_O_chat,CO-IF-AC-RE-RES-*,Request for emotional state,0.001343183344526528
+H_LLM_replay_O_chat,CO-IF-AC-RF-RLS-SR,Social relationships,0.0
+H_LLM_replay_O_chat,CO-IF-AC-RF-RPD-*,Request for personal data,0.0
+H_LLM_replay_O_chat,CO-IF-AC-RF-SRx-*,Simple reflection,0.001343183344526528
+H_LLM_replay_O_chat,CO-IF-HP-*-ICO-*,Calming,0.0
+H_LLM_replay_O_chat,CO-IF-HP-*-IF-*,Future forecast,0.0
+H_LLM_replay_O_chat,CO-IF-HP-*-IPFR-*,"Professional, formal, institutional recommendation",0.000671591672263264
+H_LLM_replay_O_chat,CO-IF-HP-*-ITFE-*,Technical or factual explanations,0.0
+H_LLM_replay_O_chat,CO-IF-HP-*-PP-IW,Wish,0.000671591672263264
+H_LLM_replay_O_chat,CO-Mod-*-*-*-*,Moderation,0.0

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Assemble the unit-of-analysis robustness table (replaces the old segmentation ablation).
 
-The RQ1 triadic ordering is reported across four units so that no single segmentation
-choice carries the result:
+The RQ1 proximity gap delta' = JSD(HH real, H-LLM) - JSD(HH real, HH roleplay) is reported
+across four units so that no single segmentation choice carries the result:
 
   SaT spans        SaT-6l + LoRA adapter, the paper's primary unit
   Regex spans      corrected sentence regex
@@ -46,11 +46,11 @@ for disp, unit, _ in UNITS:
     for speaker in ("Client", "Counselor"):
         r = boot[(boot["unit"] == unit) & (boot["speaker"] == speaker)].iloc[0]
         sig = "" if (r["ci_lo"] <= 0 <= r["ci_hi"]) else r"$^{*}$"
-        cells += [f"{r['jsd_real_vs_hllm']:.3f}", f"{r['jsd_roleplay_vs_hllm']:.3f}",
+        cells += [f"{r['jsd_real_vs_hllm']:.3f}", f"{r['jsd_real_vs_roleplay']:.3f}",
                   f"{r['delta_point']:+.3f}{sig} [{r['ci_lo']:.3f}, {r['ci_hi']:.3f}]"]
         csv_rows.append(dict(unit=disp, speaker=speaker,
                              jsd_real_vs_hllm=r["jsd_real_vs_hllm"],
-                             jsd_roleplay_vs_hllm=r["jsd_roleplay_vs_hllm"],
+                             jsd_real_vs_roleplay=r["jsd_real_vs_roleplay"],
                              delta=r["delta_point"], ci_lo=r["ci_lo"], ci_hi=r["ci_hi"],
                              excludes_zero=not (r["ci_lo"] <= 0 <= r["ci_hi"])))
     rows.append(f"{disp} & " + " & ".join(cells) + r" \\")
@@ -60,8 +60,8 @@ tex = [
     r"\toprule",
     r" & \multicolumn{3}{c}{Client} & \multicolumn{3}{c}{Counselor} \\",
     r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
-    r"Unit of analysis & real--LLM & roleplay--LLM & $\Delta$ [95\% CI] "
-    r"& real--LLM & roleplay--LLM & $\Delta$ [95\% CI] \\",
+    r"Unit of analysis & real--LLM & real--roleplay & $\Delta$ [95\% CI] "
+    r"& real--LLM & real--roleplay & $\Delta$ [95\% CI] \\",
     r"\midrule",
     *rows[:3],
     r"\midrule",
@@ -72,12 +72,12 @@ tex = [
 (T / "oncoco_unit_ablation.tex").write_text("\n".join(tex) + "\n", encoding="utf-8")
 pd.DataFrame(csv_rows).to_csv(T / "oncoco_unit_ablation.csv", index=False)
 
-print("Ordering across units: delta = JSD(HH real, H-LLM) - JSD(HH roleplay, H-LLM)\n")
-print(f"  {'unit':28s} {'speaker':10s} {'real-LLM':>9s} {'rp-LLM':>8s} {'delta':>8s}  95% CI")
+print("Proximity gap across units: delta' = JSD(HH real, H-LLM) - JSD(HH real, HH roleplay)\n")
+print(f"  {'unit':28s} {'speaker':10s} {'real-LLM':>9s} {'real-rp':>8s} {'delta':>8s}  95% CI")
 for r in csv_rows:
     mark = " *" if r["excludes_zero"] else "  (CI includes 0)"
     print(f"  {r['unit']:28s} {r['speaker']:10s} {r['jsd_real_vs_hllm']:9.3f} "
-          f"{r['jsd_roleplay_vs_hllm']:8.3f} {r['delta']:+8.3f}  "
+          f"{r['jsd_real_vs_roleplay']:8.3f} {r['delta']:+8.3f}  "
           f"[{r['ci_lo']:.3f}, {r['ci_hi']:.3f}]{mark}")
 
 # --- supplement table: noise band across the three legitimate units -----------

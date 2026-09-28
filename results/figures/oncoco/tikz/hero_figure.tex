@@ -6,7 +6,7 @@
 \usepackage{sansmath}
 \sansmath
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns}
 
 \definecolor{cReal}{HTML}{2C6E63}
 \definecolor{cRP}{HTML}{4A6E9B}
@@ -21,212 +21,204 @@
 
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
-\path (0,0) rectangle (17.40,6.95);
+\path (0,0) rectangle (17.40,7.40);
 
   \draw[rounded corners=2.5pt, draw=cRule, fill=cPanel, line width=0.5pt]
-        (0.00,0) rectangle (5.12,6.95);
+        (0.00,0) rectangle (5.12,7.40);
   \node[circle, fill=cInk, text=white, inner sep=0pt, minimum size=3.4mm,
-        font=\bfseries\fontsize{6}{7}\selectfont] at (0.40,6.53) {1};
-  \node[anchor=west, font=\small\bfseries, text=cInk, inner sep=0pt]
-        at (0.63,6.53) {Distance between conditions};
-  \node[anchor=north west, font=\fontsize{5.6}{6.6}\selectfont, text=cMute, inner sep=0pt,
-        align=left, text width=4.17cm] at (0.63,6.31) {Client side, Jensen--Shannon divergence (JSD)};
+        font=\bfseries\fontsize{7.2}{8.4}\selectfont] at (0.40,6.98) {1};
+  \node[anchor=west, font=\fontsize{9.5}{11}\selectfont\bfseries, text=cInk, inner sep=0pt]
+        at (0.63,6.98) {Distance between conditions};
+  \node[anchor=north west, font=\fontsize{6.7}{7.9}\selectfont, text=cMute, inner sep=0pt,
+        align=left, text width=4.17cm] at (0.63,6.76) {Client side, Jensen--Shannon distance};
 
   \begin{scope}[shift={(1.58,3.07)}]
-    \fill[cBand] (0,0) circle (0.845);
+    \fill[cReal!7] (0,0) circle (0.845);
+    \fill[pattern=north east lines, pattern color=cReal!45] (0,0) circle (0.845);
     \draw[cReal!45, line width=0.45pt, dash pattern=on 1.6pt off 1.4pt] (0,0) circle (0.845);
     \draw[cRule!95, line width=0.6pt] (0,0) -- (1.491,0);
     \draw[cRule!95, line width=0.6pt] (1.491,0) -- (1.634,2.393);
     \draw[cLLM!60, line width=1.1pt] (0,0) -- (1.634,2.393);
-    \node[font=\fontsize{4.7}{5.4}\selectfont, text=cMute, fill=cPanel, inner sep=0.8pt]
+    \node[font=\fontsize{5.6}{6.5}\selectfont, text=cMute, fill=cPanel, inner sep=0.8pt]
          at (0.746,0) {0.233};
-    \node[font=\fontsize{4.7}{5.4}\selectfont, text=cMute, fill=cPanel, inner sep=0.8pt, rotate=84]
+    \node[font=\fontsize{5.6}{6.5}\selectfont, text=cMute, fill=cPanel, inner sep=0.8pt, rotate=84]
          at (1.632,1.196) {0.375};
-    \node[font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cLLM, fill=cPanel, inner sep=0.8pt, rotate=51]
+    \node[font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cLLM, fill=cPanel, inner sep=0.8pt, rotate=51]
          at (0.707,1.196) {0.453};
     \fill[cReal] (0,0) circle (2.1pt);
     \fill[cRP] (1.491,0) circle (2.1pt);
     \fill[cLLM] (1.634,2.393) circle (2.7pt);
-    \node[anchor=north, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cReal, inner sep=0pt] at (0,-0.875)
+    \node[anchor=north, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cReal, inner sep=0pt] at (0,-0.875)
          {HH real};
-    \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (0,-1.105)
-         {53 conversations};
-    \node[anchor=north west, font=\fontsize{6.4}{7.4}\selectfont\bfseries, text=cRP, inner sep=0pt] at (1.551,-0.10)
+    \node[anchor=north west, font=\fontsize{7.7}{8.9}\selectfont\bfseries, text=cRP, inner sep=0pt] at (1.551,-0.10)
          {HH roleplay};
-    \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (1.551,-0.32)
-         {68 conversations};
-    \node[anchor=south, font=\scriptsize\bfseries, text=cLLM, inner sep=0pt]
-         at (1.634,2.693) {H--LLM};
-    \node[anchor=south, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt]
-         at (1.634,2.493)
-         {414 conversations\,\textbullet\,4.2$\times$ the noise floor};
+    \node[anchor=south, font=\fontsize{7.8}{9.2}\selectfont\bfseries, text=cLLM, inner sep=0pt]
+         at (1.634,2.533) {H--LLM};
   \end{scope}
-  \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, align=left, inner sep=0pt]
-       at (0.24,4.39) {real counseling's own\\split-half noise band};
+  \node[anchor=north west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, align=left, inner sep=0pt]
+       at (0.24,4.39) {real counseling's own\\split-half band};
   \draw[cMute!65, line width=0.3pt] (0.72,4.01) -- (0.85,3.49);
 
   \draw[cRule, line width=0.4pt] (0.50,1.75) -- (4.62,1.75);
-  \node[anchor=west, font=\fontsize{5.8}{6.8}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.50,1.55)
+  \node[anchor=west, font=\fontsize{7.0}{8.2}\selectfont\bfseries, text=cInk, inner sep=0pt] at (0.50,1.55)
        {Counselor side};
-  \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, align=left, inner sep=0pt, text width=3.9cm]
+  \node[anchor=north west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, align=left, inner sep=0pt, text width=3.9cm]
        at (0.50,1.43)
        {both distances exceed real counseling's noise band; the conditions separate on the client side};
-  \fill[cBand] (0.50,0.40) rectangle (2.592,0.74);
+  \fill[cReal!7] (0.50,0.40) rectangle (2.592,0.74);
+  \fill[pattern=north east lines, pattern color=cReal!45] (0.50,0.40) rectangle (2.592,0.74);
+  \draw[cReal!45, line width=0.45pt, dash pattern=on 1.6pt off 1.4pt]
+       (2.592,0.40) -- (2.592,0.74);
   \draw[cRule, line width=0.4pt] (0.50,0.40) rectangle (4.62,0.74);
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.4pt] at (0.50,0.57)
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.4pt] at (0.50,0.57)
        {noise band};
   \fill[cRP] (3.527,0.57) circle (2.0pt);
   \fill[cLLM] (3.940,0.57) circle (2.4pt);
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cRP, inner sep=1.8pt] at (3.527,0.40)
+  \node[anchor=north east, font=\fontsize{5.6}{6.5}\selectfont, text=cRP, inner sep=1.8pt] at (3.527,0.40)
        {0.242};
-  \node[anchor=north, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cLLM, inner sep=1.8pt] at (3.940,0.40)
+  \node[anchor=north west, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cLLM, inner sep=1.8pt] at (3.940,0.40)
        {0.276};
 
   \draw[rounded corners=2.5pt, draw=cRule, fill=cPanel, line width=0.5pt]
-        (5.42,0) rectangle (12.42,6.95);
+        (5.42,0) rectangle (12.42,7.40);
   \node[circle, fill=cInk, text=white, inner sep=0pt, minimum size=3.4mm,
-        font=\bfseries\fontsize{6}{7}\selectfont] at (5.82,6.53) {2};
-  \node[anchor=west, font=\small\bfseries, text=cInk, inner sep=0pt]
-        at (6.05,6.53) {Client categories over time};
-  \node[anchor=north west, font=\fontsize{5.6}{6.6}\selectfont, text=cMute, inner sep=0pt,
-        align=left, text width=6.05cm] at (6.05,6.31) {Share of client spans, by decile of conversation progress};
-  \draw[cReal, line width=0.9pt] (5.86,5.87) -- (6.16,5.87);
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cInk, inner sep=0pt] at (6.23,5.87) {HH real};
-  \draw[cRP, line width=0.9pt] (6.93,5.87) -- (7.23,5.87);
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cInk, inner sep=0pt] at (7.30,5.87) {HH roleplay};
-  \draw[cLLM, line width=1.4pt] (8.22,5.87) -- (8.52,5.87);
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cInk, inner sep=0pt] at (8.59,5.87) {H--LLM roleplay};
+        font=\bfseries\fontsize{7.2}{8.4}\selectfont] at (5.82,6.98) {2};
+  \node[anchor=west, font=\fontsize{9.5}{11}\selectfont\bfseries, text=cInk, inner sep=0pt]
+        at (6.05,6.98) {Client categories over time};
+  \node[anchor=north west, font=\fontsize{6.7}{7.9}\selectfont, text=cMute, inner sep=0pt,
+        align=left, text width=6.05cm] at (6.05,6.76) {Share of client spans, by decile of conversation progress};
+  \draw[cReal, line width=0.9pt] (5.86,6.05) -- (6.16,6.05);
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cInk, inner sep=0pt] at (6.23,6.05) {HH real};
+  \draw[cRP, line width=0.9pt] (7.00,6.05) -- (7.30,6.05);
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cInk, inner sep=0pt] at (7.37,6.05) {HH roleplay};
+  \draw[cLLM, line width=1.4pt] (8.40,6.05) -- (8.70,6.05);
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cInk, inner sep=0pt] at (8.77,6.05) {H--LLM roleplay};
 
   \begin{scope}[shift={(6.12,3.70)}]
   \draw[cRule, line width=0.4pt] (0,0) -- (2.78,0);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,0.650) -- (2.78,0.650);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,1.300) -- (2.78,1.300);
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.20};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.40};
-  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.744) (0.417,1.227) (0.695,1.177) (0.973,0.944) (1.251,0.780) (1.529,0.627) (1.807,0.529) (2.085,0.350) (2.363,0.260) (2.641,0.084)} -- (2.641,0) -- cycle;
-  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.238) (0.417,0.715) (0.695,0.993) (0.973,0.774) (1.251,0.726) (1.529,0.829) (1.807,0.528) (2.085,0.524) (2.363,0.516) (2.641,0.113)};
-  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.507) (0.417,1.005) (0.695,1.057) (0.973,0.809) (1.251,0.547) (1.529,0.479) (1.807,0.275) (2.085,0.406) (2.363,0.332) (2.641,0.051)};
-  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.744) (0.417,1.227) (0.695,1.177) (0.973,0.944) (1.251,0.780) (1.529,0.627) (1.807,0.529) (2.085,0.350) (2.363,0.260) (2.641,0.084)};
-  \node[anchor=west, font=\scriptsize\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Discloses too early};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{Problem statement + definition}};
-  \node[anchor=north west, font=\fontsize{5.2}{6.0}\selectfont, text=cLLM, inner sep=0pt] at (-0.02,-0.10) {peaks at 0.38 by decile 2 (HH real: 0.31)};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.20};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.40};
+  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.707) (0.417,1.228) (0.695,1.233) (0.973,0.935) (1.251,0.767) (1.529,0.636) (1.807,0.506) (2.085,0.354) (2.363,0.243) (2.641,0.081)} -- (2.641,0) -- cycle;
+  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.417) (0.417,0.826) (0.695,0.701) (0.973,0.886) (1.251,0.793) (1.529,0.690) (1.807,0.461) (2.085,0.585) (2.363,0.257) (2.641,0.081)};
+  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.371) (0.417,0.988) (0.695,0.997) (0.973,1.035) (1.251,0.873) (1.529,0.647) (1.807,0.402) (2.085,0.411) (2.363,0.259) (2.641,0.030)};
+  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.707) (0.417,1.228) (0.695,1.233) (0.973,0.935) (1.251,0.767) (1.529,0.636) (1.807,0.506) (2.085,0.354) (2.363,0.243) (2.641,0.081)};
+  \node[anchor=west, font=\fontsize{7.8}{9.2}\selectfont\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Discloses too early};
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{Problem statement + definition}};
   \end{scope}
 
   \begin{scope}[shift={(9.34,3.70)}]
   \draw[cRule, line width=0.4pt] (0,0) -- (2.78,0);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,0.650) -- (2.78,0.650);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,1.300) -- (2.78,1.300);
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.25};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.50};
-  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.041) (0.417,0.137) (0.695,0.210) (0.973,0.380) (1.251,0.462) (1.529,0.615) (1.807,0.685) (2.085,0.863) (2.363,0.972) (2.641,1.031)} -- (2.641,0) -- cycle;
-  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.017) (0.417,0.065) (0.695,0.077) (0.973,0.186) (1.251,0.133) (1.529,0.155) (1.807,0.156) (2.085,0.068) (2.363,0.163) (2.641,0.097)};
-  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.020) (0.417,0.047) (0.695,0.149) (0.973,0.124) (1.251,0.188) (1.529,0.246) (1.807,0.206) (2.085,0.205) (2.363,0.318) (2.641,0.264)};
-  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.041) (0.417,0.137) (0.695,0.210) (0.973,0.380) (1.251,0.462) (1.529,0.615) (1.807,0.685) (2.085,0.863) (2.363,0.972) (2.641,1.031)};
-  \node[anchor=west, font=\scriptsize\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Drifts into solutions};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {recommendations, resources};
-  \node[anchor=north west, font=\fontsize{5.2}{6.0}\selectfont, text=cLLM, inner sep=0pt] at (-0.02,-0.10) {climbs to 0.40, humans below 0.13};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.25};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.50};
+  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.047) (0.417,0.130) (0.695,0.211) (0.973,0.341) (1.251,0.492) (1.529,0.621) (1.807,0.720) (2.085,0.882) (2.363,0.963) (2.641,1.028)} -- (2.641,0) -- cycle;
+  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.048) (0.417,0.073) (0.695,0.143) (0.973,0.150) (1.251,0.116) (1.529,0.120) (1.807,0.116) (2.085,0.166) (2.363,0.164) (2.641,0.074)};
+  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.025) (0.417,0.057) (0.695,0.000) (0.973,0.044) (1.251,0.149) (1.529,0.226) (1.807,0.266) (2.085,0.300) (2.363,0.290) (2.641,0.252)};
+  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.047) (0.417,0.130) (0.695,0.211) (0.973,0.341) (1.251,0.492) (1.529,0.621) (1.807,0.720) (2.085,0.882) (2.363,0.963) (2.641,1.028)};
+  \node[anchor=west, font=\fontsize{7.8}{9.2}\selectfont\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Drifts into solutions};
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {recommendations, resources};
   \end{scope}
 
   \begin{scope}[shift={(6.12,1.17)}]
   \draw[cRule, line width=0.4pt] (0,0) -- (2.78,0);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,0.650) -- (2.78,0.650);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,1.300) -- (2.78,1.300);
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.04};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.08};
-  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.071) (0.417,0.036) (0.695,0.082) (0.973,0.222) (1.251,0.192) (1.529,0.275) (1.807,0.241) (2.085,0.363) (2.363,0.289) (2.641,0.150)} -- (2.641,0) -- cycle;
-  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.325) (0.417,0.569) (0.695,0.160) (0.973,0.232) (1.251,0.453) (1.529,0.777) (1.807,0.574) (2.085,0.428) (2.363,0.535) (2.641,0.323)};
-  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.680) (0.417,0.074) (0.695,0.622) (0.973,0.389) (1.251,0.781) (1.529,0.599) (1.807,1.194) (2.085,0.855) (2.363,1.105) (2.641,0.508)};
-  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.071) (0.417,0.036) (0.695,0.082) (0.973,0.222) (1.251,0.192) (1.529,0.275) (1.807,0.241) (2.085,0.363) (2.363,0.289) (2.641,0.150)};
-  \node[anchor=west, font=\scriptsize\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Rarely asks back};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{General request}};
-  \node[anchor=north west, font=\fontsize{5.2}{6.0}\selectfont, text=cLLM, inner sep=0pt] at (-0.02,-0.10) {84\% ask nothing (humans 42--46\%)};
-  \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (0.000,-0.44) {0};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (1.390,-0.44) {50};
-  \node[anchor=north east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (2.780,-0.44) {100};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.04};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.08};
+  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.070) (0.417,0.102) (0.695,0.081) (0.973,0.171) (1.251,0.213) (1.529,0.310) (1.807,0.228) (2.085,0.340) (2.363,0.292) (2.641,0.135)} -- (2.641,0) -- cycle;
+  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.476) (0.417,0.393) (0.695,0.319) (0.973,0.537) (1.251,0.595) (1.529,0.314) (1.807,0.592) (2.085,0.520) (2.363,0.578) (2.641,0.174)};
+  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.696) (0.417,0.269) (0.695,0.344) (0.973,0.545) (1.251,0.557) (1.529,0.746) (1.807,0.961) (2.085,1.071) (2.363,0.951) (2.641,0.449)};
+  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.070) (0.417,0.102) (0.695,0.081) (0.973,0.171) (1.251,0.213) (1.529,0.310) (1.807,0.228) (2.085,0.340) (2.363,0.292) (2.641,0.135)};
+  \node[anchor=west, font=\fontsize{7.8}{9.2}\selectfont\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Rarely asks back};
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{General request}};
+  \node[anchor=north west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (0.000,-0.44) {0};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (1.390,-0.44) {50};
+  \node[anchor=north east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (2.780,-0.44) {100};
   \end{scope}
 
   \begin{scope}[shift={(9.34,1.17)}]
   \draw[cRule, line width=0.4pt] (0,0) -- (2.78,0);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,0.650) -- (2.78,0.650);
   \draw[cRule!55, line width=0.3pt, dash pattern=on 1pt off 1.4pt] (0,1.300) -- (2.78,1.300);
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.03};
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.06};
-  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.057) (0.417,0.000) (0.695,0.175) (0.973,0.114) (1.251,0.093) (1.529,0.143) (1.807,0.128) (2.085,0.110) (2.363,0.214) (2.641,0.109)} -- (2.641,0) -- cycle;
-  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.000) (0.417,0.433) (0.695,0.427) (0.973,1.135) (1.251,0.403) (1.529,0.777) (1.807,0.842) (2.085,0.570) (2.363,0.908) (2.641,0.484)};
-  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.412) (0.417,0.591) (0.695,0.622) (0.973,0.415) (1.251,0.313) (1.529,0.456) (1.807,0.245) (2.085,1.140) (2.363,0.442) (2.641,0.169)};
-  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.057) (0.417,0.000) (0.695,0.175) (0.973,0.114) (1.251,0.093) (1.529,0.143) (1.807,0.128) (2.085,0.110) (2.363,0.214) (2.641,0.109)};
-  \node[anchor=west, font=\scriptsize\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Never disagrees};
-  \node[anchor=west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{Rejection}};
-  \node[anchor=north west, font=\fontsize{5.2}{6.0}\selectfont, text=cLLM, inner sep=0pt] at (-0.02,-0.10) {0.005 vs 0.022--0.029 for humans};
-  \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (0.000,-0.44) {0};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (1.390,-0.44) {50};
-  \node[anchor=north east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute!80, inner sep=0pt] at (2.780,-0.44) {100};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.000) {0};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,0.650) {.03};
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!85, inner sep=0pt] at (-0.07,1.300) {.06};
+  \fill[cLLM, opacity=0.09] (0.139,0) -- plot coordinates {(0.139,0.056) (0.417,0.045) (0.695,0.152) (0.973,0.137) (1.251,0.095) (1.529,0.124) (1.807,0.109) (2.085,0.113) (2.363,0.216) (2.641,0.108)} -- (2.641,0) -- cycle;
+  \draw[cReal, line width=0.6pt, line join=round] plot coordinates {(0.139,0.159) (0.417,0.612) (0.695,0.510) (0.973,0.716) (1.251,0.705) (1.529,0.920) (1.807,0.702) (2.085,0.953) (2.363,0.771) (2.641,0.310)};
+  \draw[cRP, line width=0.6pt, line join=round] plot coordinates {(0.139,0.516) (0.417,0.479) (0.695,0.459) (0.973,0.484) (1.251,0.619) (1.529,0.221) (1.807,0.815) (2.085,0.714) (2.363,0.346) (2.641,0.200)};
+  \draw[cLLM, line width=1.0pt, line join=round] plot coordinates {(0.139,0.056) (0.417,0.045) (0.695,0.152) (0.973,0.137) (1.251,0.095) (1.529,0.124) (1.807,0.109) (2.085,0.113) (2.363,0.216) (2.641,0.108)};
+  \node[anchor=west, font=\fontsize{7.8}{9.2}\selectfont\bfseries, text=cInk, inner sep=0pt] at (-0.02,1.86) {Rarely disagrees};
+  \node[anchor=west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt] at (-0.02,1.53) {\textit{Rejection}};
+  \node[anchor=north west, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (0.000,-0.44) {0};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (1.390,-0.44) {50};
+  \node[anchor=north east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute!80, inner sep=0pt] at (2.780,-0.44) {100};
   \end{scope}
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt]
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt]
        at (8.92,0.51) {conversation progress (\%)};
 
   \draw[rounded corners=2.5pt, draw=cRule, fill=cPanel, line width=0.5pt]
-        (12.72,0) rectangle (17.40,6.95);
+        (12.72,0) rectangle (17.40,7.40);
   \node[circle, fill=cInk, text=white, inner sep=0pt, minimum size=3.4mm,
-        font=\bfseries\fontsize{6}{7}\selectfont] at (13.12,6.53) {3};
-  \node[anchor=west, font=\small\bfseries, text=cInk, inner sep=0pt]
-        at (13.35,6.53) {Course-level convergence};
-  \node[anchor=north west, font=\fontsize{5.6}{6.6}\selectfont, text=cMute, inner sep=0pt,
-        align=left, text width=3.73cm] at (13.35,6.31) {One course line, three semesters\,---\,client deployment exchanged};
-  \node[anchor=north west, font=\fontsize{5.8}{6.8}\selectfont\bfseries, text=cInk, inner sep=0pt]
-       at (13.14,5.83) {Measured distance};
-  \node[anchor=north east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt]
-       at (17.00,5.79) {Client JSD to HH real};
-  \draw[cRule, line width=0.4pt] (13.14,4.11) -- (17.00,4.11);
-  \fill[cMeas!40] (13.589,4.110) rectangle (14.138,4.875);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont, text=cMeas, inner sep=1.3pt] at (13.863,4.875) {0.478};
-  \fill[cMeas] (14.836,4.110) rectangle (15.384,5.068);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cMeas, inner sep=1.3pt] at (15.110,5.068) {0.599};
-  \fill[cMeas!40] (16.082,4.110) rectangle (16.631,4.688);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont, text=cMeas, inner sep=1.3pt] at (16.357,4.688) {0.361};
-  \draw[cMute, line width=0.5pt] (13.468,4.265) -- (14.258,4.265);
-  \draw[cMute, line width=0.5pt] (14.715,4.246) -- (15.505,4.246);
-  \draw[cMute, line width=0.5pt] (15.962,4.268) -- (16.752,4.268);
-  \node[anchor=east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.2pt] at (13.47,4.27) {noise};
-  \node[anchor=north west, font=\fontsize{5.8}{6.8}\selectfont\bfseries, text=cInk, inner sep=0pt]
+        font=\bfseries\fontsize{7.2}{8.4}\selectfont] at (13.12,6.98) {3};
+  \node[anchor=west, font=\fontsize{9.5}{11}\selectfont\bfseries, text=cInk, inner sep=0pt]
+        at (13.35,6.98) {Course-level convergence};
+  \node[anchor=north west, font=\fontsize{6.7}{7.9}\selectfont, text=cMute, inner sep=0pt,
+        align=left, text width=3.73cm] at (13.35,6.76) {One course line, three semesters};
+  \node[anchor=north west, font=\fontsize{7.0}{8.2}\selectfont\bfseries, text=cInk, inner sep=0pt]
+       at (13.14,6.10) {Measured distance};
+  \node[anchor=north east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt]
+       at (17.00,6.06) {JSD to HH real};
+  \draw[cRule, line width=0.4pt] (13.14,4.05) -- (17.00,4.05);
+  \fill[cMeas!40] (13.589,4.050) rectangle (14.138,5.040);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont, text=cMeas, inner sep=1.3pt] at (13.863,5.040) {0.478};
+  \fill[cMeas] (14.836,4.050) rectangle (15.384,5.291);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cMeas, inner sep=1.3pt] at (15.110,5.291) {0.599};
+  \fill[cMeas!40] (16.082,4.050) rectangle (16.631,4.798);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont, text=cMeas, inner sep=1.3pt] at (16.357,4.798) {0.361};
+  \draw[cMute, line width=0.5pt] (13.468,4.251) -- (14.258,4.251);
+  \draw[cMute, line width=0.5pt] (14.715,4.226) -- (15.505,4.226);
+  \draw[cMute, line width=0.5pt] (15.962,4.255) -- (16.752,4.255);
+  \node[anchor=east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.2pt] at (13.47,4.25) {noise};
+  \node[anchor=north west, font=\fontsize{7.0}{8.2}\selectfont\bfseries, text=cInk, inner sep=0pt]
        at (13.14,3.75) {Perceived as \emph{less} human};
-  \node[anchor=north east, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=0pt]
-       at (17.00,3.71) {realism item (1--5)};
-  \draw[cRule, line width=0.4pt] (13.14,2.03) -- (17.00,2.03);
-  \fill[cAcc!40] (13.589,2.030) rectangle (14.138,2.372);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont, text=cAcc, inner sep=1.3pt] at (13.863,2.372) {2.22};
-  \fill[cAcc] (14.836,2.030) rectangle (15.384,2.708);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cAcc, inner sep=1.3pt] at (15.110,2.708) {3.42};
-  \fill[cAcc!40] (16.082,2.030) rectangle (16.631,2.408);
-  \node[anchor=south, font=\fontsize{5.2}{6.0}\selectfont, text=cAcc, inner sep=1.3pt] at (16.357,2.408) {2.35};
-  \node[anchor=north, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
-       at (13.863,1.95) {Mixtral};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (13.863,1.67) {WS\,24/25};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (13.863,1.45) {55 conv., $n$\,=\,9};
-  \node[anchor=north, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
-       at (15.110,1.95) {Llama 3.3};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (15.110,1.67) {WS\,25/26};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (15.110,1.45) {90 conv., $n$\,=\,26};
-  \node[anchor=north, font=\fontsize{5.2}{6.0}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
-       at (16.357,1.95) {GPT-OSS};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (16.357,1.67) {SS\,26};
-  \node[anchor=north, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, inner sep=1.1pt]
-       at (16.357,1.45) {48 conv., $n$\,=\,23};
-
-  \draw[cRule, line width=0.4pt, dash pattern=on 1.4pt off 1.4pt]
-       (13.14,1.13) -- (16.98,1.13);
-  \node[anchor=north west, font=\fontsize{4.7}{5.4}\selectfont, text=cMute, align=left, inner sep=0pt, text width=3.84cm]
-       at (13.14,0.97) {\textbf{Only humanlikeness moves.} The five general acceptance
-        constructs\,---\,usefulness, ease of use, enjoyment, intention, social influence\,---\,do
-        not shift between semesters (all $p\geq.17$, $|\delta|\leq0.23$).};
+  \node[anchor=north east, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=0pt]
+       at (17.00,3.71) {realism, 1--5};
+  \draw[cRule, line width=0.4pt] (13.14,1.70) -- (17.00,1.70);
+  \fill[cAcc!40] (13.589,1.700) rectangle (14.138,2.142);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont, text=cAcc, inner sep=1.3pt] at (13.863,2.142) {2.22};
+  \fill[cAcc] (14.836,1.700) rectangle (15.384,2.577);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cAcc, inner sep=1.3pt] at (15.110,2.577) {3.42};
+  \fill[cAcc!40] (16.082,1.700) rectangle (16.631,2.189);
+  \node[anchor=south, font=\fontsize{6.2}{7.2}\selectfont, text=cAcc, inner sep=1.3pt] at (16.357,2.189) {2.35};
+  \node[anchor=north, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
+       at (13.863,1.62) {Mixtral};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (13.863,1.36) {WS\,24/25};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (13.863,1.15) {55 conv.};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (13.863,0.94) {$n$\,=\,9};
+  \node[anchor=north, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
+       at (15.110,1.62) {Llama 3.3};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (15.110,1.36) {WS\,25/26};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (15.110,1.15) {90 conv.};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (15.110,0.94) {$n$\,=\,26};
+  \node[anchor=north, font=\fontsize{6.2}{7.2}\selectfont\bfseries, text=cInk, inner sep=1.3pt]
+       at (16.357,1.62) {GPT-OSS};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (16.357,1.36) {SS\,26};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (16.357,1.15) {48 conv.};
+  \node[anchor=north, font=\fontsize{5.6}{6.5}\selectfont, text=cMute, inner sep=1.1pt]
+       at (16.357,0.94) {$n$\,=\,23};
 \end{tikzpicture}
 \end{document}

@@ -875,7 +875,7 @@ def format_unified_result(
     from datetime import datetime
 
     # Convert flat messages to conversation structure
-    # Since we evaluate on Säule 5 (which has conversation structure),
+    # Since we evaluate on Pillar 5 (which has conversation structure),
     # we group all messages into a single "conversation" for now
     # In the future, this could be enhanced to preserve actual conversation IDs
     messages_data = eval_results.get('messages', [])
@@ -920,7 +920,7 @@ def format_unified_result(
 
     conversations = [{
         'conversation_id': 0,
-        'source_file': 'saeule_5_test_set',
+        'source_file': 'pillar_5_test_set',
         'metrics': {
             'total_spans': conv_total_spans,
             'total_pairs': conv_total_pairs,

@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrrrrrrr}
+\hline
+Condition and role & Units & Cat. & Words & Acc. & Base & $\kappa$ & Macro F1 & Wtd. F1 & Pillar & Group \\
+\hline
+HH roleplay -- all units & 4,354 & 61 & 10 & 0.461 & 0.089 & 0.445 \footnotesize[0.427, 0.464] & 0.344 & 0.464 & 0.817 & 0.621 \\
+HH roleplay -- counselor & 2,467 & 33 & 11 & 0.418 & 0.158 & 0.388 \footnotesize[0.367, 0.411] & 0.319 & 0.429 & 0.778 & 0.565 \\
+HH roleplay -- client & 1,887 & 28 & 9 & 0.517 & 0.151 & 0.481 \footnotesize[0.453, 0.509] & 0.381 & 0.516 & 0.869 & 0.694 \\
+HH real -- all units & 3,591 & 59 & 10 & 0.360 & 0.202 & 0.339 \footnotesize[0.319, 0.358] & 0.304 & 0.371 & 0.813 & 0.623 \\
+HH real -- counselor & 1,727 & 35 & 10 & 0.330 & 0.142 & 0.303 \footnotesize[0.277, 0.332] & 0.301 & 0.323 & 0.765 & 0.576 \\
+HH real -- client & 1,864 & 24 & 9 & 0.387 & 0.389 & 0.332 \footnotesize[0.297, 0.370] & 0.313 & 0.419 & 0.857 & 0.666 \\
+\hline
+\end{tabular}
+\caption{Agreement of the OnCoCo classifier with the expert annotation of the two human chat corpora. Both label sets sit on identical units: the classifier was re-run on the human segments, with the role prefix the pipeline uses, so only the labels differ and not the segmentation. \emph{Units} counts annotated segments, \emph{Cat.} the number of distinct OnCoCo categories the human annotators used in that block (the classifier can choose among 68, of which 66 have a counterpart in the German scheme), and \emph{Words} their median length in whitespace-separated tokens. \emph{Acc.} is unit-level agreement and \emph{Base} the share of the largest human category, the accuracy a constant prediction would reach. $\kappa$ is Cohen's kappa with a 95\% conversation-level bootstrap interval (2{,}000 draws). \emph{Macro F1} averages over the categories the humans used, so rare ones weigh as much as frequent ones, while \emph{Wtd. F1} weighs by support. \emph{Pillar} and \emph{Group} are accuracies after truncating both codes to their second and third field, that is to the broad field of action and to the function group within it.}
+\label{Stab:human-validation}
+\end{table}

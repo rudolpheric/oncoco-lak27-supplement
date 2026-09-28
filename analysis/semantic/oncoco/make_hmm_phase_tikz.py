@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import csv
 import subprocess
+from tikz_fonts import scale_fonts
 from collections import defaultdict
 from pathlib import Path
 
@@ -178,7 +179,7 @@ def main() -> None:
                        max(0.6, ARROW_PT_PER_PROB * p_ct), "above")
         add(r"  \node[font=\fontsize{6.6}{7.6}\selectfont\bfseries, text=" +
             (col if emph else "cInk") + r", fill=cPanel, inner sep=1.0pt]"
-            rf" at ({lx:.3f},{ly + 0.04:.3f}) {{{fmt(p_ct)}}};")
+            rf" at ({lx:.3f},{ly + 0.20:.3f}) {{{fmt(p_ct)}}};")
         yb = P_CLAR[1] - 0.42
         dy = P_CLAR[1] - yb
         sx = P_CLAR[0] + max(0.0, rad[c] ** 2 - dy ** 2) ** 0.5 + 0.06
@@ -234,7 +235,7 @@ def main() -> None:
                 rf" ({x + w - 0.03:.3f},{BAR_Y + BAR_H:.2f});")
             x += w
         add(r"  \node[anchor=east, font=\fontsize{4.8}{5.6}\selectfont, text=cMute, inner sep=0pt]"
-            rf" at ({BAR_X1:.2f},{BAR_Y + BAR_H + 0.15:.2f}) {{phase occupancy}};")
+            rf" at ({BAR_X1:.2f},{BAR_Y + BAR_H + 0.15:.2f}) {{occupancy}};")
         add(r"  \node[anchor=west, font=\fontsize{4.8}{5.6}\selectfont, text=cMute, inner sep=0pt]"
             rf" at ({BAR_X0:.2f},{BAR_Y + BAR_H + 0.15:.2f}) {{Opening\,\textbar\,Clarify\,\textbar\,"
             rf"{third_name}}};")
@@ -246,7 +247,7 @@ def main() -> None:
     add(r"\end{tikzpicture}")
     add(r"\end{document}")
 
-    OUT.write_text("\n".join(L) + "\n", encoding="utf-8")
+    OUT.write_text(scale_fonts("\n".join(L)) + "\n", encoding="utf-8")
     print(f"wrote {OUT}")
     subprocess.run(["pdflatex", "-interaction=nonstopmode", OUT.name],
                    cwd=OUTDIR, check=True, stdout=subprocess.DEVNULL)
